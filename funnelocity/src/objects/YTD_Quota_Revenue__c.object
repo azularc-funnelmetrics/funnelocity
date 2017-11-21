@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>The object stores the data that is re-calculated for every fiscal year</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>false</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Annual_Quota_Amount__c</fullName>
+        <description>Stores the sum of quotas for all 12 months</description>
+        <externalId>false</externalId>
+        <formula>Month_1_Quota_Amount__c+Month_2_Quota_Amount__c+Month_3_Quota_Amount__c+Month_4_Quota_Amount__c+Month_5_Quota_Amount__c+Month_6_Quota_Amount__c+Month_7_Quota_Amount__c+Month_8_Quota_Amount__c+Month_9_Quota_Amount__c+Month_10_Quota_Amount__c+Month_11_Quota_Amount__c+Month_12_Quota_Amount__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Annual Quota Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Month_10_Quota_Amount__c</fullName>
+        <description>Field to store the quota for the tenth month of the fiscal year</description>
+        <externalId>false</externalId>
+        <label>Month 10 Quota Amount</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Month_11_Quota_Amount__c</fullName>
+        <description>Field to store the quota for the eleventh month of the fiscal year</description>
+        <externalId>false</externalId>
+        <label>Month 11 Quota Amount</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Month_12_Quota_Amount__c</fullName>
+        <description>Field to store the quota for the twelfth month of the fiscal year</description>
+        <externalId>false</externalId>
+        <label>Month 12 Quota Amount</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Month_1_Quota_Amount__c</fullName>
+        <description>Stores the quota amount for the first month of the fiscal year</description>
+        <externalId>false</externalId>
+        <label>Month 1 Quota Amount</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Month_2_Quota_Amount__c</fullName>
+        <description>Field to store the quota for the second month of the fiscal year</description>
+        <externalId>false</externalId>
+        <label>Month 2 Quota Amount</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Month_3_Quota_Amount__c</fullName>
+        <description>Field to store the quota for the third month of the fiscal year</description>
+        <externalId>false</externalId>
+        <label>Month 3 Quota Amount</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Month_4_Quota_Amount__c</fullName>
+        <description>Field to store the quota for the fourth month of the fiscal year</description>
+        <externalId>false</externalId>
+        <label>Month 4 Quota Amount</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Month_5_Quota_Amount__c</fullName>
+        <description>Field to store the quota for the fifth month of the fiscal year</description>
+        <externalId>false</externalId>
+        <label>Month 5 Quota Amount</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Month_6_Quota_Amount__c</fullName>
+        <description>Field to store the quota for the sixth month of the fiscal year</description>
+        <externalId>false</externalId>
+        <label>Month 6 Quota Amount</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Month_7_Quota_Amount__c</fullName>
+        <description>Field to store the quota for the seventh month of the fiscal year</description>
+        <externalId>false</externalId>
+        <label>Month 7 Quota Amount</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Month_8_Quota_Amount__c</fullName>
+        <description>Field to store the quota for the eighth month of the fiscal year</description>
+        <externalId>false</externalId>
+        <label>Month 8 Quota Amount</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Month_9_Quota_Amount__c</fullName>
+        <externalId>false</externalId>
+        <label>Month 9 Quota Amount</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Sales_Rep_Profile__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Stores the sales rep profile to which the quota/revenue record is associated</description>
+        <externalId>false</externalId>
+        <label>Sales Rep Profile</label>
+        <referenceTo>Sales_Rep_Profile__c</referenceTo>
+        <relationshipLabel>YTD Quota/Revenues</relationshipLabel>
+        <relationshipName>YTD_Quota_Revenues</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Start_date__c</fullName>
+        <description>Stores the start date of the fiscal year</description>
+        <externalId>false</externalId>
+        <label>Start date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>YTD_Opportunities_Won__c</fullName>
+        <description>Number of opportunities won by the sales rep in the calendar/fiscal year</description>
+        <externalId>false</externalId>
+        <label>YTD Opportunities Won</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>YTD_Revenue__c</fullName>
+        <description>Sum of Revenue from won opportunities in the current fiscal year</description>
+        <externalId>false</externalId>
+        <label>YTD Revenue</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <label>YTD Quota/Revenue</label>
+    <nameField>
+        <displayFormat>{YYYY}{MM}-{0}</displayFormat>
+        <label>YTD Quota/Revenue Name</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>YTD Quota/Revenues</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>

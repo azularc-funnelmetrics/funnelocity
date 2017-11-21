@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>YTD Quota/Revenue</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>YTD Quota/Revenues</value>
+    </caseValues>
+    <fields>
+        <label><!-- Annual Quota Amount --></label>
+        <name>Annual_Quota_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Month 10 Quota Amount --></label>
+        <name>Month_10_Quota_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Month 11 Quota Amount --></label>
+        <name>Month_11_Quota_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Month 12 Quota Amount --></label>
+        <name>Month_12_Quota_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Month 1 Quota Amount --></label>
+        <name>Month_1_Quota_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Month 2 Quota Amount --></label>
+        <name>Month_2_Quota_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Month 3 Quota Amount --></label>
+        <name>Month_3_Quota_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Month 4 Quota Amount --></label>
+        <name>Month_4_Quota_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Month 5 Quota Amount --></label>
+        <name>Month_5_Quota_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Month 6 Quota Amount --></label>
+        <name>Month_6_Quota_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Month 7 Quota Amount --></label>
+        <name>Month_7_Quota_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Month 8 Quota Amount --></label>
+        <name>Month_8_Quota_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Month 9 Quota Amount --></label>
+        <name>Month_9_Quota_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sales Rep Profile --></label>
+        <name>Sales_Rep_Profile__c</name>
+        <relationshipLabel><!-- YTD Quota/Revenues --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Start date --></label>
+        <name>Start_date__c</name>
+    </fields>
+    <fields>
+        <label><!-- YTD Opportunities Won --></label>
+        <name>YTD_Opportunities_Won__c</name>
+    </fields>
+    <fields>
+        <label><!-- YTD Revenue --></label>
+        <name>YTD_Revenue__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

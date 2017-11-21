@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Sales Rep Profile</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Sales Rep Profiles</value>
+    </caseValues>
+    <fields>
+        <label><!-- Aggregated Annual Quota --></label>
+        <name>Aggregated_Annual_Quota__c</name>
+    </fields>
+    <fields>
+        <label><!-- Aggregated current active opptys --></label>
+        <name>Aggregated_current_active_opptys__c</name>
+    </fields>
+    <fields>
+        <label><!-- Annual Opportunity Quota --></label>
+        <name>Annual_Opportunity_Quota__c</name>
+    </fields>
+    <fields>
+        <label><!-- Annual Quota Amount --></label>
+        <name>Annual_Quota_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Annual Win Quota --></label>
+        <name>Annual_Win_Quota__c</name>
+    </fields>
+    <fields>
+        <label><!-- Average Sales Price --></label>
+        <name>Average_Sales_Price__c</name>
+    </fields>
+    <fields>
+        <label><!-- Current Active Opportunities --></label>
+        <name>Current_Active_Opportunities__c</name>
+    </fields>
+    <fields>
+        <label><!-- Month 10 Quota Amount --></label>
+        <name>Month_10_Quota_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Month 11 Quota Amount --></label>
+        <name>Month_11_Quota_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Month 12 Quota Amount --></label>
+        <name>Month_12_Quota_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Month 1 Quota Amount --></label>
+        <name>Month_1_Quota_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Month 2 Quota Amount --></label>
+        <name>Month_2_Quota_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Month 3 Quota Amount --></label>
+        <name>Month_3_Quota_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Month 4 Quota Amount --></label>
+        <name>Month_4_Quota_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Month 5 Quota Amount --></label>
+        <name>Month_5_Quota_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Month 6 Quota Amount --></label>
+        <name>Month_6_Quota_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Month 7 Quota Amount --></label>
+        <name>Month_7_Quota_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Month 8 Quota Amount --></label>
+        <name>Month_8_Quota_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Month 9 Quota Amount --></label>
+        <name>Month_9_Quota_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Monthly Opportunity Quota --></label>
+        <name>Monthly_Opportunity_Quota__c</name>
+    </fields>
+    <fields>
+        <label><!-- Monthly Wins --></label>
+        <name>Monthly_Wins__c</name>
+    </fields>
+    <fields>
+        <label><!-- Q1 Quota Amount --></label>
+        <name>Q1_Quota_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Q2 Quota Amount --></label>
+        <name>Q2_Quota_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Q3 Quota Amount --></label>
+        <name>Q3_Quota_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Q4 Quota Amount --></label>
+        <name>Q4_Quota_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Quarterly Opportunity Quota --></label>
+        <name>Quarterly_Opportunity_Quota__c</name>
+    </fields>
+    <fields>
+        <label><!-- Quarterly Wins --></label>
+        <name>Quarterly_Wins__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sales Manager --></label>
+        <name>Sales_Manager__c</name>
+        <relationshipLabel><!-- Sales Rep Profiles --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Sales Rep Start Date --></label>
+        <name>Sales_Rep_Start_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sales Title --></label>
+        <name>Sales_Title__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tenure --></label>
+        <name>Tenure__c</name>
+    </fields>
+    <fields>
+        <label><!-- Territory --></label>
+        <name>Territory__c</name>
+        <picklistValues>
+            <masterLabel>American Samoa</masterLabel>
+            <translation><!-- American Samoa --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- User Record Name --></label>
+        <name>User_Record_Name__c</name>
+        <relationshipLabel><!-- Sales Rep Profiles --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- 12 Month Opprties Added to the funnel --></label>
+        <name>X12_Month_Opprties_Added_to_the_funnel__c</name>
+    </fields>
+    <fields>
+        <label><!-- 12 Month Revenue Close Rate --></label>
+        <name>X12_Month_Revenue_Close_Rate__c</name>
+    </fields>
+    <fields>
+        <label><!-- 12 Month Rolling Average Sales Cycle --></label>
+        <name>X12_Month_Rolling_Average_Sales_Cycle__c</name>
+    </fields>
+    <fields>
+        <label><!-- 12 Month Rolling Opptys Won --></label>
+        <name>X12_Month_Rolling_Opptys_Won__c</name>
+    </fields>
+    <fields>
+        <label><!-- 12 Month Rolling Quota --></label>
+        <name>X12_Month_Rolling_Quota__c</name>
+    </fields>
+    <fields>
+        <label><!-- 12 Month Rolling Revenue --></label>
+        <name>X12_Month_Rolling_Revenue__c</name>
+    </fields>
+    <fields>
+        <label><!-- 12 Month Rolling Win Percentage --></label>
+        <name>X12_Month_Rolling_Win_Percentage__c</name>
+    </fields>
+    <fields>
+        <label><!-- YTD Average Sales Cycle --></label>
+        <name>YTD_Average_Sales_Cycle__c</name>
+    </fields>
+    <fields>
+        <label><!-- YTD Opportunities Won --></label>
+        <name>YTD_Opportunities_won__c</name>
+    </fields>
+    <fields>
+        <label><!-- YTD Revenue Close Rate --></label>
+        <name>YTD_Revenue_Close_Rate__c</name>
+    </fields>
+    <fields>
+        <label><!-- YTD Revenue Quota Percent --></label>
+        <name>YTD_Revenue_Quota_Percent__c</name>
+    </fields>
+    <fields>
+        <label><!-- YTD Revenue --></label>
+        <name>YTD_Revenue__c</name>
+    </fields>
+    <fields>
+        <label><!-- YTD Win Percentage --></label>
+        <name>YTD_Win_Percentage__c</name>
+    </fields>
+    <layouts>
+        <layout>Sales Rep Profile Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Opportunities --></label>
+            <section>Opportunities</section>
+        </sections>
+        <sections>
+            <label><!-- Profile details --></label>
+            <section>Profile details</section>
+        </sections>
+        <sections>
+            <label><!-- Quota Fields --></label>
+            <section>Quota Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Revenue --></label>
+            <section>Revenue</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

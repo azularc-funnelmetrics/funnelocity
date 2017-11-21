@@ -1,0 +1,70 @@
+<apex:page standardController="Sales_Rep_Profile__c">
+ <apex:includeLightning />
+    <apex:slds />
+    <div class="slds-scope">
+        <div class="myapp">
+            <div class="slds-grid slds-wrap">
+                <div class="slds-col slds-size--1-of-1 slds-small-size--1-of-2 slds-medium-size--1-of-3">
+                    <div class="slds-grid slds-wrap">
+                        <div class="slds-col slds-size--1-of-1 slds-small-size--1-of-2 slds-medium-size--1-of-2">
+                            <div class="slds-box slds-box_x-small slds-text-align_center slds-m-around--x-small">
+                                <div class="site-grid-card">
+                                    <div class="slds-text-align_center slds-m-bottom_medium slds-m-top_small">12 mo. Avg. Selling Price</div>
+                                    <div class="slds-text-heading_large slds-text-align_center">$17,000</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-size--1-of-1 slds-small-size--1-of-2 slds-medium-size--1-of-2">
+                            <div class="slds-box slds-box_x-small slds-text-align_center slds-m-around--x-small">
+                                <div class="site-grid-card">
+                                    <div class="slds-text-align_center slds-m-bottom_medium slds-m-top_small">12 mo. Avg. Selling Price</div>
+                                    <div class="slds-text-heading_large slds-text-align_center">$17,000</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-col slds-size--1-of-1 slds-small-size--1-of-2 slds-medium-size--1-of-3">
+                    <div class="slds-grid slds-wrap">
+                        <div class="slds-col slds-size--1-of-1 slds-small-size--1-of-2 slds-medium-size--1-of-2">
+                            <div class="slds-box slds-box_x-small slds-text-align_center slds-m-around--x-small">
+                                <div class="site-grid-card">
+                                    <div class="slds-text-align_center slds-m-bottom_medium slds-m-top_small">12 mo. Avg. Selling Price</div>
+                                    <div class="slds-text-heading_large slds-text-align_center">$17,000</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-size--1-of-1 slds-small-size--1-of-2 slds-medium-size--1-of-2">
+                            <div class="slds-box slds-box_x-small slds-text-align_center slds-m-around--x-small">
+                                <div class="site-grid-card">
+                                    <div class="slds-text-align_center slds-m-bottom_medium slds-m-top_small">12 mo. Avg. Selling Price</div>
+                                    <div class="slds-text-heading_large slds-text-align_center">$17,000</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-col slds-size--1-of-1 slds-small-size--1-of-2 slds-medium-size--1-of-3">
+                    <div class="slds-grid slds-wrap">
+                        <div class="slds-col slds-size--1-of-1 slds-small-size--1-of-2 slds-medium-size--1-of-2">
+                            <div class="slds-box slds-box_x-small slds-text-align_center slds-m-around--x-small">
+                                <div class="site-grid-card">
+                                    <div class="slds-text-align_center slds-m-bottom_medium slds-m-top_small">12 mo. Avg. Selling Price</div>
+                                    <div class="slds-text-heading_large slds-text-align_center">$17,000</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-size--1-of-1 slds-small-size--1-of-2 slds-medium-size--1-of-2">
+                            <div class="slds-box slds-box_x-small slds-text-align_center slds-m-around--x-small">
+                                <div class="site-grid-card">
+                                    <div class="slds-text-align_center slds-m-bottom_medium slds-m-top_small">12 mo. Avg. Selling Price</div>
+                                    <div class="slds-text-heading_large slds-text-align_center">$17,000</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</apex:page>

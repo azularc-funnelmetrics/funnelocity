@@ -1,0 +1,416 @@
+/*
+ * Name: EventComponent.CSS
+ * Last Modified: 09-27-2017
+ * Modified By: FB
+ * Description: 
+ * This is style sheet of the component
+ * 
+ *
+*/
+
+/*
+ * Name: eventPage
+ * this class is used for Event component main body  
+*/ 
+.THIS .eventPage{
+          border: 1px solid rgb(216, 221, 230);
+    border-radius: .25rem;
+    background-color: #ffffff;
+    color: #3c3d3e;
+    margin-top: 2px;
+
+    overflow: hidden;
+    
+}
+/*
+ * Name: pagination 
+ * this class is used for task component pagination control
+*/
+.THIS .pagination {
+    
+    margin-top:5px;    
+    margin-bottom:5px;
+}
+
+/*
+ * Name: h2_statics
+ * this class is used for Event display action buttons
+*/ 
+
+.THIS .h2_statics{
+    font-size: 0.74rem;
+    color: #FFFFFF;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    
+    
+}
+/*
+ * Name: slds-button--neutral
+ * this class is used for Event button
+*/ 
+
+.THIS  .slds-button--neutral {
+    padding-left: 0.65rem;
+    padding-right: 0.65rem;
+    line-height: 1.705rem;
+}
+
+/*
+ * Name: sf1-button
+ * this class is used for Event top right buttons
+*/
+.THIS .sf1-button{
+    margin-right:5px !important;
+    border-radius: 5px !important;
+}
+
+/*
+ * Name: rotate-180
+ * this class is used for task component pagination icons
+*/
+.THIS .rotate-180 {
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+/*
+ * Name: icon_xlg
+ * this class is used for Event component many place where the button shows
+*/
+.THIS .icon_xlg  {
+    width: 2rem !important;
+    height: 2rem !important;
+    margin-right: .5rem !important;
+    
+}
+
+/*
+ * Name: statics
+ * this class is used for Event component action panel display 4 action 
+*/
+.THIS .statics{
+    border-bottom: 1px solid #f5f6f7;
+    margin-top: 5px;
+    padding-bottom: 8px;
+    margin-bottom: 2px;
+    
+}
+
+/*
+ * Name: slideshow-container
+ * this class is used for Event component footer banner
+*/
+.THIS .slideshow-container{
+   
+    text-align:center;
+    margin-bottom:5px;
+    margin-top: 2px;
+    border-top: 2px solid #f5f6f7;
+} 
+
+/*
+ * Name: col4 
+ * this class is used for Event component grid division
+*/
+
+.THIS .col4{
+    text-align: center;
+    padding: 0px 1px 0px 1px;
+    
+}
+/*
+ * Name: col3 
+ * this class is used for Event component grid division
+*/
+.THIS .col3{
+    display: inline-block;
+    width: 22%;
+    padding-top: 5px;
+    margin-right: 2%;
+    background-color: #F0F1F2;
+    cursor: pointer;
+    
+}
+
+/*
+ * Name: TotalValue 
+ * this class is used for Event component display action buttons value
+*/
+
+.THIS .TotalValue{
+    font-size: 0.75rem;
+    color: #000000;    
+}
+/*
+ * Name: sm-mar 
+ * this class is used for Event component add custom margin
+*/
+.THIS .sm-mar{
+    
+    padding-left:5px;
+}
+
+/*
+ * Name: uiInputSelect 
+ * this class is used for Event component customized picker
+*/
+.THIS .uiInputSelect {
+    width: 100%;
+    padding-left: 1em;
+    padding-right: 1em;
+    min-height: 28px;
+}
+/*
+ * Name: h1
+ * this class is used for Event component customized heading
+*/
+.THIS h1{
+    padding: 1px 1px 5px 2px;
+    line-height:2rem;
+    color: #485c70;
+    text-shadow: none;
+    font-size: 1.3875rem;
+    font-weight: normal;
+    border-bottom: 1px solid #f5f6f7;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    margin-bottom: 5px;
+}
+/*
+ * Name: select-area
+ * this class is used for Event component grid division
+*/
+.THIS .select-area{
+    border-bottom: 1px solid #f5f6f7;
+    padding: 10px 10px 18px 10px;
+    
+}
+
+/*
+ * Name: row
+ * this class is used for event component Event list record row display
+*/
+
+.THIS .row{
+    border-bottom: 2px solid #f5f6f7;
+    display:block;
+    width: 100%;
+    font-size: .75rem;
+}
+/*
+ * Name: itemTitle
+ * this class is used for Event component Event subject heading
+*/
+.THIS .itemTitle {
+    color: #3c3d3e;
+    font-size: 1rem;
+    padding: 1px 1px 1px 10px;
+    
+    
+}
+
+/*
+ * Name: itemRows
+ * this class is used for Events component to display the events
+*/
+.THIS .itemRows {
+    color: #3c3d3e;
+    font-size: .75rem;   
+    
+    list-style: none;
+    margin: 0;    
+    padding: 1px 1px 1px 10px;
+    display: inline-block;
+    width: 92%;
+    
+}
+
+/*
+ * Name: subTitle
+ * this class is used for events component event subject heading
+*/
+.THIS .subTitle{
+    font-weight: bold;
+}
+
+/*
+ * Name: col-half
+ * this class is used for Event component div division 50%
+*/
+.THIS .col-half{
+    display: inline-block;
+    padding-right: 10px;
+    line-height: 50px;
+    float: right;
+}
+
+/*
+ * Name: truncate
+ * this class is used for events component to truncate the events on differenct places
+*/
+.THIS .truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-decoration: none;
+    -webkit-transition: color .1s linear;
+    transition: color .1s linear
+        
+}
+/*
+ * Name: input
+ * this class is used for events component to customized input class
+*/
+.THIS  .input {
+    
+    MIN-HEIGHT: 18px;
+    height: 24px;
+}
+/*
+ * Name: datePicker-openIcon
+ * this class is used for events component to display date picker
+*/
+.THIS .datePicker-openIcon{
+       
+    bottom: 2px;
+}
+
+
+/*
+ * Name: col
+ * this class is used for Event component div inline
+*/
+.THIS .col{
+    display: inline-block;
+}
+
+/*
+ * Name: recordCell
+ * this class is used for Event component record display padding and spacing
+*/
+.THIS .recordCell {
+    padding: 1px 14px 2px 0;
+    line-height: 1;
+    
+}
+
+/*
+ * Name: right
+ * this class is used for Event component float right
+*/
+.THIS .right{
+    float:right;
+    margin-right:  0.5rem;
+}
+.THIS .value {
+    -webkit-box-flex: 3;
+    -moz-box-flex: 3;
+    -webkit-flex: 3;
+    -ms-flex: 3;
+    flex: 3;
+}
+/*
+ * Name: EveIcon
+ * this class is used for Event component to position the icons
+*/
+.THIS .EveIcon {
+    
+    font-size: 1px;
+    display: inline-block;
+    float: right;
+    
+    
+}
+/*
+ * Name: hideinput
+ * this class is used for Event component to hide input field 
+*/
+.THIS .hideinput{
+    DISPLAY: none;
+}
+/*
+ * Name: uiLabel
+ * this class is used for Event component to hide the label value  
+*/
+.THIS .uiLabel{
+    DISPLAY: none;
+}
+
+.THIS .wb-list:hover, .THIS .wb-list:focus {
+    text-decoration: none;
+    
+}
+
+/*
+ * Name: metro
+ * this class is used for Event component action button 
+*/
+
+.THIS .metro {
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+    
+    height: 40px;
+    padding: 0;
+    padding-top: 5px;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+    background: #2980b9;
+    border: 0;
+    
+    cursor: pointer;
+    
+}
+
+
+.THIS .wb-list:hover, .THIS .wb-list:focus {
+    text-decoration: none;
+    
+}
+
+.THIS .metro:hover {  text-align: center;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+    background: rgba(3, 169, 244, 0.88);
+    border: 0;
+    
+    cursor: pointer;
+    
+}
+.THIS .metro-active {  text-align: center;
+    
+    background: rgba(3, 169, 244, 0.88);
+    border: 0;
+    
+    cursor: pointer;
+    
+}
+.THIS .metro.three-d {
+    position: relative;
+    box-shadow: 
+        1px 1px #53A7EA,
+        2px 2px #53A7EA,
+        3px 3px #53A7EA;
+    transition: all 0.1s ease-in;
+}
+
+.THIS .metro.three-d:active { 
+    box-shadow: none;
+    top: 3px;
+    left: 3px;
+}
+/*
+ * Name: clearIcon
+ * this class is used for Event component icon display index
+*/
+.THIS .clearIcon{
+    z-index: -100;
+}

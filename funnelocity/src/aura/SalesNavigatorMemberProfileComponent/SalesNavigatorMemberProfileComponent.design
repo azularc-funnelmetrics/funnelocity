@@ -1,0 +1,6 @@
+<design:component >
+    <design:attribute name="displayHeader" label="Display Header?"/>
+    <design:attribute name="headerText" label="Header Text"/>
+    <design:attribute name="minHeight" label="Min Height"/>
+    <design:attribute name="scrolling" label="Enable Scrolling?" datasource="auto,yes,no" default="auto"/>
+</design:component>
