@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Sales Rep Profile</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Sales Rep Profiles</value>
+    </caseValues>
+    <layouts>
+        <layout>Sales Rep Profile Layout</layout>
+        <sections>
+            <label><!-- 12 Month Rolling --></label>
+            <section>12 Month Rolling</section>
+        </sections>
+        <sections>
+            <label><!-- Close Rate --></label>
+            <section>Close Rate</section>
+        </sections>
+        <sections>
+            <label><!-- Company Levels --></label>
+            <section>Company Levels</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Goals --></label>
+            <section>Goals</section>
+        </sections>
+        <sections>
+            <label><!-- Leads --></label>
+            <section>Leads</section>
+        </sections>
+        <sections>
+            <label><!-- Meetings --></label>
+            <section>Meetings</section>
+        </sections>
+        <sections>
+            <label><!-- Metrics Calculator Items --></label>
+            <section>Metrics Calculator Items</section>
+        </sections>
+        <sections>
+            <label><!-- Opportunities --></label>
+            <section>Opportunities</section>
+        </sections>
+        <sections>
+            <label><!-- Profile Details --></label>
+            <section>Profile Details</section>
+        </sections>
+        <sections>
+            <label><!-- Quota --></label>
+            <section>Quota</section>
+        </sections>
+        <sections>
+            <label><!-- Revenue --></label>
+            <section>Revenue</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- User Record Name cannot be blank. --></errorMessage>
+        <name>User_Record_Name_Validation</name>
+    </validationRules>
+</CustomObjectTranslation>

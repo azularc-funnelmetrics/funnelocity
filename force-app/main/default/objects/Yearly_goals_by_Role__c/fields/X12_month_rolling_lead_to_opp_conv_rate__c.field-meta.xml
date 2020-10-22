@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>X12_month_rolling_lead_to_opp_conv_rate__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Lead to opportunity conversion rate goal</description>
+    <externalId>false</externalId>
+    <label>12 month rolling lead to opp conv rate</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackTrending>false</trackTrending>
+    <type>Percent</type>
+</CustomField>

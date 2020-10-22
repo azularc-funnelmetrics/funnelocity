@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Monthly_funnel_opportunities__c</fullName>
+    <deprecated>false</deprecated>
+    <description>This field stores the count of qualified opp at the end of the month + the count of the qualified opp moved to next month + the count of the qualified opps that are lost in the current month</description>
+    <externalId>false</externalId>
+    <formula>IF(Monthly_Opportunity_Close_Rate__c &gt; 0, Monthly_opp_won__c/ Monthly_Opportunity_Close_Rate__c ,0)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Monthly funnel opportunities</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

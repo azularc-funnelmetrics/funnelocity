@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Quantitative</fullName>
+    <columns>NAME</columns>
+    <columns>Group__c</columns>
+    <columns>Field_Name__c</columns>
+    <columns>Goal_field_name__c</columns>
+    <columns>Metric_Field_Name__c</columns>
+    <columns>Rating_type__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Assessment_type__c</field>
+        <operation>equals</operation>
+        <value>Quantitative</value>
+    </filters>
+    <label>Quantitative</label>
+    <language>en_US</language>
+</ListView>

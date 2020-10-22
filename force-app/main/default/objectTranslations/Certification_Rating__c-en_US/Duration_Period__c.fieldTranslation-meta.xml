@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Duration Period --></label>
+    <name>Duration_Period__c</name>
+    <picklistValues>
+        <masterLabel>12 Month Rolling</masterLabel>
+        <translation><!-- 12 Month Rolling --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Current Fiscal year</masterLabel>
+        <translation><!-- Current Fiscal year --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Current Month</masterLabel>
+        <translation><!-- Current Month --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Current Quarter</masterLabel>
+        <translation><!-- Current Quarter --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>No time period</masterLabel>
+        <translation><!-- No time period --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

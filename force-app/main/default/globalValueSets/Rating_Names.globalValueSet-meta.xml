@@ -1,0 +1,670 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>12 Month Rolling $ Close Rate</fullName>
+        <default>false</default>
+        <label>12 Month Rolling $ Close Rate</label>
+    </customValue>
+    <customValue>
+        <fullName>Lead to Opportunity Conversion Rate (YTD)</fullName>
+        <default>false</default>
+        <label>Lead to Opportunity Conversion Rate (YTD)</label>
+    </customValue>
+    <customValue>
+        <fullName>12 Month Rolling Average $ Win Size</fullName>
+        <default>false</default>
+        <label>12 Month Rolling Average $ Win Size</label>
+    </customValue>
+    <customValue>
+        <fullName>12 Month Rolling Opportunities Closed</fullName>
+        <default>false</default>
+        <label>12 Month Rolling Opportunities Closed</label>
+    </customValue>
+    <customValue>
+        <fullName>12 Month Rolling Opportunity Close Rate</fullName>
+        <default>false</default>
+        <label>12 Month Rolling Opportunity Close Rate</label>
+    </customValue>
+    <customValue>
+        <fullName>12 Month Rolling Quota Performance</fullName>
+        <default>false</default>
+        <label>12 Month Rolling Quota Performance</label>
+    </customValue>
+    <customValue>
+        <fullName>Accountability</fullName>
+        <default>false</default>
+        <label>Accountability</label>
+    </customValue>
+    <customValue>
+        <fullName>Communication Skills</fullName>
+        <default>false</default>
+        <label>Communication Skills</label>
+    </customValue>
+    <customValue>
+        <fullName>Competitive Positioning</fullName>
+        <default>false</default>
+        <label>Competitive Positioning</label>
+    </customValue>
+    <customValue>
+        <fullName>Elevator Pitch</fullName>
+        <default>false</default>
+        <label>Elevator Pitch</label>
+    </customValue>
+    <customValue>
+        <fullName>Expense Reports</fullName>
+        <default>false</default>
+        <label>Expense Reports</label>
+    </customValue>
+    <customValue>
+        <fullName>Forecasting</fullName>
+        <default>false</default>
+        <label>Forecasting</label>
+    </customValue>
+    <customValue>
+        <fullName>Logging</fullName>
+        <default>false</default>
+        <label>Logging</label>
+    </customValue>
+    <customValue>
+        <fullName>Loss Reason Tagging (DELETE)</fullName>
+        <default>false</default>
+        <label>Loss Reason Tagging (DELETE)</label>
+    </customValue>
+    <customValue>
+        <fullName>Monthly $ Close Rate</fullName>
+        <default>false</default>
+        <label>Monthly $ Close Rate</label>
+    </customValue>
+    <customValue>
+        <fullName>Monthly Average $ Win size</fullName>
+        <default>false</default>
+        <label>Monthly Average $ Win size</label>
+    </customValue>
+    <customValue>
+        <fullName>Monthly Opportunities added to Qualified Funnel</fullName>
+        <default>false</default>
+        <label>Monthly Opportunities added to Qualified Funnel</label>
+    </customValue>
+    <customValue>
+        <fullName>Monthly Opportunities Closed</fullName>
+        <default>false</default>
+        <label>Monthly Opportunities Closed</label>
+    </customValue>
+    <customValue>
+        <fullName>Monthly Opportunity Close Rate</fullName>
+        <default>false</default>
+        <label>Monthly Opportunity Close Rate</label>
+    </customValue>
+    <customValue>
+        <fullName>Monthly Quota Performance</fullName>
+        <default>false</default>
+        <label>Monthly Quota Performance</label>
+    </customValue>
+    <customValue>
+        <fullName>Needs Analysis</fullName>
+        <default>false</default>
+        <label>Needs Analysis</label>
+    </customValue>
+    <customValue>
+        <fullName>Needs Analysis Calls</fullName>
+        <default>false</default>
+        <label>Needs Analysis Calls</label>
+    </customValue>
+    <customValue>
+        <fullName>Negotiation</fullName>
+        <default>false</default>
+        <label>Negotiation</label>
+    </customValue>
+    <customValue>
+        <fullName>Objection Handling</fullName>
+        <default>false</default>
+        <label>Objection Handling</label>
+    </customValue>
+    <customValue>
+        <fullName>Present Plan</fullName>
+        <default>false</default>
+        <label>Present Plan</label>
+    </customValue>
+    <customValue>
+        <fullName>Qualification Calls</fullName>
+        <default>false</default>
+        <label>Qualification Calls</label>
+    </customValue>
+    <customValue>
+        <fullName>Presentation Skills</fullName>
+        <default>false</default>
+        <label>Presentation Skills</label>
+    </customValue>
+    <customValue>
+        <fullName>Number of meetings/ YTD</fullName>
+        <default>false</default>
+        <label>Number of meetings/ YTD</label>
+    </customValue>
+    <customValue>
+        <fullName>Number of meetings per month</fullName>
+        <default>false</default>
+        <label>Number of meetings per month</label>
+    </customValue>
+    <customValue>
+        <fullName>Number of meetings per quarter</fullName>
+        <default>false</default>
+        <label>Number of meetings per quarter</label>
+    </customValue>
+    <customValue>
+        <fullName>Number of meetings Rolling 12 months</fullName>
+        <default>false</default>
+        <label>Number of meetings Rolling 12 months</label>
+    </customValue>
+    <customValue>
+        <fullName>Onboarding</fullName>
+        <default>false</default>
+        <label>Onboarding</label>
+    </customValue>
+    <customValue>
+        <fullName>Playbook/SF Training</fullName>
+        <default>false</default>
+        <label>Playbook/SF Training</label>
+    </customValue>
+    <customValue>
+        <fullName>Product Knowledge</fullName>
+        <default>false</default>
+        <label>Product Knowledge</label>
+    </customValue>
+    <customValue>
+        <fullName>Products</fullName>
+        <default>false</default>
+        <label>Products</label>
+    </customValue>
+    <customValue>
+        <fullName>Professionalism</fullName>
+        <default>false</default>
+        <label>Professionalism</label>
+    </customValue>
+    <customValue>
+        <fullName>Qualification</fullName>
+        <default>false</default>
+        <label>Qualification</label>
+    </customValue>
+    <customValue>
+        <fullName>Quarterly $ Close Rate</fullName>
+        <default>false</default>
+        <label>Quarterly $ Close Rate</label>
+    </customValue>
+    <customValue>
+        <fullName>Quarterly Average $ Win Size</fullName>
+        <default>false</default>
+        <label>Quarterly Average $ Win Size</label>
+    </customValue>
+    <customValue>
+        <fullName>Quarterly Opportunities added to Qualified Funnel</fullName>
+        <default>false</default>
+        <label>Quarterly Opportunities added to Qualified Funnel</label>
+    </customValue>
+    <customValue>
+        <fullName>Quarterly Opportunities Closed</fullName>
+        <default>false</default>
+        <label>Quarterly Opportunities Closed</label>
+    </customValue>
+    <customValue>
+        <fullName>Quarterly Opportunity Close Rate</fullName>
+        <default>false</default>
+        <label>Quarterly Opportunity Close Rate</label>
+    </customValue>
+    <customValue>
+        <fullName>Quarterly Quota Performance</fullName>
+        <default>false</default>
+        <label>Quarterly Quota Performance</label>
+    </customValue>
+    <customValue>
+        <fullName>RFP/RFI Requests</fullName>
+        <default>false</default>
+        <label>RFP/RFI Requests</label>
+    </customValue>
+    <customValue>
+        <fullName>Rolling 12 Month Opportunities added to Qualified Funnel</fullName>
+        <default>false</default>
+        <label>Rolling 12 Month Opportunities added to Qualified Funnel</label>
+    </customValue>
+    <customValue>
+        <fullName>Sales Presentation</fullName>
+        <default>false</default>
+        <label>Sales Presentation</label>
+    </customValue>
+    <customValue>
+        <fullName>Sales Support Resources</fullName>
+        <default>false</default>
+        <label>Sales Support Resources</label>
+    </customValue>
+    <customValue>
+        <fullName>Sense of Urgency</fullName>
+        <default>false</default>
+        <label>Sense of Urgency</label>
+    </customValue>
+    <customValue>
+        <fullName>SF Activities</fullName>
+        <default>false</default>
+        <label>SF Activities</label>
+    </customValue>
+    <customValue>
+        <fullName>SF Knowledge</fullName>
+        <default>false</default>
+        <label>SF Knowledge</label>
+    </customValue>
+    <customValue>
+        <fullName>Team Player</fullName>
+        <default>false</default>
+        <label>Team Player</label>
+    </customValue>
+    <customValue>
+        <fullName>Territory/Account Plan</fullName>
+        <default>false</default>
+        <label>Territory/Account Plan</label>
+    </customValue>
+    <customValue>
+        <fullName>Timely Response</fullName>
+        <default>false</default>
+        <label>Timely Response</label>
+    </customValue>
+    <customValue>
+        <fullName>Rapport Building</fullName>
+        <default>false</default>
+        <label>Rapport Building</label>
+    </customValue>
+    <customValue>
+        <fullName>Trusted Advisor</fullName>
+        <default>false</default>
+        <label>Trusted Advisor</label>
+    </customValue>
+    <customValue>
+        <fullName>Update CRM</fullName>
+        <default>false</default>
+        <label>Update CRM</label>
+    </customValue>
+    <customValue>
+        <fullName>Working Relationships</fullName>
+        <default>false</default>
+        <label>Working Relationships</label>
+    </customValue>
+    <customValue>
+        <fullName>YTD $ Close Rate</fullName>
+        <default>false</default>
+        <label>YTD $ Close Rate</label>
+    </customValue>
+    <customValue>
+        <fullName>YTD Average $ Win Size</fullName>
+        <default>false</default>
+        <label>YTD Average $ Win Size</label>
+    </customValue>
+    <customValue>
+        <fullName>YTD Average Sales Cycle</fullName>
+        <default>false</default>
+        <label>YTD Average Sales Cycle</label>
+    </customValue>
+    <customValue>
+        <fullName>YTD Opportunities added to Qualified Funnel</fullName>
+        <default>false</default>
+        <label>YTD Opportunities added to Qualified Funnel</label>
+    </customValue>
+    <customValue>
+        <fullName>YTD Opportunities Closed</fullName>
+        <default>false</default>
+        <label>YTD Opportunities Closed</label>
+    </customValue>
+    <customValue>
+        <fullName>YTD Opportunity Close Rate</fullName>
+        <default>false</default>
+        <label>YTD Opportunity Close Rate</label>
+    </customValue>
+    <customValue>
+        <fullName>YTD Quota Performance</fullName>
+        <default>false</default>
+        <label>YTD Quota Performance</label>
+    </customValue>
+    <customValue>
+        <fullName>Attention to Detail</fullName>
+        <default>false</default>
+        <label>Attention to Detail</label>
+    </customValue>
+    <customValue>
+        <fullName>DemonstratesTrust</fullName>
+        <default>false</default>
+        <label>DemonstratesTrust</label>
+    </customValue>
+    <customValue>
+        <fullName>Industry Knowledge</fullName>
+        <default>false</default>
+        <label>Industry Knowledge</label>
+    </customValue>
+    <customValue>
+        <fullName>Knowledge of Business Needs</fullName>
+        <default>false</default>
+        <label>Knowledge of Business Needs</label>
+    </customValue>
+    <customValue>
+        <fullName>Listening Skills</fullName>
+        <default>false</default>
+        <label>Listening Skills</label>
+    </customValue>
+    <customValue>
+        <fullName>Salesforce CRM Updating</fullName>
+        <default>false</default>
+        <label>Salesforce CRM Updating</label>
+    </customValue>
+    <customValue>
+        <fullName>Timing</fullName>
+        <default>false</default>
+        <label>Timing</label>
+    </customValue>
+    <customValue>
+        <fullName>MGT -Drives Improvement</fullName>
+        <default>false</default>
+        <label>MGT -Drives Improvement</label>
+    </customValue>
+    <customValue>
+        <fullName>MGT -Coaches Team Members</fullName>
+        <default>false</default>
+        <label>MGT -Coaches Team Members</label>
+    </customValue>
+    <customValue>
+        <fullName>MGT -Easily Approachable</fullName>
+        <default>false</default>
+        <label>MGT -Easily Approachable</label>
+    </customValue>
+    <customValue>
+        <fullName>MGT -Recognizes Revenue Opptys</fullName>
+        <default>false</default>
+        <label>MGT -Recognizes Revenue Opptys</label>
+    </customValue>
+    <customValue>
+        <fullName>MGT -Builds Organizational Relationships</fullName>
+        <default>false</default>
+        <label>MGT -Builds Organizational Relationships</label>
+    </customValue>
+    <customValue>
+        <fullName>MGT -Tracks Performance</fullName>
+        <default>false</default>
+        <label>MGT -Tracks Performance</label>
+    </customValue>
+    <customValue>
+        <fullName>MGT -Identifies Business Issues</fullName>
+        <default>false</default>
+        <label>MGT -Identifies Business Issues</label>
+    </customValue>
+    <customValue>
+        <fullName>MGT -Strategic Meetings</fullName>
+        <default>false</default>
+        <label>MGT -Strategic Meetings</label>
+    </customValue>
+    <customValue>
+        <fullName>MGT -Easblishes Goals &amp; Achieves Results</fullName>
+        <default>false</default>
+        <label>MGT -Easblishes Goals &amp; Achieves Results</label>
+    </customValue>
+    <customValue>
+        <fullName>MGT -Demonstrates Patience</fullName>
+        <default>false</default>
+        <label>MGT -Demonstrates Patience</label>
+    </customValue>
+    <customValue>
+        <fullName>MGT -Seeks Feedback</fullName>
+        <default>false</default>
+        <label>MGT -Seeks Feedback</label>
+    </customValue>
+    <customValue>
+        <fullName>MGT -Considers Other Opinions</fullName>
+        <default>false</default>
+        <label>MGT -Considers Other Opinions</label>
+    </customValue>
+    <customValue>
+        <fullName>MGT -Ethical Decision Making</fullName>
+        <default>false</default>
+        <label>MGT -Ethical Decision Making</label>
+    </customValue>
+    <customValue>
+        <fullName>MGT -Demonstrates Accountability</fullName>
+        <default>false</default>
+        <label>MGT -Demonstrates Accountability</label>
+    </customValue>
+    <customValue>
+        <fullName>MGT -Conveys Clear Expectations</fullName>
+        <default>false</default>
+        <label>MGT -Conveys Clear Expectations</label>
+    </customValue>
+    <customValue>
+        <fullName>MGT -Forecasting</fullName>
+        <default>false</default>
+        <label>MGT -Forecasting</label>
+    </customValue>
+    <customValue>
+        <fullName>MGT -Addresses Conflicts</fullName>
+        <default>false</default>
+        <label>MGT -Addresses Conflicts</label>
+    </customValue>
+    <customValue>
+        <fullName>MGT -Allows Other POV&apos;s</fullName>
+        <default>false</default>
+        <label>MGT -Allows Other POV&apos;s</label>
+    </customValue>
+    <customValue>
+        <fullName>MGT -Identifies Strategic Tasks</fullName>
+        <default>false</default>
+        <label>MGT -Identifies Strategic Tasks</label>
+    </customValue>
+    <customValue>
+        <fullName>MGT -Personal Integrity</fullName>
+        <default>false</default>
+        <label>MGT -Personal Integrity</label>
+    </customValue>
+    <customValue>
+        <fullName>MGT -Develops Team Members</fullName>
+        <default>false</default>
+        <label>MGT -Develops Team Members</label>
+    </customValue>
+    <customValue>
+        <fullName>MGT -Acknowleges Performance</fullName>
+        <default>false</default>
+        <label>MGT -Acknowleges Performance</label>
+    </customValue>
+    <customValue>
+        <fullName>MGT -Tackles Problems Head-On</fullName>
+        <default>false</default>
+        <label>MGT -Tackles Problems Head-On</label>
+    </customValue>
+    <customValue>
+        <fullName>MGT -Competitor Insight</fullName>
+        <default>false</default>
+        <label>MGT -Competitor Insight</label>
+    </customValue>
+    <customValue>
+        <fullName>MGT -Makes Good Decisions</fullName>
+        <default>false</default>
+        <label>MGT -Makes Good Decisions</label>
+    </customValue>
+    <customValue>
+        <fullName>12 Month Rolling Number of meetings</fullName>
+        <default>false</default>
+        <label>12 Month Rolling Number of meetings</label>
+    </customValue>
+    <customValue>
+        <fullName>MGT -Acknowledges Performance</fullName>
+        <default>false</default>
+        <label>MGT -Acknowledges Performance</label>
+    </customValue>
+    <customValue>
+        <fullName>MGT - Considers Other Opinions</fullName>
+        <default>false</default>
+        <label>MGT - Considers Other Opinions</label>
+    </customValue>
+    <customValue>
+        <fullName>MGT - Conveys Clear Expectations</fullName>
+        <default>false</default>
+        <label>MGT - Conveys Clear Expectations</label>
+    </customValue>
+    <customValue>
+        <fullName>MGT -Communicates Sensitive Issues</fullName>
+        <default>false</default>
+        <label>MGT -Communicates Sensitive Issues</label>
+    </customValue>
+    <customValue>
+        <fullName>MGT -Gains Acceptance for Ideas</fullName>
+        <default>false</default>
+        <label>MGT -Gains Acceptance for Ideas</label>
+    </customValue>
+    <customValue>
+        <fullName>MGT -Change Management</fullName>
+        <default>false</default>
+        <label>MGT -Change Management</label>
+    </customValue>
+    <customValue>
+        <fullName>MGT -Anticipates Problems</fullName>
+        <default>false</default>
+        <label>MGT -Anticipates Problems</label>
+    </customValue>
+    <customValue>
+        <fullName>MGT -Promotes Collaboration</fullName>
+        <default>false</default>
+        <label>MGT -Promotes Collaboration</label>
+    </customValue>
+    <customValue>
+        <fullName>MGT -Eliminates Roadblocks</fullName>
+        <default>false</default>
+        <label>MGT -Eliminates Roadblocks</label>
+    </customValue>
+    <customValue>
+        <fullName>MGT -Financial Analysis Skills</fullName>
+        <default>false</default>
+        <label>MGT -Financial Analysis Skills</label>
+    </customValue>
+    <customValue>
+        <fullName>MGT -Works Well Under Stress</fullName>
+        <default>false</default>
+        <label>MGT -Works Well Under Stress</label>
+    </customValue>
+    <customValue>
+        <fullName>MGT -Provides Flexibility to Team</fullName>
+        <default>false</default>
+        <label>MGT -Provides Flexibility to Team</label>
+    </customValue>
+    <customValue>
+        <fullName>MGT -Seeks Learning Opporunities</fullName>
+        <default>false</default>
+        <label>MGT -Seeks Learning Opporunities</label>
+    </customValue>
+    <customValue>
+        <fullName>YTD Close Rate Based on $$$</fullName>
+        <default>false</default>
+        <label>YTD Close Rate Based on $$$</label>
+    </customValue>
+    <customValue>
+        <fullName>YTD Close Rate Based on Opportunities</fullName>
+        <default>false</default>
+        <label>YTD Close Rate Based on Opportunities</label>
+    </customValue>
+    <customValue>
+        <fullName>MGT -Creates Energy in Team</fullName>
+        <default>false</default>
+        <label>MGT -Creates Energy in Team</label>
+    </customValue>
+    <customValue>
+        <fullName>YTD Number of Wins</fullName>
+        <default>false</default>
+        <label>YTD Number of Wins</label>
+    </customValue>
+    <customValue>
+        <fullName>12 Month Rolling Number of Wins</fullName>
+        <default>false</default>
+        <label>12 Month Rolling Number of Wins</label>
+    </customValue>
+    <customValue>
+        <fullName>Monthly Close Rate Based on $$$</fullName>
+        <default>false</default>
+        <label>Monthly Close Rate Based on $$$</label>
+    </customValue>
+    <customValue>
+        <fullName>Monthly Close Rate based on Opportunities</fullName>
+        <default>false</default>
+        <label>Monthly Close Rate based on Opportunities</label>
+    </customValue>
+    <customValue>
+        <fullName>Monthly Number of Wins</fullName>
+        <default>false</default>
+        <label>Monthly Number of Wins</label>
+    </customValue>
+    <customValue>
+        <fullName>Average Length of Sales Cycle (YTD)</fullName>
+        <default>false</default>
+        <label>Average Length of Sales Cycle (YTD)</label>
+    </customValue>
+    <customValue>
+        <fullName>Lead to Opportunity Conversion Rate</fullName>
+        <default>false</default>
+        <label>Lead to Opportunity Conversion Rate</label>
+    </customValue>
+    <customValue>
+        <fullName>Average Deal Size</fullName>
+        <default>false</default>
+        <label>Average Deal Size</label>
+    </customValue>
+    <customValue>
+        <fullName>Quarterly Close Rate Based on Opportunities</fullName>
+        <default>false</default>
+        <label>Quarterly Close Rate Based on Opportunities</label>
+    </customValue>
+    <customValue>
+        <fullName>Quarterly Close Rate Based on $$$</fullName>
+        <default>false</default>
+        <label>Quarterly Close Rate Based on $$$</label>
+    </customValue>
+    <customValue>
+        <fullName>Quarterly Number of Wins</fullName>
+        <default>false</default>
+        <label>Quarterly Number of Wins</label>
+    </customValue>
+    <customValue>
+        <fullName>12 Month Rolling Close Rate Based on $$$</fullName>
+        <default>false</default>
+        <label>12 Month Rolling Close Rate Based on $$$</label>
+    </customValue>
+    <customValue>
+        <fullName>12 Month Rolling Close Rate Based on Opportunities</fullName>
+        <default>false</default>
+        <label>12 Month Rolling Close Rate Based on Opportunities</label>
+    </customValue>
+    <customValue>
+        <fullName>Monthly Number of Meetings</fullName>
+        <default>false</default>
+        <label>Monthly Number of Meetings</label>
+    </customValue>
+    <customValue>
+        <fullName>YTD Number of meetings</fullName>
+        <default>false</default>
+        <label>YTD Number of meetings</label>
+    </customValue>
+    <customValue>
+        <fullName>Quarterly Number of meetings</fullName>
+        <default>false</default>
+        <label>Quarterly Number of meetings</label>
+    </customValue>
+    <customValue>
+        <fullName>Monthly Lead Added</fullName>
+        <default>false</default>
+        <label>Monthly Lead Added</label>
+    </customValue>
+    <customValue>
+        <fullName>Quarterly Lead Added</fullName>
+        <default>false</default>
+        <label>Quarterly Lead Added</label>
+    </customValue>
+    <customValue>
+        <fullName>YTD Lead Added</fullName>
+        <default>false</default>
+        <label>YTD Lead Added</label>
+    </customValue>
+    <customValue>
+        <fullName>12 Month Rolling Lead Added</fullName>
+        <default>false</default>
+        <label>12 Month Rolling Lead Added</label>
+    </customValue>
+    <masterLabel>Rating Names</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

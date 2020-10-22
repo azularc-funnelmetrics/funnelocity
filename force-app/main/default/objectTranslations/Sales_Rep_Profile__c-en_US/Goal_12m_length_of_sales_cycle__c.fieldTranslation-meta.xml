@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Goal 12m length of sales cycle --></label>
+    <name>Goal_12m_length_of_sales_cycle__c</name>
+</CustomFieldTranslation>

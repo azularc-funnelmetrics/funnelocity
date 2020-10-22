@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Account Executive</fullName>
+        <default>false</default>
+        <label>Account Executive - Hunter</label>
+    </customValue>
+    <customValue>
+        <fullName>Sales Executive</fullName>
+        <default>false</default>
+        <label>Sales Executive</label>
+    </customValue>
+    <customValue>
+        <fullName>Operations Executive</fullName>
+        <default>false</default>
+        <label>Operations Executive</label>
+    </customValue>
+    <customValue>
+        <fullName>Operations Manager</fullName>
+        <default>false</default>
+        <label>Operations Manager</label>
+    </customValue>
+    <customValue>
+        <fullName>Sales Manager&apos;s</fullName>
+        <default>false</default>
+        <label>Sales Manager&apos;s</label>
+    </customValue>
+    <customValue>
+        <fullName>Account Manager</fullName>
+        <default>false</default>
+        <label>Account Manager</label>
+    </customValue>
+    <customValue>
+        <fullName>VP</fullName>
+        <default>false</default>
+        <label>VP</label>
+    </customValue>
+    <customValue>
+        <fullName>Continent VP of Sales</fullName>
+        <default>false</default>
+        <label>Continent VP of Sales</label>
+    </customValue>
+    <customValue>
+        <fullName>Country VP of Sales</fullName>
+        <default>false</default>
+        <label>Country VP of Sales</label>
+    </customValue>
+    <customValue>
+        <fullName>Regional Sales Manager</fullName>
+        <default>false</default>
+        <label>Regional Sales Manager</label>
+    </customValue>
+    <customValue>
+        <fullName>SVP of Sales</fullName>
+        <default>false</default>
+        <label>SVP of Sales</label>
+    </customValue>
+    <description>Used for the Funnelocity app custom roles</description>
+    <masterLabel>Roles</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

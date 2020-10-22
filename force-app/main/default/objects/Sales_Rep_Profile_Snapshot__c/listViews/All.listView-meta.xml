@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All</fullName>
+    <columns>NAME</columns>
+    <columns>User_Record_Name__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>Sales_Rep_Start_Date__c</columns>
+    <columns>Snapshot_Scheduled_Date__c</columns>
+    <columns>Tenure__c</columns>
+    <columns>Tenure_in_current_role__c</columns>
+    <columns>YTD_Revenue__c</columns>
+    <columns>Role__c</columns>
+    <columns>Annual_Quota_Amount__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Role__c</field>
+        <operation>equals</operation>
+        <value>Sales Executive</value>
+    </filters>
+    <label>Last fiscal year</label>
+</ListView>

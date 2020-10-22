@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Avg_ann_Rev_Perf_of_Tenured_Rep_Role__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Average Annual Revenue Performance for a Tenured Rep since inception (in this role)
+Formula = (Sum of monthly revenues / no. of months)*12
+Reset on roles chage (i.e. 1 month of rev/ 1mo)
+Limit upto 5 year</description>
+    <externalId>false</externalId>
+    <label>Avg ann Rev Perf of Tenur Rep(Role)incep</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

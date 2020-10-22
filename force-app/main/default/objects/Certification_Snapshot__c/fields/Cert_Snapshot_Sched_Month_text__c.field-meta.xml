@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cert_Snapshot_Sched_Month_text__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Formula Field allows text version of month for use in reports.</description>
+    <externalId>false</externalId>
+    <formula>CASE(MONTH( Snapshot_Scheduled_Date__c ), 
+1, &quot;1-JAN&quot;, 
+2, &quot;2-FEB&quot;, 
+3, &quot;3-MAR&quot;, 
+4, &quot;4-APR&quot;, 
+5, &quot;5-MAY&quot;, 
+6, &quot;6-JUN&quot;, 
+7, &quot;7-JUL&quot;, 
+8, &quot;8-AUG&quot;, 
+9, &quot;9-SEP&quot;, 
+10, &quot;10-OCT&quot;, 
+11, &quot;11-NOV&quot;, 
+12, &quot;12-DEC&quot;, 
+&quot;None&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Cert Snapshot Sched Month text</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Level_picklist_1__c</fullName>
+    <deprecated>false</deprecated>
+    <description>first company level picklist</description>
+    <externalId>false</externalId>
+    <label>Level picklist 1</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>Level_Picklist_1</valueSetName>
+    </valueSet>
+</CustomField>

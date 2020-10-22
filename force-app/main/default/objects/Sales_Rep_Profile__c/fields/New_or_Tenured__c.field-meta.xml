@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>New_or_Tenured__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Indicates if the rep has completed 12 months in the company. If yes, the field is &apos;Tenured&apos;. If not, it is populated as &apos;New&apos;</description>
+    <externalId>false</externalId>
+    <formula>IF( (((YEAR(TODAY()) - YEAR(Rep_Start_Date__c) - 1) *12) + (12 - MONTH(Rep_Start_Date__c) +1) + MONTH(TODAY())) &gt; 12, &apos;Tenured&apos;, &apos;New&apos;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>New or Tenured?</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <dynamicChoiceSets>
+        <description>This is for the evaluation reminder</description>
+        <name>Evaluation_Reminder_Picklist</name>
+        <dataType>Picklist</dataType>
+        <displayField xsi:nil="true"/>
+        <object xsi:nil="true"/>
+        <picklistField>Advance_Reminders__c</picklistField>
+        <picklistObject>Notification_Setting__c</picklistObject>
+    </dynamicChoiceSets>
+    <dynamicChoiceSets>
+        <name>Reminder_Frequency_Picklist</name>
+        <dataType>Picklist</dataType>
+        <displayField xsi:nil="true"/>
+        <object xsi:nil="true"/>
+        <picklistField>Notification_Frequency__c</picklistField>
+        <picklistObject>Notification_Setting__c</picklistObject>
+    </dynamicChoiceSets>
+    <interviewLabel>Funnelocity Installation Flow {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Funnelocity Installation Flow</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <recordLookups>
+        <description>This step pulls the current application settings record to update the data fields.</description>
+        <name>Get_Application_Settings_Record</name>
+        <label>Get Application Settings Record</label>
+        <locationX>743</locationX>
+        <locationY>48</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Step_1_General_Settings</targetReference>
+        </connector>
+        <filters>
+            <field>Name</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Application setting</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Application_Setting__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <description>This pulls the Notification Setting Record for updating</description>
+        <name>Get_Notification_Setting_Records_for_updates</name>
+        <label>Get Notification Setting Records for updates</label>
+        <locationX>1232</locationX>
+        <locationY>267</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Step_2_Notification_Settings</targetReference>
+        </connector>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Notification_Setting__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <description>Gets value of fiscal year record custom setting</description>
+        <name>GetFiscalYearCustomSetting</name>
+        <label>GetFiscalYearCustomSetting</label>
+        <locationX>589</locationX>
+        <locationY>48</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_Application_Settings_Record</targetReference>
+        </connector>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Fiscal_Year_Setting__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <description>This updates the Application Settings Record with the inputs from Step 1 - General Settings</description>
+        <name>Update_Application_Settings</name>
+        <label>Update Application Settings</label>
+        <locationX>1061</locationX>
+        <locationY>47</locationY>
+        <connector>
+            <targetReference>Update_Fiscal_Year_Custom_Setting</targetReference>
+        </connector>
+        <inputReference>Get_Application_Settings_Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <description>This updates the Fiscal Year custom setting</description>
+        <name>Update_Fiscal_Year_Custom_Setting</name>
+        <label>Update Fiscal Year Custom Setting</label>
+        <locationX>1237</locationX>
+        <locationY>47</locationY>
+        <connector>
+            <targetReference>Get_Notification_Setting_Records_for_updates</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Start_Date__c</field>
+            <value>
+                <elementReference>Fiscal_Year_Start_Date</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Fiscal_Year_Setting__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Notification_Settings</name>
+        <label>Update Notification Settings</label>
+        <locationX>893</locationX>
+        <locationY>267</locationY>
+        <inputReference>Get_Notification_Setting_Records_for_updates</inputReference>
+    </recordUpdates>
+    <screens>
+        <name>Step_1_General_Settings</name>
+        <label>Step 1 General Settings</label>
+        <locationX>906</locationX>
+        <locationY>47</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Update_Application_Settings</targetReference>
+        </connector>
+        <fields>
+            <name>Basic_Info_App_Setup</name>
+            <fieldText>&lt;p&gt;&lt;b style=&quot;font-size: 14px;&quot;&gt;Step 1 - General Settings&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Let’s start with some basic information about your organization.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>Fiscal_Year_Start_Date</name>
+            <dataType>Date</dataType>
+            <defaultValue>
+                <elementReference>GetFiscalYearCustomSetting.Start_Date__c</elementReference>
+            </defaultValue>
+            <fieldText>Fiscal Year Start Date</fieldText>
+            <fieldType>InputField</fieldType>
+            <helpText>&lt;p&gt;This is the date that will be used for collecting your historical data. Enter the Jan 1 of the first year you will collect data.(e.g., 01/01/2017).&lt;/p&gt;</helpText>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>Do_you_use_Leads</name>
+            <dataType>Boolean</dataType>
+            <defaultValue>
+                <elementReference>Get_Application_Settings_Record.Leads_used__c</elementReference>
+            </defaultValue>
+            <fieldText>Do you use Leads?</fieldText>
+            <fieldType>InputField</fieldType>
+            <helpText>&lt;p&gt;Check this box if you are not collecting Leads in your Salesforce system.&lt;/p&gt;</helpText>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>Do_you_use_Meetings</name>
+            <dataType>Boolean</dataType>
+            <defaultValue>
+                <elementReference>Get_Application_Settings_Record.Meetings_used__c</elementReference>
+            </defaultValue>
+            <fieldText>Do you use Meetings?</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>At_what_probability_are_your_opportunities_considered_qualified</name>
+            <dataType>Number</dataType>
+            <defaultValue>
+                <elementReference>Get_Application_Settings_Record.Probability__c</elementReference>
+            </defaultValue>
+            <fieldText>At what probability are your opportunities considered qualified?</fieldText>
+            <fieldType>InputField</fieldType>
+            <helpText>&lt;p&gt;Enter the probability percentage of the Opportunity Stage where opportunities are considered qualified.&lt;/p&gt;</helpText>
+            <isRequired>true</isRequired>
+            <scale>0</scale>
+        </fields>
+        <fields>
+            <name>Qualified_Percent</name>
+            <dataType>Number</dataType>
+            <defaultValue>
+                <elementReference>Get_Application_Settings_Record.Qualified_Percentage__c</elementReference>
+            </defaultValue>
+            <fieldText>For your historical data, what percentage of opportunities should we consider as qualified?</fieldText>
+            <fieldType>InputField</fieldType>
+            <helpText>&lt;p&gt;Since historical deals can&apos;t be qualified in real time, estimate the percentage of opportunities that are moved to a qualified  stage each month. &lt;/p&gt;</helpText>
+            <isRequired>true</isRequired>
+            <scale>0</scale>
+        </fields>
+        <fields>
+            <name>Funnelocity_Start_Date</name>
+            <dataType>Date</dataType>
+            <defaultValue>
+                <elementReference>Get_Application_Settings_Record.Implementation_Date__c</elementReference>
+            </defaultValue>
+            <fieldText>What date do you want to start using Funnelocity?</fieldText>
+            <fieldType>InputField</fieldType>
+            <helpText>&lt;p&gt;This is the date that your organization will start using Funnelocity. It can be any date after today&apos;s date. &lt;/p&gt;</helpText>
+            <isRequired>false</isRequired>
+        </fields>
+        <fields>
+            <name>Input_Stretch_Percentage_for_Goal_Calculation</name>
+            <dataType>Number</dataType>
+            <defaultValue>
+                <elementReference>Get_Application_Settings_Record.Stretch_percentage__c</elementReference>
+            </defaultValue>
+            <fieldText>Input Stretch Percentage for Goal Calculation</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>false</isRequired>
+            <scale>2</scale>
+        </fields>
+        <pausedText>&lt;p&gt;You are choosing to stop the installation and come back later. Please start this process and we&apos;ll pick up where you left off.&lt;/p&gt;</pausedText>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <description>This screen inputs the notification settings</description>
+        <name>Step_2_Notification_Settings</name>
+        <label>Step 2 Notification Settings</label>
+        <locationX>1056</locationX>
+        <locationY>266</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Update_Notification_Settings</targetReference>
+        </connector>
+        <fields>
+            <name>Step2_Display_Heading</name>
+            <fieldText>&lt;p&gt;&lt;b style=&quot;font-size: 14px;&quot;&gt;Step 2 - Input Notification Settings&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Input the notification settings that determine when managers get notified for evaluations and the end of a rep onboarding period.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>Enable_Evaluation_Notifications</name>
+            <dataType>Boolean</dataType>
+            <defaultValue>
+                <elementReference>Get_Notification_Setting_Records_for_updates.Enable_Notifications__c</elementReference>
+            </defaultValue>
+            <fieldText>Enable Evaluation Notifications</fieldText>
+            <fieldType>InputField</fieldType>
+            <helpText>&lt;p&gt;You have the option of enabling or disabling notifications. Enter this flag once you  intend to start notifying your managers via email notifications. If you don&apos;t want to notify managers, leave this blank.&lt;/p&gt;</helpText>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>Evaluation_Reminder</name>
+            <choiceReferences>Evaluation_Reminder_Picklist</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Evaluation Reminder</fieldText>
+            <fieldType>DropdownBox</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>Reminder_Frequency</name>
+            <choiceReferences>Reminder_Frequency_Picklist</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Reminder Frequency</fieldText>
+            <fieldType>DropdownBox</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>Onboarding_Period</name>
+            <dataType>Number</dataType>
+            <defaultValue>
+                <elementReference>Get_Notification_Setting_Records_for_updates.On_boarding_Period__c</elementReference>
+            </defaultValue>
+            <fieldText>Onboarding Period</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>false</isRequired>
+            <scale>0</scale>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Welcome_to_Funnelocity</name>
+        <label>Welcome to Funnelocity</label>
+        <locationX>388</locationX>
+        <locationY>48</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>GetFiscalYearCustomSetting</targetReference>
+        </connector>
+        <fields>
+            <name>Introduction</name>
+            <fieldText>&lt;p&gt;&lt;b style=&quot;font-size: 14px;&quot;&gt;Introduction&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;b style=&quot;color: rgb(153, 144, 144);&quot;&gt;Welcome to your Funnelocity App! We’re going to walk you through&lt;/b&gt;&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;b style=&quot;color: rgb(153, 144, 144);&quot;&gt;the process of getting your data set up.&lt;/b&gt;&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;We’ll detail the steps here and this may require uploading information or directly inputting picklists. We’ll direct you on exactly what to update. You may save your work and come back at a later time if you need to gather information.&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <start>
+        <locationX>38</locationX>
+        <locationY>29</locationY>
+        <connector>
+            <targetReference>Welcome_to_Funnelocity</targetReference>
+        </connector>
+    </start>
+    <status>Draft</status>
+    <variables>
+        <description>Indicator of Meetings Used or Not used as metric</description>
+        <name>MeetingsUsed</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <value>
+            <booleanValue>true</booleanValue>
+        </value>
+    </variables>
+</Flow>

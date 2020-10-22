@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>US East</fullName>
+        <default>false</default>
+        <label>US East</label>
+    </customValue>
+    <customValue>
+        <fullName>US West</fullName>
+        <default>false</default>
+        <label>US West</label>
+    </customValue>
+    <customValue>
+        <fullName>US Central</fullName>
+        <default>false</default>
+        <label>US Central</label>
+    </customValue>
+    <customValue>
+        <fullName>Canada East</fullName>
+        <default>false</default>
+        <label>Canada East</label>
+    </customValue>
+    <customValue>
+        <fullName>Canada West</fullName>
+        <default>false</default>
+        <label>Canada West</label>
+    </customValue>
+    <customValue>
+        <fullName>UK North</fullName>
+        <default>false</default>
+        <label>UK North</label>
+    </customValue>
+    <customValue>
+        <fullName>UK South</fullName>
+        <default>false</default>
+        <label>UK South</label>
+    </customValue>
+    <customValue>
+        <fullName>France</fullName>
+        <default>false</default>
+        <label>France</label>
+    </customValue>
+    <customValue>
+        <fullName>FB North</fullName>
+        <default>false</default>
+        <label>FB North</label>
+    </customValue>
+    <customValue>
+        <fullName>China North</fullName>
+        <default>false</default>
+        <label>China North</label>
+    </customValue>
+    <customValue>
+        <fullName>China South</fullName>
+        <default>false</default>
+        <label>China South</label>
+    </customValue>
+    <customValue>
+        <fullName>Japan</fullName>
+        <default>false</default>
+        <label>Japan</label>
+    </customValue>
+    <customValue>
+        <fullName>Korea</fullName>
+        <default>false</default>
+        <label>Korea</label>
+    </customValue>
+    <customValue>
+        <fullName>SE Asia</fullName>
+        <default>false</default>
+        <label>SE Asia</label>
+    </customValue>
+    <description>fourth level of company - example Region</description>
+    <masterLabel>Level Picklist 4</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

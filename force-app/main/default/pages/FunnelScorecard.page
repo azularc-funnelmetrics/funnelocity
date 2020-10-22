@@ -1,0 +1,1774 @@
+<apex:page sidebar="false" controller="FunnelScorecard" showHeader="true" standardStylesheets="true" docType="html-5.0">
+<html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+ 
+    
+    <apex:stylesheet value="{!URLFOR($Resource.SldsCss,'SldsResources/styles/salesforce-lightning-design-system.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.SldsCss,'SldsResources/styles/salesforce-lightning-design-system.min')}"/>
+    
+    <apex:includeScript value="{!URLFOR($Resource.FunnelScriptFolder,'Design/jquery-1.11.3.min.js')}"/>
+    
+    <apex:includeScript value="{!URLFOR($Resource.BulletGraph,'BulletGraph/highchart.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.BulletGraph,'BulletGraph/bullet.js')}"/>
+     
+    
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/bullet.js"></script>
+    <style>
+        /* Add this attribute to the element that needs a tooltip */
+        [data-tooltip] {
+          position: relative;
+          z-index: 2;
+          cursor: pointer;
+        }
+        
+        /* Hide the tooltip content by default */
+        [data-tooltip]:before,
+        [data-tooltip]:after {
+          visibility: hidden;
+          -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+          filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=0);
+          opacity: 0;
+          pointer-events: none;
+        }
+        
+        /* Position tooltip above the element */
+        [data-tooltip]:before {
+          position: absolute;
+          bottom: 100%;
+          left: 32%;
+          margin-bottom: 5px;
+          margin-left: -75px;
+          padding: 7px;
+          width: 200px; 
+          -webkit-border-radius: 0;
+          -moz-border-radius: 0;
+          border-radius: 5px;
+          background-color: #66cc33;
+          /*background-color: hsla(0, 0%, 20%, 0.9);*/
+          color: #fff;
+          content: attr(data-tooltip);
+          text-align: center;
+          font-size: 14px;
+          line-height: 18px;
+          border: 2px solid #66cc33;
+        }
+        
+        /* Triangle hack to make tooltip look like a speech bubble */
+        [data-tooltip]:after {
+          position: absolute;
+          bottom: 100%;
+          left: 50%;
+          margin-left: -5px;
+          width: 0;
+          border-top: 5px solid #66cc33;
+          /*border-top: 5px solid hsla(0, 0%, 20%, 0.9);*/
+          border-right: 5px solid transparent;
+          border-left: 5px solid transparent;
+          content: " ";
+          font-size: 0;
+          line-height: 0;
+        }
+        
+        /* Show tooltip content on hover */
+        [data-tooltip]:hover:before,
+        [data-tooltip]:hover:after {
+          visibility: visible;
+          -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+          filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=100);
+          opacity: 1;
+        }
+    </style>
+    <!--Navigation-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/fontawesome.css" />
+    <!--Navigation-->
+    <!--Navigation-->
+    <style>
+        body { font-size: 75%; }
+          
+        .myapp{min-width: 500px; font-family: sldsFont !important;background-color: #fff; }
+        .noSidebarCell, .sidebarCell .fixed { padding: 10px; font-family: sldsFont; }
+        
+         @font-face {
+         font-family: sldsFont;
+             src: url({!URLFOR($Resource.SldsCss,'SldsResources/fonts/SalesforceSans-Light.ttf')});
+         }
+         
+        // *{font-family: sldsFont;}
+         .bPageHeader .phHeader td.left{display: block;}
+        .navigation{display: table; width: 100%; text-align: center;}
+    
+        .navigation{display: table; width: 100%;}
+        .navigation ul{margin: 0; padding: 0;}
+        .navigation ul li{display: inline-block; padding: 0 8px; border-left: 2px solid #7e8793; line-height: 17px;; margin-left: 0;}
+        .navigation ul li a{color: #7e8793; font-size: 17px; font-weight: bold;}
+        .navigation ul li a:hover{color: #66cc33; text-decoration: none;}
+        .navigation ul li a:focus{outline: none; text-decoration: none;}
+        .navigation ul li {color: #7e8793; font-size: 17px; font-weight: bold;}
+        .navigation ul li:hover{color: #66cc33; text-decoration: none;}
+        .navigation ul li.selected a{color: #66cc33;}
+        .navigation ul li.home{border: none; padding-left: 0; margin-bottom: 10px;}
+        .navigation ul li.home a{color: #00b2ee;}
+        .navigation ul li:last-child{padding-right: 0;}
+        
+        .navigation ul li.scorenav a{background: url({!$Resource.CertificationNavigationIcon}) no-repeat; padding: 0 0 0 25px; background-position: 0 0; height: 19px; width: 20px;}
+        .navigation ul li.scorenav a:hover {background-position: 0 -23px;}
+        
+        .navigation ul li.funnelanalyticsnav > a{background: url({!$Resource.AnalyticsNavigationIcon}) no-repeat; padding: 0 0 0 25px; background-position: 0 5px; height: 19px; width: 20px; color: #7e8793;}
+        .navigation ul li.funnelanalyticsnav > a:hover{background-position: 0 -17px; color: #66cc33;}
+        
+        .help{font-weight: bold; cursor: pointer;}
+        .help i{color: #66cc33;}
+        
+        .navigation ul li.reportnav{position: relative; display: inline-block;cursor: pointer;}
+        .navigation ul li.reportnav ul.subnav{position: absolute; z-index: 1; width: 240px; background: #fff; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); display: none;}
+        .navigation ul li.reportnav ul.subnav li{display: block; text-align: left; border: none; padding: 0;}
+        .navigation ul li.reportnav ul.subnav li a {color: #7e8793; padding: 10px; display: block; width: 100%;}
+        .navigation ul li.reportnav ul.subnav li a:hover{background: #66cc33; color: #fff;}
+        .navigation ul li.reportnav:hover ul.subnav {display: block;}
+        button a:hover{text-decoration: none;}
+        button a:focus{text-decoration: none; outline: none;}
+        select{background: url('{!URLFOR($Resource.Selectarrow )}') no-repeat right -20px center #fff !important; -moz-appearance: none; -webkit-appearance: none;}
+       .slds-select[disabled], .slds-select.slds-is-disabled {background-color: #ecebea !important;border-color: #c9c7c5;cursor: not-allowed;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;}
+       
+       .radio-container {
+            display: block;
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            font-size: 17px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            color: #fff;
+            font-weight: 300;
+        }
+        
+        .radio-container input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+        
+        .radio-container .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 25px;
+            width: 25px;
+            background-color: #f5f5f9;
+            border-radius: 50%;
+            border: 1px solid #fff;
+        }
+        
+        .radio-container input:checked ~ .checkmark {
+            background-color: #fff;
+            border: 1px solid #fff;
+        }
+        
+        .radio-container .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+        
+        .radio-container input:checked ~ .checkmark:after {
+            display: block;
+        }
+        
+        .radio-container .checkmark:after {
+            top: 6px;
+            left: 6px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ff9900;
+        }
+        .slds-truncate{white-space: normal;}
+
+        @media only screen and (max-width : 1024px) {
+            .reporttable tbody tr td div span {
+                font-size: 12px !important;
+            }
+        }
+        .infolist{display: flex; justify-content: space-between;}
+        .infolist div{font-size: 16px; color: #4d4d4d;}
+        .infolist div span{font-weight: 700; color: #4d4d4d;}
+    </style>
+    <!--Navigation-->
+    <apex:outputPanel id="charts" >
+  
+      <script type="text/javascript">   
+          
+                                     
+                  gmetricname =[];
+                  gteamScore =[];
+                  highPerfScore = [];
+                  ggap = [];
+                  
+                  <apex:repeat var="v" value="{!tableVals}">
+                      gmetricname.push('{!v.metricName}');
+                      gteamScore.push({!v.teamScore});
+                      highPerfScore.push({!v.highPerfScore});
+                      ggap.push({!v.gap});
+                   
+                  </apex:repeat>
+                  
+                  gmetricnameQual =[];
+                  gteamScoreQual =[];
+                  highPerfScoreQual = [];
+                  ggapQual = [];
+                  
+                  <apex:repeat var="v" value="{!tableValsQual}">
+                      gmetricnameQual.push('{!v.metricName}');
+                      gteamScoreQual.push({!v.teamScore});
+                      highPerfScoreQual.push({!v.highPerfScore});
+                      ggapQual.push({!v.gap});
+                   
+                  </apex:repeat>
+                   
+            /*Charts */
+            function showChart(){
+                 
+                 GenerateChart();
+                  
+            }
+                         
+            function GenerateChart(){
+             
+                $('#gaptab').highcharts({
+        
+                     credits: {
+                      enabled: false
+                      },
+                    
+                     tooltip: {
+                            formatter: function () {
+                                  
+                                     return '<span style="font-size: 10px"> </span><br/> <span style="color:#666666">\u25CF</span>'+ '{!JSENCODE(sname)}' +': <b> '+ gteamScore[this.series.xAxis.categories.indexOf(this.key)]
+                                            + '<span style="font-size: 10px"> </span><br/> <span style="color:#666666">\u25CF</span>High Performers: <b> '+ highPerfScore[this.series.xAxis.categories.indexOf(this.key)]+'</b>'
+                                            +'</b> <br/> <span style="color:#666666">\u25CF</span> Gap: <b>'+ggap[this.series.xAxis.categories.indexOf(this.key)]+'</b>' ;  
+                                 
+                            }
+                        },
+                    chart: {
+                            type: 'bar'
+                        },
+                        title: {
+                            text: 'Significant Quantitative Metrics',
+                            x: 0 //center
+                        },
+                             
+                        xAxis: {
+                                categories: gmetricname,
+                                labels:{
+                                     style:{
+                                         color: '#333333',
+                                         fontSize:'13px',
+                                          width: '160px'
+                                      }  
+                                    },
+                                
+                        },
+                        
+                      yAxis: {
+                            min: 0,
+                            max: 10,
+                             title: {
+                                text: 'Score',
+                                    style: {
+                                    color: '#333333',
+                                     
+                                }
+                                
+                            },
+                            labels: {
+                           
+                                style: {
+                                    color: '#333333'
+                                }
+                            },
+                            
+                        },
+                       
+                          
+                        legend: {
+                                align: 'center',
+                                verticalAlign: 'bottom',
+                                x: 0,
+                                y: 0,
+                                symbolWidth: 0,
+                                symbolRadius: 0,
+                                symbolPadding: 0,
+                                symbolWidth: 0.1,
+                                symbolHeight: 0.1,
+                                labelFormatter: function() {
+                                    return '<span style="color:#66cc33;font-Size:19px" >\u25CF</span> Outstanding (10) <span style="color:#fff;font-Size:1px">\u25CF</span><span style="color:#00b2ee;font-Size:19px">\u25CF</span> Strong (8) <span style="color:#fff;font-Size:1px" >\u25CF</span><span style="color:#fece1a;font-Size:19px">\u25CF</span> Average (5) <span style="color:#fff;font-Size:1px" >\u25CF</span> <span style="color:#ff9900;font-Size:19px">\u25CF</span> Marginal (2) <span style="color:#fff;font-Size:1px" >\u25CF</span> <span style="color:#EF412F;font-Size:19px">\u25CF</span> Needs Improvement (0) ';
+                                }
+                               
+                        },
+                        
+                        plotOptions: {
+                            
+                            series: {
+                        
+                              states: {
+                                inactive: {
+                                    opacity: 1
+                                },
+                                 
+                              }
+                        },
+                            bar: {
+                            minPointLength: 9,
+                            zones: [{
+                                value: 2,  
+                                color: '#EF412F'  
+                            },{
+                                value: 5,  
+                                color: '#ff9900',
+                                 
+                            },{
+                                value: 8,  
+                                color: '#fece1a',
+                                 
+                            },{
+                                value: 10,  
+                                color: '#00b2ee',
+                                 
+                            },{
+                                value: 10.1,  
+                                color: '#66cc33',
+                            }]
+                        }
+                        },
+                        
+                        series: [{
+                             
+                            name: '{!JSENCODE(sname)}',
+                            data: gteamScore,
+                            events: {
+                                legendItemClick: function(e) {
+                                    e.preventDefault()
+                            }
+                          }   
+                        },
+                        {  
+                            showInLegend: false, 
+                            colorByPoint: false,
+                            name: 'High Performers',
+                            data: highPerfScore ,
+                            color: '#66cc33',
+                             
+                              
+                         },
+                        
+                        ]
+                    });
+                    
+                    $('#gaptabQual').highcharts({
+        
+                     credits: {
+                      enabled: false
+                      },
+                    
+                     tooltip: {
+                            formatter: function () {
+                                  
+                                     return '<span style="font-size: 10px"> </span><br/> <span style="color:#666666">\u25CF</span>'+ '{!JSENCODE(sname)}' +': <b> '+ gteamScoreQual[this.series.xAxis.categories.indexOf(this.key)]
+                                            + '<span style="font-size: 10px"> </span><br/> <span style="color:#666666">\u25CF</span>High Performers: <b> '+ highPerfScoreQual[this.series.xAxis.categories.indexOf(this.key)]+'</b>'
+                                            +'</b> <br/> <span style="color:#666666">\u25CF</span> Gap: <b>'+ggapQual[this.series.xAxis.categories.indexOf(this.key)]+'</b>' ;  
+                                 
+                            }
+                        },
+                    chart: {
+                            type: 'bar'
+                        },
+                        title: {
+                            text: 'Significant Qualitative Measures',
+                            x: 0 //center
+                        },
+                             
+                        xAxis: {
+                                categories: gmetricnameQual,
+                                labels:{
+                                     style:{
+                                         color: '#333333',
+                                         fontSize:'13px',
+                                          width: '160px'
+                                      }  
+                                    },
+                                
+                        },
+                        
+                      yAxis: {
+                            min: 0,
+                            max: 10,
+                             title: {
+                                text: 'Score',
+                                    style: {
+                                    color: '#333333',
+                                     
+                                }
+                                
+                            },
+                            labels: {
+                           
+                                style: {
+                                    color: '#333333'
+                                }
+                            },
+                            
+                        },
+                       
+                          
+                        legend: {
+                                align: 'center',
+                                verticalAlign: 'bottom',
+                                x: 0,
+                                y: 0,
+                                symbolWidth: 0,
+                                symbolRadius: 0,
+                                symbolPadding: 0,
+                                symbolWidth: 0.1,
+                                symbolHeight: 0.1,
+                                labelFormatter: function() {
+                                    return '<span style="color:#66cc33;font-Size:19px" >\u25CF</span> Outstanding (10) <span style="color:#fff;font-Size:1px">\u25CF</span><span style="color:#00b2ee;font-Size:19px">\u25CF</span> Strong (8) <span style="color:#fff;font-Size:1px" >\u25CF</span><span style="color:#fece1a;font-Size:19px">\u25CF</span> Average (5) <span style="color:#fff;font-Size:1px" >\u25CF</span> <span style="color:#ff9900;font-Size:19px">\u25CF</span> Marginal (2) <span style="color:#fff;font-Size:1px" >\u25CF</span> <span style="color:#EF412F;font-Size:19px">\u25CF</span> Needs Improvement (0) ';
+                                }
+                               
+                        },
+                        
+                        plotOptions: {
+                             
+                            series: {
+                        
+                              states: {
+                                inactive: {
+                                    opacity: 1
+                                },
+                                 
+                              }
+                        },
+                            bar: {
+                            minPointLength: 9,
+                            zones: [{
+                                value: 2,  
+                                color: '#EF412F'  
+                            },{
+                                value: 5,  
+                                color: '#ff9900',
+                                 
+                            },{
+                                value: 8,  
+                                color: '#fece1a',
+                                 
+                            },{
+                                value: 10,  
+                                color: '#00b2ee',
+                                 
+                            },{
+                                value: 10.1,  
+                                color: '#66cc33',
+                            }]
+                        }
+                        },
+                        
+                        series: [{
+                             
+                            name: '{!JSENCODE(sname)}',
+                            data: gteamScoreQual,
+                            events: {
+                                legendItemClick: function(e) {
+                                    e.preventDefault()
+                            }
+                          }   
+                        },
+                        {  
+                            showInLegend: false, 
+                            colorByPoint: false,
+                            name: 'High Performers',
+                            data: highPerfScoreQual ,
+                            color: '#66cc33',
+                             
+                              
+                         },
+                        
+                        ]
+                    });
+                    
+                    $('#ytdPer').highcharts({    
+                     
+                            chart: {
+                            inverted: true,
+                            
+                            type: 'bullet'
+                        },
+                        title: {
+                            text: null
+                        },
+                        legend: {
+                            enabled: false
+                        },
+                       
+                         credits: {
+                           enabled: false
+                         },
+                                        
+                        plotOptions: {
+                            series: {
+                                pointPadding: 0.25,
+                                borderWidth: 0,
+                                color: '#000',
+                                targetOptions: {
+                                    width:70,
+                                    height:5,
+                                    
+                                },
+                                pointWidth: 21
+                            },
+                            
+                        },
+                       
+                        xAxis: {
+                            categories: ['','','']
+                        },
+                        
+                        yAxis: {
+                             
+                              gridLineWidth: 0,
+                            plotBands: [{
+                                from: 0,
+                                to: 9e9,
+                                color: '#f5f5f9'
+                            }],
+                            title: null,
+                            labels: {
+                            rotation: 0
+                        }
+                        },
+                       tooltip: {
+                            formatter: function () {
+                                   
+                                     return '<span style="font-size: 10px"> </span><br/> <span style="color:#7e8793">\u25CF</span> Goal:  <b> ' +({!YTDQuotaPerformanceGoal}).toLocaleString("ja-JP", { style: "currency", currency: "USD", minimumFractionDigits: 0 ,maximumFractionDigits:0 })
+                                            + '<span style="font-size: 10px"> </span><br/> <span style="color:#00b2ee">\u25CF</span> Actual Result: <b>   ' +({!YTDQuotaPerformance}).toLocaleString("ja-JP", { style: "currency", currency: "USD", minimumFractionDigits: 0 ,maximumFractionDigits:0 })
+                                            +'</b> <br/> <span style="color:#fece1a">\u25CF</span> Peer Average: <b> '+({!YTDQuotaPerformanceTeam}).toLocaleString("ja-JP", { style: "currency", currency: "USD", minimumFractionDigits: 0 ,maximumFractionDigits:0 }) ;  
+                                 
+                            }
+                        },
+                        series: [{
+                            data: [{
+                                y: {!YTDQuotaPerformanceGoal},
+                                 
+                                color: '#7e8793'
+                            },{
+                                
+                               target: {!YTDQuotaPerformanceTeam},
+                                color: '#fece1a',
+                                
+                            },{
+                                y: {!YTDQuotaPerformance},
+                                 
+                                 color: '#00b2ee',
+                                 height: 15
+                            },
+                            ]
+                        }],
+                             
+                        });
+                        
+                        $('#ytdLead').highcharts({    
+                     
+                            chart: {
+                            inverted: true,
+                            
+                            type: 'bullet'
+                        },
+                        title: {
+                            text: null
+                        },
+                        legend: {
+                            enabled: false
+                        },
+                       
+                         credits: {
+                           enabled: false
+                         },
+                                        
+                        plotOptions: {
+                            series: {
+                                pointPadding: 0.25,
+                                borderWidth: 0,
+                                color: '#000',
+                                targetOptions: {
+                                    width:70,
+                                    height:5,
+                                    
+                                },
+                                pointWidth: 21
+                            },
+                            
+                        },
+                       
+                        xAxis: {
+                            categories: ['','','']
+                        },
+                        
+                        yAxis: {
+                             
+                              gridLineWidth: 0,
+                            plotBands: [{
+                                from: 0,
+                                to: 9e9,
+                                color: '#f5f5f9'
+                            }],
+                        
+                            title: null,
+                            labels: {
+                            rotation: 0
+                        }
+                        },
+                       tooltip: {
+                            formatter: function () {
+                                   
+                                     return '<span style="font-size: 10px"> </span><br/> <span style="color:#7e8793">\u25CF</span> Goal:  <b> ' +({!YTDLeadsAddedGoal}).toLocaleString("ja-JP", { minimumFractionDigits: 0 ,maximumFractionDigits:0 })
+                                            + '<span style="font-size: 10px"> </span><br/> <span style="color:#00b2ee">\u25CF</span> Actual Result: <b>   ' +({!YTDLeadsAdded}).toLocaleString("ja-JP", { minimumFractionDigits: 0 ,maximumFractionDigits:0 })
+                                            +'</b> <br/> <span style="color:#fece1a">\u25CF</span> Peer Average: <b> '+({!YTDLeadsAddedTeam}).toLocaleString("ja-JP", { minimumFractionDigits: 0 ,maximumFractionDigits:0 }) ;  
+                                 
+                            }
+                        },
+                        series: [{
+                            data: [{
+                                y: {!YTDLeadsAddedGoal},
+                                 
+                                color: '#7e8793'
+                            },{
+                                
+                               target: {!YTDLeadsAddedTeam},
+                                color: '#fece1a',
+                                
+                            },{
+                                y: {!YTDLeadsAdded},
+                                 
+                                 color: '#00b2ee',
+                                 height: 15
+                            },
+                            ]
+                        }],
+                             
+                        });
+                        
+                        $('#x12LeadConv').highcharts({    
+                     
+                            chart: {
+                            inverted: true,
+                            
+                            type: 'bullet'
+                        },
+                        title: {
+                            text: null
+                        },
+                        legend: {
+                            enabled: false
+                        },
+                       
+                         credits: {
+                           enabled: false
+                         },
+                                        
+                        plotOptions: {
+                            series: {
+                                pointPadding: 0.25,
+                                borderWidth: 0,
+                                color: '#000',
+                                targetOptions: {
+                                    width:70,
+                                    height:5,
+                                    
+                                },
+                                pointWidth: 21
+                            },
+                            
+                        },
+                       
+                        xAxis: {
+                            categories: ['','','']
+                        },
+                        
+                        yAxis: {
+                             
+                              gridLineWidth: 0,
+                            plotBands: [{
+                                from: 0,
+                                to: 9e9,
+                                color: '#f5f5f9'
+                            }],
+                            labels: {
+                            format: '{value}%',
+                            rotation: 0
+                        },
+                            title: null,
+                             
+                        },
+                       tooltip: {
+                            formatter: function () {
+                                   
+                                     return '<span style="font-size: 10px"> </span><br/> <span style="color:#7e8793">\u25CF</span> Goal:  <b> ' +({!X12MonthRollingLeadConversionGoal}).toFixed(2) + '%'
+                                            + '<span style="font-size: 10px"> </span><br/> <span style="color:#00b2ee">\u25CF</span> Actual Result: <b>   ' +({!X12MonthRollingLeadConversion}).toFixed(2) + '%'
+                                            +'</b> <br/> <span style="color:#fece1a">\u25CF</span> Peer Average: <b> '+({!X12MonthRollingLeadConversionTeam}).toFixed(2) + '%';  
+                                 
+                            }
+                        },
+                        series: [{
+                            data: [{
+                                y: {!X12MonthRollingLeadConversionGoal},
+                                 
+                                color: '#7e8793'
+                            },{
+                                
+                               target: {!X12MonthRollingLeadConversionTeam},
+                                color: '#fece1a',
+                                
+                            },{
+                                y: {!X12MonthRollingLeadConversion},
+                                 
+                                 color: '#00b2ee',
+                                 height: 15
+                            },
+                            ]
+                        }],
+                             
+                        });
+                        
+                        $('#ytdMeet').highcharts({    
+                     
+                            chart: {
+                            inverted: true,
+                            
+                            type: 'bullet'
+                        },
+                        title: {
+                            text: null
+                        },
+                        legend: {
+                            enabled: false
+                        },
+                       
+                         credits: {
+                           enabled: false
+                         },
+                                        
+                        plotOptions: {
+                            series: {
+                                pointPadding: 0.25,
+                                borderWidth: 0,
+                                color: '#000',
+                                targetOptions: {
+                                    width:70,
+                                    height:5,
+                                    
+                                },
+                                pointWidth: 21
+                            },
+                            
+                        },
+                       
+                        xAxis: {
+                            categories: ['','','']
+                        },
+                        
+                        yAxis: {
+                             
+                              gridLineWidth: 0,
+                            plotBands: [{
+                                from: 0,
+                                to: 9e9,
+                                color: '#f5f5f9'
+                            }],
+                            title: null,
+                            labels: {
+                            rotation: 0
+                        }
+                        },
+                       tooltip: {
+                            formatter: function () {
+                                   
+                                     return '<span style="font-size: 10px"> </span><br/> <span style="color:#7e8793">\u25CF</span> Goal:  <b> ' +({!YTDNumberofMeetingsGoal}).toLocaleString("ja-JP", { minimumFractionDigits: 0 ,maximumFractionDigits:0 })
+                                            + '<span style="font-size: 10px"> </span><br/> <span style="color:#00b2ee">\u25CF</span> Actual Result: <b>   ' +({!YTDNumberofMeetings}).toLocaleString("ja-JP", { minimumFractionDigits: 0 ,maximumFractionDigits:0 })
+                                            +'</b> <br/> <span style="color:#fece1a">\u25CF</span> Peer Average: <b> '+({!YTDNumberofMeetingsTeam}).toLocaleString("ja-JP", { minimumFractionDigits: 0 ,maximumFractionDigits:0 }) ;  
+                                 
+                            }
+                        },
+                        series: [{
+                            data: [{
+                                y: {!YTDNumberofMeetingsGoal},
+                                 
+                                color: '#7e8793'
+                            },{
+                                
+                               target: {!YTDNumberofMeetingsTeam},
+                                color: '#fece1a',
+                                
+                            },{
+                                y: {!YTDNumberofMeetings},
+                                 
+                                 color: '#00b2ee',
+                                 height: 15
+                            },
+                            ]
+                        }],
+                             
+                        });
+                        
+                        $('#ytdOppAdd').highcharts({    
+                     
+                            chart: {
+                            inverted: true,
+                            
+                            type: 'bullet'
+                        },
+                        title: {
+                            text: null
+                        },
+                        legend: {
+                            enabled: false
+                        },
+                       
+                         credits: {
+                           enabled: false
+                         },
+                                        
+                        plotOptions: {
+                            series: {
+                                pointPadding: 0.25,
+                                borderWidth: 0,
+                                color: '#000',
+                                targetOptions: {
+                                    width:70,
+                                    height:5,
+                                    
+                                },
+                                pointWidth: 21
+                            },
+                            
+                        },
+                       
+                        xAxis: {
+                            categories: ['','','']
+                        },
+                        
+                        yAxis: {
+                             
+                              gridLineWidth: 0,
+                            plotBands: [{
+                                from: 0,
+                                to: 9e9,
+                                color: '#f5f5f9'
+                            }],
+                            title: null,
+                            labels: {
+                            rotation: 0
+                        }
+                        },
+                       tooltip: {
+                            formatter: function () {
+                                   
+                                     return '<span style="font-size: 10px"> </span><br/> <span style="color:#7e8793">\u25CF</span> Goal:  <b> ' +({!YTDOpportunitiesAddedtoQualifiedFunnelGoal}).toLocaleString("ja-JP", {  minimumFractionDigits: 0 ,maximumFractionDigits:0 })
+                                            + '<span style="font-size: 10px"> </span><br/> <span style="color:#00b2ee">\u25CF</span> Actual Result: <b>   ' +({!YTDOpportunitiesAddedtoQualifiedFunnel}).toLocaleString("ja-JP", { minimumFractionDigits: 0 ,maximumFractionDigits:0 })
+                                            +'</b> <br/> <span style="color:#fece1a">\u25CF</span> Peer Average: <b> '+({!YTDOpportunitiesAddedtoQualifiedFunnelTeam}).toLocaleString("ja-JP", {  minimumFractionDigits: 0 ,maximumFractionDigits:0 }) ;  
+                                 
+                            }
+                        },
+                        series: [{
+                            data: [{
+                                y: {!YTDOpportunitiesAddedtoQualifiedFunnelGoal},
+                                 
+                                color: '#7e8793'
+                            },{
+                                
+                               target: {!YTDOpportunitiesAddedtoQualifiedFunnelTeam},
+                                color: '#fece1a',
+                                
+                            },{
+                                y: {!YTDOpportunitiesAddedtoQualifiedFunnel},
+                                 
+                                 color: '#00b2ee',
+                                 height: 15
+                            },
+                            ]
+                        }],
+                             
+                        });
+                        
+                        $('#x12OppConv').highcharts({    
+                     
+                            chart: {
+                            inverted: true,
+                            
+                            type: 'bullet'
+                        },
+                        title: {
+                            text: null
+                        },
+                        legend: {
+                            enabled: false
+                        },
+                       
+                         credits: {
+                           enabled: false
+                         },
+                                        
+                        plotOptions: {
+                            series: {
+                                pointPadding: 0.25,
+                                borderWidth: 0,
+                                color: '#000',
+                                targetOptions: {
+                                    width:70,
+                                    height:5,
+                                    
+                                },
+                                pointWidth: 21
+                            },
+                            
+                        },
+                       
+                        xAxis: {
+                            categories: ['','','']
+                        },
+                        
+                        yAxis: {
+                             
+                              gridLineWidth: 0,
+                            plotBands: [{
+                                from: 0,
+                                to: 9e9,
+                                color: '#f5f5f9'
+                            }],
+                            labels: {
+                                format: '{value}%',
+                                rotation: 0
+                            },
+                            title: null,
+                             
+                        },
+                       tooltip: {
+                            formatter: function () {
+                                   
+                                     return '<span style="font-size: 10px"> </span><br/> <span style="color:#7e8793">\u25CF</span> Goal:  <b> ' +({!X12MonthRollingCloseRatebasedonOpportunitiesGoal}).toFixed(2) + '%'
+                                            + '<span style="font-size: 10px"> </span><br/> <span style="color:#00b2ee">\u25CF</span> Actual Result: <b>   ' +({!X12MonthRollingCloseRatebasedonOpportunities}).toFixed(2) + '%'
+                                            +'</b> <br/> <span style="color:#fece1a">\u25CF</span> Peer Average: <b> '+({!X12MonthRollingCloseRatebasedonOpportunitiesTeam}).toFixed(2) + '%' ;  
+                                 
+                            }
+                        },
+                        series: [{
+                            data: [{
+                                y: {!X12MonthRollingCloseRatebasedonOpportunitiesGoal},
+                                 
+                                color: '#7e8793'
+                            },{
+                                
+                               target: {!X12MonthRollingCloseRatebasedonOpportunitiesTeam},
+                                color: '#fece1a',
+                                
+                            },{
+                                y: {!X12MonthRollingCloseRatebasedonOpportunities},
+                                 
+                                 color: '#00b2ee',
+                                 height: 15
+                            },
+                            ]
+                        }],
+                             
+                        });
+                        
+                        $('#x12OppDolConv').highcharts({    
+                     
+                            chart: {
+                            inverted: true,
+                            
+                            type: 'bullet'
+                        },
+                        title: {
+                            text: null
+                        },
+                        legend: {
+                            enabled: false
+                        },
+                       
+                         credits: {
+                           enabled: false
+                         },
+                                        
+                        plotOptions: {
+                            series: {
+                                pointPadding: 0.25,
+                                borderWidth: 0,
+                                color: '#000',
+                                targetOptions: {
+                                    width:70,
+                                    height:5,
+                                    
+                                },
+                                pointWidth: 21
+                            },
+                            
+                        },
+                       
+                        xAxis: {
+                            categories: ['','','']
+                        },
+                        
+                        yAxis: {
+                             
+                              gridLineWidth: 0,
+                            plotBands: [{
+                                from: 0,
+                                to: 9e9,
+                                color: '#f5f5f9'
+                            }],
+                            labels: {
+                                format: '{value}%',
+                                rotation: 0
+                            },
+                            title: null,
+                             
+                        },
+                       tooltip: {
+                            formatter: function () {
+                                   
+                                     return '<span style="font-size: 10px"> </span><br/> <span style="color:#7e8793">\u25CF</span> Goal:  <b> ' +({!X12MonthRollingCloseRatebasedondollarGoal}).toFixed(2) + '%'
+                                            + '<span style="font-size: 10px"> </span><br/> <span style="color:#00b2ee">\u25CF</span> Actual Result: <b>   ' +({!X12MonthRollingCloseRatebasedondollar}).toFixed(2) + '%'
+                                            +'</b> <br/> <span style="color:#fece1a">\u25CF</span> Peer Average: <b> '+({!X12MonthRollingCloseRatebasedondollarTeam}).toFixed(2) + '%';  
+                                 
+                            }
+                        },
+                        series: [{
+                            data: [{
+                                y: {!X12MonthRollingCloseRatebasedondollarGoal},
+                                 
+                                color: '#7e8793'
+                            },{
+                                
+                               target: {!X12MonthRollingCloseRatebasedondollarTeam},
+                                color: '#fece1a',
+                                
+                            },{
+                                y: {!X12MonthRollingCloseRatebasedondollar},
+                                 
+                                 color: '#00b2ee',
+                                 height: 15
+                            },
+                            ]
+                        }],
+                             
+                        });
+                        
+                        $('#x12WinSize').highcharts({    
+                     
+                            chart: {
+                            inverted: true,
+                            
+                            type: 'bullet'
+                        },
+                        title: {
+                            text: null
+                        },
+                        legend: {
+                            enabled: false
+                        },
+                       
+                         credits: {
+                           enabled: false
+                         },
+                                        
+                        plotOptions: {
+                            series: {
+                                pointPadding: 0.25,
+                                borderWidth: 0,
+                                color: '#000',
+                                targetOptions: {
+                                    width:70,
+                                    height:5,
+                                    
+                                },
+                                pointWidth: 21
+                            },
+                            
+                        },
+                       
+                        xAxis: {
+                            categories: ['','','']
+                        },
+                        
+                        yAxis: {
+                             
+                              gridLineWidth: 0,
+                            plotBands: [{
+                                from: 0,
+                                to: 9e9,
+                                color: '#f5f5f9'
+                            }],
+                            title: null,
+                            labels: {
+                            rotation: 0
+                        }
+                        },
+                       tooltip: {
+                            formatter: function () {
+                                   
+                                     return '<span style="font-size: 10px"> </span><br/> <span style="color:#7e8793">\u25CF</span> Goal:  <b> ' +({!X12MonthRollingAveragedollarWinSizeGoal}).toLocaleString("ja-JP", { style: "currency", currency: "USD", minimumFractionDigits: 0 ,maximumFractionDigits:0 })
+                                            + '<span style="font-size: 10px"> </span><br/> <span style="color:#00b2ee">\u25CF</span> Actual Result: <b>   ' +({!X12MonthRollingAveragedollarWinSize}).toLocaleString("ja-JP", { style: "currency", currency: "USD", minimumFractionDigits: 0 ,maximumFractionDigits:0 })
+                                            +'</b> <br/> <span style="color:#fece1a">\u25CF</span> Peer Average: <b> '+({!X12MonthRollingAveragedollarWinSizeTeam}).toLocaleString("ja-JP", { style: "currency", currency: "USD", minimumFractionDigits: 0 ,maximumFractionDigits:0 }) ;  
+                                 
+                            }
+                        },
+                        series: [{
+                            data: [{
+                                y: {!X12MonthRollingAveragedollarWinSizeGoal},
+                                 
+                                color: '#7e8793'
+                            },{
+                                
+                               target: {!X12MonthRollingAveragedollarWinSizeTeam},
+                                color: '#fece1a',
+                                
+                            },{
+                                y: {!X12MonthRollingAveragedollarWinSize},
+                                 
+                                 color: '#00b2ee',
+                                 height: 15
+                            },
+                            ]
+                        }],
+                             
+                        });
+                        
+                        $('#x12SalesCyc').highcharts({    
+                     
+                            chart: {
+                            inverted: true,
+                            
+                            type: 'bullet'
+                        },
+                        title: {
+                            text: null
+                        },
+                        legend: {
+                            enabled: false
+                        },
+                       
+                         credits: {
+                           enabled: false
+                         },
+                                        
+                        plotOptions: {
+                            series: {
+                                pointPadding: 0.25,
+                                borderWidth: 0,
+                                color: '#000',
+                                targetOptions: {
+                                    width:70,
+                                    height:5,
+                                    
+                                },
+                                pointWidth: 21
+                            },
+                            
+                        },
+                       
+                        xAxis: {
+                            categories: ['','','']
+                        },
+                        
+                        yAxis: {
+                             
+                              gridLineWidth: 0,
+                            plotBands: [{
+                                from: 0,
+                                to: 9e9,
+                                color: '#f5f5f9'
+                            }],
+                            title: null,
+                            labels: {
+                            rotation: 0
+                        }
+                        },
+                       tooltip: {
+                            formatter: function () {
+                                   
+                                     return '<span style="font-size: 10px"> </span><br/> <span style="color:#7e8793">\u25CF</span> Goal:  <b> ' +({!X12MonthRollingLengthofSalesCycleGoal}).toLocaleString("ja-JP", {   minimumFractionDigits: 0 ,maximumFractionDigits:0 })
+                                            + '<span style="font-size: 10px"> </span><br/> <span style="color:#00b2ee">\u25CF</span> Actual Result: <b>   ' +({!X12MonthRollingLengthofSalesCycle}).toLocaleString("ja-JP", {   minimumFractionDigits: 0 ,maximumFractionDigits:0 })
+                                            +'</b> <br/> <span style="color:#fece1a">\u25CF</span> Peer Average: <b> '+({!X12MonthRollingLengthofSalesCycleTeam}).toLocaleString("ja-JP", {   minimumFractionDigits: 0 ,maximumFractionDigits:0 }) ;  
+                                 
+                            }
+                        },
+                        series: [{
+                            data: [{
+                                y: {!X12MonthRollingLengthofSalesCycleGoal},
+                                 
+                                color: '#7e8793'
+                            },{
+                                
+                               target: {!X12MonthRollingLengthofSalesCycleTeam},
+                                color: '#fece1a',
+                                
+                            },{
+                                y: {!X12MonthRollingLengthofSalesCycle},
+                                 
+                                 color: '#00b2ee',
+                                 height: 15
+                            },
+                            ]
+                        }],
+                             
+                        }); 
+                        
+                     
+                     $('#gud').slideDown("slow");
+                                      
+                                    
+            }
+          
+           
+            
+      
+    </script>
+   </apex:outputPanel>
+    <apex:form id="formcal">
+    
+        <div class="slds-scope">
+            <div class="myapp">
+                <!--Navigation-->
+                <div class="slds-grid slds-wrap slds-form-element slds-p-around_small">
+                    <div class="slds-size_1-of-1">
+                        <div class="navigation">
+                            <ul>
+                                <li class="home"><apex:commandLink action="{!navigateToHomePage}"><i class="fas fa-home"></i></apex:commandLink></li>
+                                <li class="scorenav"><apex:commandLink action="{!navigateToCertification}"> FUNNELOCITY SCORING</apex:commandLink></li> 
+                                <li><apex:commandLink action="{!navigateToDashboard}"><span><i class="fas fa-tachometer-alt"></i></span> PERFORMANCE DASHBOARD</apex:commandLink></li>
+                                <!--<li><a><i class="fas fa-trophy"></i> FUNNELOCITY SCORE</a></li>-->
+                                <!--<li><apex:commandLink action="{!navigateToReportsPage}"><i class="fas fa-chart-bar"></i> REPORTING</apex:commandlink></li> -->
+                                <li class=" reportnav"> <i class="fas fa-chart-bar"></i> REPORTING 
+                                    <ul class="subnav">
+                                        <li><apex:commandLink action="{!navigateToCertificateReports}">Funnelocity Reports</apex:commandLink></li>
+                                        <!--<li><apex:outputLink value="{!managemenetReports['mXaDybYGcSDujlyIRRJQxUrUEqXiFe']}" target="_blank">Certification Dashboard</apex:outputLink></li>-->                                                                                        
+                                        <li><apex:commandLink action="{!navigateToReportsPage}">Sales Management Reports</apex:commandLink></li>
+                                        <li><apex:commandLink action="{!navigateToAnnualizationDashboard}">Tenured and New Hire Performance Dashboard</apex:commandLink></li>
+                                    </ul>
+                                </li>
+                                <!--<li class=" reportnav funnelanalyticsnav " > <apex:commandLink action="{!navigateToAnalytics}" > FUNNELOCITY ANALYTICS </apex:commandLink>
+                                    
+                                </li>   -->
+                                 <li class="reportnav funnelanalyticsnav " >   <a> FUNNELOCITY ANALYTICS </a>  
+                                    <ul class="subnav">
+                                        <li><apex:commandLink action="{!navigateToFunnelAnalytic}">Funnelocity Quantitative Scoring</apex:commandLink></li>
+                                        <li><apex:commandLink action="{!navigateToFunnelAnalyticQualitative}">Funnelocity Qualitative Scoring</apex:commandLink></li>
+                                    </ul>
+                               </li>                                                               
+                                <li><apex:commandLink action="{!navigateToCalculator}"><i class="fas fa-calculator"></i> METRICS CALCULATOR</apex:commandLink></li>
+                                <li style="display:none"><apex:commandLink ><i class="fas fa-star"></i> TERRITORY PLAN</apex:commandLink></li>
+                                <li style="display:{!appsetup};"><apex:commandLink action="{!navigateToAppSetup}"><i class="fas fa-cog"></i> APP SETUP</apex:commandLink></li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div> 
+                <!--Navigation-->
+                <apex:actionFunction id="breadCrumClick" name="breadCrumClick" action="{!breadCrumClick}" rerender="roleList,levels,levelList" oncomplete="validateSave();">
+                        <apex:param value="" name="crumValue" assignTo="{!crumValue}" />
+                        <apex:param value="" name="levelValue" assignTo="{!levelValue}" />
+                </apex:actionFunction>
+                <apex:outputPanel id="ref">
+                    <div class="slds-grid slds-wrap slds-form-element" style="background: #f5f5f9;">
+                        <div class="slds-p-around_small" style="color: #333333; font-size: 16px; position: absolute; right: 0; top: 0;">
+                            <span class="help" style="float: left; line-height: 18px;">Help <i style="font-size: 18px; margin: 0 0 0 5px; float: right;" class="fa fa-question-circle" aria-hidden="true"></i></span>
+                        </div>
+                        <div class="slds-col">
+                            <script type="text/javascript">
+                                
+                                function addCrumb(obj,levelValue){
+                                     
+                                    option = $(obj).find('option:selected').text();
+                                    if(option != '--Select--' && option != 'All'){
+                                        if(crumb == ''){
+                                            crumb = option;                                                            
+                                        }else if(repVal =='Rep' && !repupdate ){
+                                            crumb = crumb + '&nbsp> ' +option;
+                                            repupdate = true;
+                                        }else if(repVal =='Rep' && repupdate ){
+                                             
+                                            crumb = crumb.slice(0, crumb.lastIndexOf('>')) +'> ' + option;
+                                            
+                                        }else { 
+                                            crumb = crumb + '&nbsp>&nbsp '+`   <a onclick="breadCrumClick1('${option}','${levelValue}')">`+ option+ '</a>' ;
+                                            
+                                        }
+                                        }else if(option == 'All'){
+                                        crumb = crumb.slice(0, crumb.lastIndexOf('>'));
+                                    }
+                                    $(".crumbClass").html(crumb);
+                                    
+                                }
+                                
+                                function repva(rv){
+                                    repVal = rv;
+                                     
+                                }
+                                
+                                function breadCrumClick1(v,l){
+                                    repupdate = false;
+                                    breadCrumClick(v,l);
+                                    crumb = crumb.slice(0, crumb.lastIndexOf(v+'</a>'))+v+'</a>';
+                                    $(".crumbClass").html(crumb);
+                                 
+                               }
+                                
+                              
+                                                                                               
+                            </script>
+                            <apex:outputPanel id="crumbText">
+                                <script type="text/javascript">
+                                    function reloadCrumb(){
+                                        crumb = '{!defaultBreadCrumb}';
+                                        $(".crumbClass").html(crumb);
+                                        repupdate = false;
+                                    }
+                                </script>
+                                <apex:outputText rendered="{!NOT(ISNULL(fw.SelectedLevelOne))}" styleClass="crumbClass slds-p-around_small slds-grid" style="color: #333333; font-size: 18px; font-weight: 300;">                                
+                                </apex:outputText>
+                            </apex:outputPanel>
+                            <apex:outputPanel id="filtersPanel">
+                                <apex:actionStatus id="filterStatus">                                
+                                    <apex:facet name="stop">
+                                        <apex:outputPanel >
+                                            <div class="slds-grid slds-wrap">                                
+                                                <div class="slds-large-size_8-of-8 slds-small-size_1-of-1">
+                                                    
+                                                    <div class="slds-grid"> 
+                                                        <apex:outputPanel id="levels" styleclass="slds-col slds-size_1-of-3"> 
+                                                            <label class="slds-form-element__label slds-text-heading_medium slds-p-left_small" style="font-size: 21px; font-weight: bold; color: #7e8793;" for="select-01" id="selcol">{!fw.labelOne}</label>                              
+                                                            <div class="slds-form-element__control slds-p-around_small" style="margin: -10px 0 0 0;">
+                                                                <div style="position: relative;">
+                                                                    <!--  <apex:actionRegion > -->
+                                                                        <apex:selectList size="1" disabled="{!IF(NOT(fw.isRep),false,true)}" value="{!fw.SelectedLevelOne}" styleClass="slds-select slds-text-heading_medium slds-p-around_x-small" id="select-01" style="color: #7e8793; font-size: 21px; border-radius: 0; height: auto; padding: 6px 30px 6px 8px;">
+                                                                            <apex:actionSupport status="filterStatus" event="onchange" onComplete="reloadCrumb();validateSave();" action="{!levelOneAction}" rerender="levelList,roleList,crumbText"/>
+                                                                            <apex:selectoptions value="{!fw.levelOne}"> 
+                                                                            </apex:selectoptions>                                                
+                                                                        </apex:selectList> 
+                                                                    <!--  </apex:actionRegion > -->
+                                                                </div>
+                                                            </div>
+                                                            <apex:outputText style="color:red; display:none;margin: 0px 0px 0px 75px; font-size: 15px;" value="Please select a value" id="validlevel"></apex:outputText>
+                                                        </apex:outputPanel> 
+                                                        <apex:outputPanel id="levelList" styleclass="slds-col slds-size_1-of-3">
+                                                            <label class="slds-form-element__label slds-text-heading_medium slds-p-left_small" style="font-size: 21px; font-weight: bold; color: #7e8793;" for="select-02">{!fw.labelTwo}{!IF(fw.labelTwo =='Rep','  Name','')}</label>
+                                                            <div class="slds-form-element__control slds-p-around_small" style="margin: -10px 0 0 0;">
+                                                                <div style="position: relative;">
+                                                                    <apex:actionRegion >
+                                                                        <apex:selectList disabled="{!IF(AND(NOT(ISNULL(fw.SelectedLevelOne)),NOT(fw.SelectedLevelOne='--Select--'),NOT(ISBLANK(fw.SelectedLevelOne)),NOT(fw.isRep)),false,true)}" size="1" value="{!fw.SelectedLevelTwo}" styleClass="slds-select slds-text-heading_medium slds-p-around_x-small" id="select-02" style="color: #7e8793; font-size: 21px; border-radius: 0; height: auto; padding: 6px 30px 6px 8px;">
+                                                                            <apex:actionSupport status="filterStatus" event="onchange" onComplete="addCrumb(this,'{!fw.labelOne}');validateSave();" action="{!levelTwoAction}" onbeforedomupdate="repva('{!fw.labelTwo}')" rerender="roleList,levels,levelList,crumbText" />
+                                                                            <apex:selectoptions value="{!fw.levelTwo}"> 
+                                                                            </apex:selectoptions>                                                        
+                                                                        </apex:selectList> 
+                                                                    </apex:actionRegion>
+                                                                </div>
+                                                            </div>
+                                                            <apex:outputText style="color:red; display:none;margin: 0px 0px 0px 75px; font-size: 15px;" value="Please select a value" id="validname"></apex:outputText>
+                                                        </apex:outputPanel>
+                                                        
+                                                        <apex:outputPanel id="roleList" styleclass="slds-col slds-size_1-of-3">
+                                                            <label class="slds-form-element__label slds-text-heading_medium slds-p-left_small" style="font-size: 21px; font-weight: bold; color: #7e8793;" for="select-03">{!fw.labelThree}</label>
+                                                            
+                                                            <div class="slds-form-element__control slds-p-around_small" style="margin: -10px 0 0 0;">
+                                                                <div style="position: relative;">
+                                                                <apex:actionRegion >
+                                                                    <apex:selectList disabled="{!IF(AND(NOT(ISNULL(fw.SelectedLevelOne)),NOT(ISNULL(fw.SelectedLevelTwo)),NOT(ISBLANK(fw.SelectedLevelOne)),NOT(ISBLANK(fw.SelectedLevelTwo)),NOT(fw.disableLevelThree),NOT(fw.isRep)),false,true)}" size="1" value="{!fw.SelectedLevelThree}" styleClass="slds-select slds-text-heading_medium slds-p-around_x-small" id="select-03" style="color: #7e8793; font-size: 21px; border-radius: 0; height: auto; padding: 6px 30px 6px 8px;">
+                                                                        <apex:actionSupport status="filterStatus" event="onchange" rerender="" oncomplete="validateSave();"/>
+                                                                        <apex:selectoptions value="{!fw.levelThree}"> 
+                                                                        </apex:selectoptions>                                                        
+                                                                    </apex:selectList>
+                                                                </apex:actionRegion>  
+                                                                </div>
+                                                            </div>
+                                                            <apex:outputText style="color:red; display:none;margin: 0px 0px 0px 75px; font-size: 15px;" value="Please select a value" id="validmgr"></apex:outputText>
+                                                        </apex:outputPanel>                                                                                                                                              
+                                                    </div>
+                                                </div>
+                                                
+                                                <apex:actionFunction name="show" action="{!showUpdated}" rerender="pg,Asp,Lc,Mrc,charts,profDetails" oncomplete="showChart();"/>     
+                                               
+                                                                                                     
+                                            </div>
+                                        </apex:outputPanel>
+                                    </apex:facet>
+                                                                                                    
+                                    <apex:facet name="start">
+                                        <apex:outputPanel >
+                                            <div class="slds-grid slds-wrap">                                
+                                                <div class="slds-large-size_8-of-8 slds-small-size_1-of-1">
+                                                    <div class="slds-grid">                                                 
+                                                        <apex:outputPanel styleclass="slds-col slds-size_1-of-3"> 
+                                                            <label class="slds-form-element__label slds-text-heading_medium slds-p-left_small" style="font-size: 21px; font-weight: bold; color: #7e8793;" for="select-01">Select Level</label>                              
+                                                            <div class="slds-form-element__control slds-p-around_small" style="margin: -10px 0 0 0;">
+                                                                <div style="position: relative;">
+                                                                    <apex:selectList size="1" disabled="true" styleClass="slds-select slds-text-heading_medium slds-p-around_x-small" style="color: #7e8793; font-size: 21px; border-radius: 0; height: auto; padding: 6px 30px 6px 8px;">
+                                                                        <apex:selectoption itemValue="Level" itemLabel="Level"> 
+                                                                        </apex:selectoption>                                               
+                                                                    </apex:selectList> 
+                                                                </div>
+                                                            </div>
+                                                        </apex:outputPanel> 
+                                                        <apex:outputPanel styleclass="slds-col slds-size_1-of-3"> 
+                                                            <label class="slds-form-element__label slds-text-heading_medium slds-p-left_small" style="font-size: 21px; font-weight: bold; color: #7e8793;" for="select-01">Select Level</label>                              
+                                                            <div class="slds-form-element__control slds-p-around_small" style="margin: -10px 0 0 0;">
+                                                                <div style="position: relative;">
+                                                                    <apex:selectList size="1" disabled="true" styleClass="slds-select slds-text-heading_medium slds-p-around_x-small" style="color: #7e8793; font-size: 21px; border-radius: 0; height: auto; padding: 6px 30px 6px 8px;">
+                                                                        <apex:selectoption itemValue="Level" itemLabel="Level"> 
+                                                                        </apex:selectoption>                                               
+                                                                    </apex:selectList>   
+                                                                </div>
+                                                            </div>
+                                                        </apex:outputPanel>
+                                                        
+                                                        <apex:outputPanel styleclass="slds-col slds-size_1-of-3"> 
+                                                            <label class="slds-form-element__label slds-text-heading_medium slds-p-left_small" style="font-size: 21px; font-weight: bold; color: #7e8793;" for="select-01">Select Role</label>                              
+                                                            <div class="slds-form-element__control slds-p-around_small" style="margin: -10px 0 0 0;">
+                                                                <div style="position: relative;">
+                                                                    <apex:selectList size="1" disabled="true" styleClass="slds-select slds-text-heading_medium slds-p-around_x-small" style="color: #7e8793; font-size: 21px; border-radius: 0; height: auto; padding: 6px 30px 6px 8px;">
+                                                                        <apex:selectoption itemValue="Role" itemLabel="Role"> 
+                                                                        </apex:selectoption>                                               
+                                                                    </apex:selectList>     
+                                                                </div>
+                                                            </div>
+                                                        </apex:outputPanel>                                                                                                                                                                                                                                             
+                                                    </div>
+                                                </div>
+                                                
+                                                 
+                                                  
+                                                                                                                                                
+                                            </div>
+                                        </apex:outputPanel>
+                                    </apex:facet>                                                                                                
+                                    
+                                </apex:actionStatus>
+                            </apex:outputPanel>
+                            
+                        </div>
+                    </div>
+                </apex:outputPanel>
+                
+               
+                
+                
+                
+                
+                  
+                    <apex:outputPanel id="profDetails">
+                        <apex:outputPanel >
+                            <div class="slds-grid slds-wrap" style="background: #00b2ee; color: #fff;">
+                                    <div class="slds-large-size_8-of-8 slds-small-size--1-of-1">
+                                        <div class="slds-grid" style="align-items: center; justify-content: space-between;">
+                                            <div style="display: flex; align-items: center;">
+                                                <div class="slds-text-heading_large slds-p-around_medium" style="font-size: 24px; padding-top: 0; padding-bottom: 0;">{!displayWrapper.Name}</div>
+                                                <div class="slds-border_left" style="border-width: 3px; border-color: #fff; display: inline-block; float: left;">
+                                                    <!--<div class="slds-text-heading_large slds-p-left_medium" style="font-size: 24px;">Role</div>-->
+                                                    <div class="slds-text-heading_large slds-p-left_medium" style="font-size: 18px;">{!displayWrapper.Role}</div>
+                                                </div>
+                                            </div>
+                                            <div style="background: #1a88c0; border-radius: 70px; display: flex; align-items: center; height: 40px; margin-right: 12px;">
+                                                <div class="slds-text-heading_medium" style="color: #fff; font-size: 20px; float: none; text-align: left; padding: 0 20px; display: table-cell; vertical-align: middle;">Funnelocity Quantitative Score</div>
+                                                <div style="width: 52px; height: 52px; float: none; min-width: 52px; display: table-cell; position: relative;">
+                                                    <div class="slds-text-heading_large" style="font-size: 22px; color: #ff9900; padding: 10px 0; background: #fff; border: 2px solid #fff; border-radius: 40px; text-align: center; font-weight: bold; height: 52px; box-shadow: 0 0 15px rgba(16,14,23,.33);">{!displayWrapper.Score}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>                                                                                   
+                        </apex:outputPanel>
+                    </apex:outputPanel>
+                 
+                    
+                
+                
+             
+                <apex:outputPanel id="pg">
+                
+                <div class="slds-grid slds-wrap slds-p-around_small" style="background: #f5f5f9;">
+                    <div class="slds-size_1-of-1">
+                        <div class="slds-tabs_default" style="background: #f5f5f9; width: 100%; display: table;">
+                            
+                             
+                        <apex:outputPanel id="metblock">
+                            <apex:outputPanel rendered="{!IF(OR(AND(fw.selectedLevelThree != '',fw.selectedLevelThree != 'All'),AND(fw.selectedLevelTwo != 'All',fw.labelTwo == 'Rep')),False,True)}">
+                                 <div class="slds-large-size_8-of-8"  style="text-align: center; font-size: 27px;  background: #fff; border: 1px solid #d8dde6; " >  
+                                     Select a role to view significant metrics
+                                 </div>
+                            </apex:outputPanel>
+                  
+                            <apex:outputPanel rendered="{!IF(OR(AND(fw.selectedLevelThree != '',fw.selectedLevelThree != 'All'),AND(fw.selectedLevelTwo != 'All',fw.labelTwo == 'Rep')),True,False)}">
+                                 <div class="slds-small-size_1-of-1 slds-grid" style="display:none;" id="gud">
+                                    <div class="slds-large-size_4-of-8">
+                                       <div id='gaptab'  style="min-width: 450px; height: 450px; margin: 0 12px 0 0; background: #fff; border: 1px solid #d8dde6;   ">  
+                
+                                       </div> 
+                                    </div>
+                                    <div class="slds-large-size_4-of-8">
+                                        <div id='gaptabQual'  style="min-width: 450px; height: 450px; background: #fff; border: 1px solid #d8dde6;   ">  
+                
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                          </apex:outputPanel>
+                      </apex:outputPanel>
+                  
+                            
+                        </div>
+                    </div>
+                </div>
+                 
+                <div class="slds-grid slds-p-left_small slds-p-right_small" id="opphead" style="background: #f5f5f9;">
+                    <div class="slds-size_8-of-8">
+                        <div class="slds-p-around_small infolist" style="background: #fff; border: 1px solid rgb(216, 221, 230); padding-left: 90px; padding-right: 90px;">
+                            <div>Current Pipeline: <span>{!curentPipeline}</span></div>
+                            <div>Active Opportunities: <span>{!activeopp}</span></div>
+                            <div>YTD Wins: <span>{!ytdWin}</span></div>
+                            <div>Wins Needed to Make Quota: <span>{!winNeedToMakeQuota}</span></div>
+                        </div>
+                    </div>
+                </div>
+                 
+                <div class="slds-large-size_1-of-1 slds-p-around_small" style="background: #f5f5f9;">
+                    <div   style="background: #fff; border: 1px solid #d8dde6; padding-right: 60px; padding-left: 60px;">  
+                        <div class="slds-small-size_1-of-1 slds-grid" style="justify-content: center; padding-top: 28px; padding-bottom: 28px;">
+                            <h3 style="font-size: 20px; font-weight: 700; font-family: sldsFont;">Performance Snapshot</h3>
+                        </div>
+                        <div class="slds-small-size_1-of-1 slds-grid" style="justify-content: center;">
+                            <div style="display: flex; align-items: center; margin: 0 20px;">
+                                <span style="background: #7e8793; height: 12px; width: 12px; border-radius: 50%; display: block; margin: 0 5px;"></span>
+                                <span style="font-size: 12px; color: #4d4d4d; font-weight: 700;">Goal</span>
+                            </div>
+                            <div style="display: flex; align-items: center; margin: 0 20px;">
+                                <span style="background: #00b2ee; height: 12px; width: 12px; border-radius: 50%; display: block; margin: 0 5px;"></span>
+                                <span style="font-size: 12px; color: #4d4d4d; font-weight: 700;">Actual Result</span>
+                            </div>
+                            <div style="display: flex; align-items: center; margin: 0 20px;">
+                                <span style="background: #fece1a; height: 12px; width: 12px; border-radius: 50%; display: block; margin: 0 5px;"></span>
+                                <span style="font-size: 12px; color: #4d4d4d; font-weight: 700;">Peer Average</span>
+                            </div>
+                        </div>
+                        <div class="slds-small-size_1-of-1 slds-grid slds-p-top_medium slds-p-bottom_medium" style="border-bottom: 2px solid #d8dde6;">
+                            <div class="slds-large-size_2-of-8">
+                                <div class="slds-truncate slds-p-top_medium slds-p-bottom_medium"  style="display: flex; overflow: visible; justify-content: space-between;">
+                                    <span style="display: table-cell; vertical-align: middle; line-height: 18px; font-size: 14px; padding-right: 12px; padding-left: 12px; font-weight: 700;">YTD Quota Performance</span> 
+                                    <span class="slds-icon_container slds-icon-utility-info" style="" data-tooltip="YTD Quota Performance">
+                                        <i style="color:#66cc33; font-size: 16px;" class="fa fa-info-circle" aria-hidden="true" ></i>
+                                    </span>
+                                </div>
+                                 
+                            </div>
+                            <div id='ytdPer' class="slds-large-size_6-of-8"  style=" height: 85px; background: #fff; ">  
+    
+                            </div>
+                        </div>
+                        
+                        <apex:outputPanel rendered="{!LeadUsed}">
+                        <div class="slds-small-size_1-of-1 slds-grid slds-p-top_medium slds-p-bottom_medium" style="border-bottom: 2px solid #d8dde6;">
+                            <div class="slds-large-size_2-of-8">
+                            <div class="slds-truncate slds-p-top_medium slds-p-bottom_medium" style="display: flex; overflow: visible; justify-content: space-between;">
+                                <span style="display: table-cell; vertical-align: middle; line-height: 18px; font-size: 14px; padding-right: 12px; padding-left: 12px; font-weight: 700;">YTD Leads Added</span>
+                                <span class="slds-icon_container slds-icon-utility-info" style="" data-tooltip="YTD Leads Added">
+                                    <i style="color:#66cc33; font-size: 16px;" class="fa fa-info-circle" aria-hidden="true" ></i>
+                                </span>
+                            </div>
+                            </div>
+                            <div id='ytdLead' class="slds-large-size_6-of-8"  style=" height: 85px; background: #fff; ">  
+    
+                            </div>
+                        </div>
+                        </apex:outputPanel>
+                        
+                        <apex:outputPanel rendered="{!LeadUsed}">
+                        <div class="slds-small-size_1-of-1 slds-grid slds-p-top_medium slds-p-bottom_medium" style="border-bottom: 2px solid #d8dde6; ">
+                            <div class="slds-large-size_2-of-8">
+                            <div class="slds-truncate slds-p-top_medium slds-p-bottom_medium" style="display: flex; overflow: visible; justify-content: space-between;">
+                                <span style="display: table-cell; vertical-align: middle; line-height: 18px; font-size: 14px; padding-right: 12px; padding-left: 12px; font-weight: 700;">YTD Lead Conversion %</span>
+                                <span class="slds-icon_container slds-icon-utility-info" style="" data-tooltip="YTD Lead Conversion %">
+                                    <i style="color:#66cc33; font-size: 16px;" class="fa fa-info-circle" aria-hidden="true" ></i>
+                                </span>
+                            </div>
+                            </div>
+                            <div id='x12LeadConv' class="slds-large-size_6-of-8"  style=" height: 85px; background: #fff; ">  
+    
+                            </div>
+                        </div>
+                        </apex:outputPanel>
+                        
+                        <apex:outputPanel rendered="{!MeetingUsed}">
+                        <div class="slds-small-size_1-of-1 slds-grid slds-p-top_medium slds-p-bottom_medium" style="border-bottom: 2px solid #d8dde6;">
+                            <div class="slds-large-size_2-of-8">
+                            <div class="slds-truncate slds-p-top_medium slds-p-bottom_medium" style="display: flex; overflow: visible; justify-content: space-between;">
+                                <span style="display: table-cell; vertical-align: middle; line-height: 18px; font-size: 14px; padding-right: 12px; padding-left: 12px; font-weight: 700;">YTD Number of Meetings</span>
+                                <span class="slds-icon_container slds-icon-utility-info" style="" data-tooltip="YTD Number of Meetings">
+                                    <i style="color:#66cc33; font-size: 16px;" class="fa fa-info-circle" aria-hidden="true" ></i>
+                                </span>
+                            </div>
+                            </div>
+                            <div id='ytdMeet' class="slds-large-size_6-of-8"  style=" height: 85px; background: #fff; ">  
+    
+                            </div>
+                        </div>
+                        </apex:outputPanel>
+                        
+                        <div class="slds-small-size_1-of-1 slds-grid slds-p-top_medium slds-p-bottom_medium" style="border-bottom: 2px solid #d8dde6;">
+                            <div class="slds-large-size_2-of-8">
+                            <div class="slds-truncate slds-p-top_medium slds-p-bottom_medium" style="display: flex; overflow: visible; justify-content: space-between;">
+                                <span style="display: table-cell; vertical-align: middle; line-height: 18px; font-size: 14px; padding-right: 12px; padding-left: 12px; font-weight: 700;">YTD Opportunities Added to Qualified Funnel</span>
+                                <span class="slds-icon_container slds-icon-utility-info" style="" data-tooltip="YTD Opportunities Added to Qualified Funnel">
+                                    <i style="color:#66cc33; font-size: 16px;" class="fa fa-info-circle" aria-hidden="true" ></i>
+                                </span>
+                            </div>
+                            </div>
+                            <div id='ytdOppAdd' class="slds-large-size_6-of-8"  style=" height: 85px; background: #fff; ">  
+    
+                            </div>
+                        </div>
+                        
+                        <div class="slds-small-size_1-of-1 slds-grid slds-p-top_medium slds-p-bottom_medium" style="border-bottom: 2px solid #d8dde6;">
+                            <div class="slds-large-size_2-of-8">
+                            <div class="slds-truncate slds-p-top_medium slds-p-bottom_medium" style="display: flex; overflow: visible; justify-content: space-between;">
+                                <span style="display: table-cell; vertical-align: middle; line-height: 18px; font-size: 14px; padding-right: 12px; padding-left: 12px; font-weight: 700;">YTD Close Rate based on Opportunities</span>
+                                <span class="slds-icon_container slds-icon-utility-info" style="" data-tooltip="YTD Close Rate based on Opportunities">
+                                    <i style="color:#66cc33; font-size: 16px;" class="fa fa-info-circle" aria-hidden="true" ></i>
+                                </span>
+                            </div>
+                            </div>
+                            <div id='x12OppConv' class="slds-large-size_6-of-8"  style=" height: 85px; background: #fff; ">  
+    
+                            </div>
+                        </div>
+                        
+                        <div class="slds-small-size_1-of-1 slds-grid slds-p-top_medium slds-p-bottom_medium" style="border-bottom: 2px solid #d8dde6;">
+                            <div class="slds-large-size_2-of-8">
+                            <div class="slds-truncate slds-p-top_medium slds-p-bottom_medium" style="display: flex; overflow: visible; justify-content: space-between;">
+                                <span style="display: table-cell; vertical-align: middle; line-height: 18px; font-size: 14px; padding-right: 12px; padding-left: 12px; font-weight: 700;">YTD Close Rate based on $$$</span>
+                                <span class="slds-icon_container slds-icon-utility-info" style="" data-tooltip="YTD Close Rate based on $$$">
+                                    <i style="color:#66cc33; font-size: 16px;" class="fa fa-info-circle" aria-hidden="true" ></i>
+                                </span>
+                            </div>
+                            </div>
+                            <div id='x12OppDolConv' class="slds-large-size_6-of-8"  style=" height: 85px; background: #fff; ">  
+    
+                            </div>
+                        </div>
+                        
+                        <div class="slds-small-size_1-of-1 slds-grid slds-p-top_medium slds-p-bottom_medium" style="border-bottom: 2px solid #d8dde6;">
+                            <div class="slds-large-size_2-of-8">
+                            <div class="slds-truncate slds-p-top_medium slds-p-bottom_medium" style="display: flex; overflow: visible; justify-content: space-between;">
+                                <span style="display: table-cell; vertical-align: middle; line-height: 18px; font-size: 14px; padding-right: 12px; padding-left: 12px; font-weight: 700;">YTD Average $ Win Size</span>
+                                <span class="slds-icon_container slds-icon-utility-info" style="" data-tooltip="YTD Average $ Win Size">
+                                    <i style="color:#66cc33; font-size: 16px;" class="fa fa-info-circle" aria-hidden="true" ></i>
+                                </span>
+                            </div>
+                            </div>
+                            <div id='x12WinSize' class="slds-large-size_6-of-8"  style=" height: 85px; background: #fff; ">  
+    
+                            </div>
+                        </div>
+                        
+                        <div class="slds-small-size_1-of-1 slds-grid slds-p-top_medium slds-p-bottom_medium"  >
+                            <div class="slds-large-size_2-of-8">
+                            <div class="slds-truncate slds-p-top_medium slds-p-bottom_medium" style="display: flex; overflow: visible; justify-content: space-between;">
+                                <span style="display: table-cell; vertical-align: middle; line-height: 18px; font-size: 14px; padding-right: 12px; padding-left: 12px; font-weight: 700;">YTD Length of Sales Cycle</span>
+                                <span class="slds-icon_container slds-icon-utility-info" style="" data-tooltip="YTD Length of Sales Cycle">
+                                    <i style="color:#66cc33; font-size: 16px;" class="fa fa-info-circle" aria-hidden="true" ></i>
+                                </span>
+                            </div>
+                            </div>
+                            <div id='x12SalesCyc' class="slds-large-size_6-of-8"  style=" height: 85px; background: #fff; ">  
+    
+                            </div>
+                        </div>
+                        
+                        <div class="slds-small-size_1-of-1 slds-grid" style="justify-content: center; margin: 28px 0;">
+                            <div style="display: flex; align-items: center; margin: 0 20px;">
+                                <span style="background: #7e8793; height: 12px; width: 12px; border-radius: 50%; display: block; margin: 0 5px;"></span>
+                                <span style="font-size: 12px; color: #4d4d4d; font-weight: 700;">Goal</span>
+                            </div>
+                            <div style="display: flex; align-items: center; margin: 0 20px;">
+                                <span style="background: #00b2ee; height: 12px; width: 12px; border-radius: 50%; display: block; margin: 0 5px;"></span>
+                                <span style="font-size: 12px; color: #4d4d4d; font-weight: 700;">Actual Result</span>
+                            </div>
+                            <div style="display: flex; align-items: center; margin: 0 20px;">
+                                <span style="background: #fece1a; height: 12px; width: 12px; border-radius: 50%; display: block; margin: 0 5px;"></span>
+                                <span style="font-size: 12px; color: #4d4d4d; font-weight: 700;">Peer Average</span>
+                            </div>
+                        </div>
+                         
+                    </div>
+                    
+                </div>
+               </apex:outputPanel> 
+            </div>
+        </div>
+    </apex:form>
+    
+    
+     <script>
+        var repVal ;
+        var repupdate = false;
+        var crumb = '{!defaultBreadCrumb}'; 
+        
+        jQuery('input[type=text]').blur();
+        $(".crumbClass").html(crumb);                                    
+        
+    </script>
+    <!--<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>-->
+    <apex:includeScript value="{!URLFOR($Resource.FunnelScriptFolder,'Design/jquery-1.11.3.min.js')}"/>
+    <script type="text/javascript">
+        showChart();
+        function validateSave(){
+            
+            var inp1 = $('[id$=select-01]').val();
+            var inp2 = $('[id$=select-02]').val();
+            var inp3 = $('[id$=select-03]').val();
+            
+            var validSave = 'true';
+            
+            console.log(inp1 );
+            console.log(inp2 );
+            console.log(inp3 );
+            if(inp1 == '--Select--'){
+                $('[id$=validlevel]').css("display","block");
+                validSave = 'false';
+            }
+            if(inp2 == '--Select--'){
+                $('[id$=validname]').css("display","block");
+                validSave = 'false';
+            }
+            if(inp3 == '--Select--'){
+                $('[id$=validmgr]').css("display","block");
+                validSave = 'false';
+            }
+           
+            console.log(validSave);
+            if(validSave == 'true'){
+                console.log(validSave); 
+                $('[id$=validlevel]').css("display","none");
+                $('[id$=validname]').css("display","none");
+                $('[id$=validmgr]').css("display","none");
+                
+                show();
+            }
+        }
+    </script>
+     
+   
+ 
+ 
+  
+    </html>
+</apex:page>

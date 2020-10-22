@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Roles_enabled__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Stores the list of sales profile roles for which the certification is active</description>
+    <externalId>false</externalId>
+    <label>Roles enabled</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>Roles</valueSetName>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

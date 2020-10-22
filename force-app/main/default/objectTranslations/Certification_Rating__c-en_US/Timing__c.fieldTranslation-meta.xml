@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Timing --></label>
+    <name>Timing__c</name>
+    <picklistValues>
+        <masterLabel>Annual</masterLabel>
+        <translation><!-- Annual --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Bi-annual</masterLabel>
+        <translation><!-- Bi-annual --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>End of month</masterLabel>
+        <translation><!-- End of month --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>End of quarter</masterLabel>
+        <translation><!-- End of quarter --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

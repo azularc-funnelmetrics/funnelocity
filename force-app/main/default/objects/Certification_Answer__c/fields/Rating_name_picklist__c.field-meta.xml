@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Rating_name_picklist__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Stores the name of the rating the answer record is associated with</description>
+    <externalId>false</externalId>
+    <label>Certification name picklist</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>Rating_Names</valueSetName>
+    </valueSet>
+</CustomField>

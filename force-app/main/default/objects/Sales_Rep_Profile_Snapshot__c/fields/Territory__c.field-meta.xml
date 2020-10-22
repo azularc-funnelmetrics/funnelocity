@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Territory__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label>Territory</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>American Samoa</fullName>
+                <default>false</default>
+                <label>American Samoa</label>
+            </value>
+            <value>
+                <fullName>Guam</fullName>
+                <default>false</default>
+                <label>Guam</label>
+            </value>
+            <value>
+                <fullName>Northern Mariana Islands</fullName>
+                <default>false</default>
+                <label>Northern Mariana Islands</label>
+            </value>
+            <value>
+                <fullName>Puerto Rico</fullName>
+                <default>false</default>
+                <label>Puerto Rico</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

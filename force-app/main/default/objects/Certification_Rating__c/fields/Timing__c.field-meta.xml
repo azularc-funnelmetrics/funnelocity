@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Timing__c</fullName>
+    <defaultValue>&quot;Week&quot;</defaultValue>
+    <deprecated>false</deprecated>
+    <description>The number of days within which the rating should be completed</description>
+    <externalId>false</externalId>
+    <label>Timing</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>End of month</fullName>
+                <default>false</default>
+                <label>End of month</label>
+            </value>
+            <value>
+                <fullName>End of quarter</fullName>
+                <default>false</default>
+                <label>End of quarter</label>
+            </value>
+            <value>
+                <fullName>Bi-annual</fullName>
+                <default>false</default>
+                <label>Bi-annual</label>
+            </value>
+            <value>
+                <fullName>Annual</fullName>
+                <default>false</default>
+                <label>Annual</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

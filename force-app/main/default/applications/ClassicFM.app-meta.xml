@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <defaultLandingTab>FM_Home</defaultLandingTab>
+    <description>Classic version of funnelocity</description>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <label>Funnelocity</label>
+    <logo>SharedDocuments/Funnel_metrics_small_logo.png</logo>
+    <tabs>FM_Home</tabs>
+    <tabs>Application_Setting__c</tabs>
+    <tabs>Important_Rating__c</tabs>
+    <tabs>Certification__c</tabs>
+    <tabs>YTD_Quota_Revenue__c</tabs>
+    <tabs>Certification_Answer__c</tabs>
+    <tabs>Sales_Rep_Quota__c</tabs>
+    <tabs>Yearly_goals_by_Role__c</tabs>
+</CustomApplication>

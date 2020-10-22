@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Close_rate_monthly_opp_amount__c</fullName>
+    <deprecated>false</deprecated>
+    <description>This contains the amount of the opp whose closedate is changed</description>
+    <externalId>false</externalId>
+    <label>Close rate monthly opp amount</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- 12 Month Opprties Added to the funnel --></label>
+    <name>X12_Month_Opprties_Added_to_the_funnel__c</name>
+</CustomFieldTranslation>

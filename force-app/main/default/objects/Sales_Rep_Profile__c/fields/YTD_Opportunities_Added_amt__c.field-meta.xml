@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>YTD_Opportunities_Added_amt__c</fullName>
+    <deprecated>false</deprecated>
+    <description>This field stores the amount of qualified opp ytd + the amount of the qualified opp moved to next month + the amount of the qualified opps that are lost ytd.</description>
+    <externalId>false</externalId>
+    <formula>IF(YTD_Close_Rate__c &gt; 0,YTD_Revenue__c / YTD_Close_Rate__c,0)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>YTD funnel $ amt</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

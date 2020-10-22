@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Rating_Names_Picklist_Snap__c</fullName>
+    <deprecated>false</deprecated>
+    <description>This picklist must appear in both Certification Answers and Certification Answer Snapshots to enable reporting.</description>
+    <externalId>false</externalId>
+    <label>Rating Names Picklist Snap</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>Rating_Names</valueSetName>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Restrict_values_in_level_name_and_value</fullName>
+    <active>true</active>
+    <errorConditionFormula>OR(CONTAINS(Level_Name__c,&apos;&gt;&apos;),
+CONTAINS(Level_Name__c,&apos;&lt;&apos;),
+CONTAINS(Level_Name__c, &apos;=&apos;),
+CONTAINS(Level_Value__c,&apos;&gt;&apos;),
+CONTAINS(Level_Value__c,&apos;&lt;&apos;),
+CONTAINS(Level_Value__c, &apos;=&apos;),
+CONTAINS(Level_Value__c, &apos;&amp;&apos;),
+CONTAINS(Level_Value__c, &quot;&apos;&quot;))</errorConditionFormula>
+    <errorMessage>Please remove the characters &apos;&lt;&apos;, &apos;&gt;&apos;, &apos;=&apos;, &apos;&amp;&apos;, &quot; &apos; &quot; from your input</errorMessage>
+</ValidationRule>

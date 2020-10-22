@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Schedule_Date_Quarter__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Formula Field that allows reporting by Quarter. Format YearQx.</description>
+    <externalId>false</externalId>
+    <formula>TEXT(YEAR( Snapshot_Scheduled_Date__c )) &amp; &quot;Q&quot; &amp; TEXT(FLOOR(((MONTH( Snapshot_Scheduled_Date__c )-1)/3)+1))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Schedule Date Quarter</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

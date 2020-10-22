@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Number of meetings 12 months percentage --></label>
+    <name>Number_of_meetings_12_months_percentage__c</name>
+</CustomFieldTranslation>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Quartile__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <formula>IF(YTDQP__c&gt;=1,&quot;Outstanding&quot;,
+IF(YTDQP__c&gt;0.8,&quot;Strong&quot;,
+IF(YTDQP__c&gt;0.5,&quot;Average&quot;,
+IF(YTDQP__c&gt;0.2,&quot;UnderPerforming&quot;,&quot;Needs Improvement&quot;))))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Quartile</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

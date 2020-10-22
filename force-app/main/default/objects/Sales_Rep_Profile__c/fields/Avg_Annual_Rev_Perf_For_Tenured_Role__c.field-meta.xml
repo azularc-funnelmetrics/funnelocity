@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Avg_Annual_Rev_Perf_For_Tenured_Role__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Sum of last fiscal year revenue for tenured reps (in this role) / number of tenured reps (in this role)</description>
+    <externalId>false</externalId>
+    <label>Avg Annual Rev Perf For Tenured(Role)</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

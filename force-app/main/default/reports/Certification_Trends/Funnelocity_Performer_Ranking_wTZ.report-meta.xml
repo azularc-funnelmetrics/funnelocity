@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>FK_$Sales_Rep_Profile__c.Level_picklist_4__c</field>
+    </columns>
+    <columns>
+        <field>FK_NAME</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Average</aggregateTypes>
+        <field>Certification__c.Overall_Rating__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Average</aggregateTypes>
+        <field>FK_$Sales_Rep_Profile__c.YTD_Revenue_Quota_Percent__c</field>
+    </columns>
+    <description>This report lists Reps by Performer Category to show where they rank.</description>
+    <filter>
+        <criteriaItems>
+            <column>FK_$Sales_Rep_Profile__c.Role__c</column>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Account Executive,Sales Executive</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Certification__c.Performer_Category__c</field>
+        <sortOrder>Desc</sortOrder>
+    </groupingsDown>
+    <name>Funnelocity Performer Ranking</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$Certification__c@Certification__c.Sales_Rep_Profile__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>CUST_CREATED_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

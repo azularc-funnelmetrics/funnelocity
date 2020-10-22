@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Avg ann Rev Perf of Tenured Rep incep --></label>
+    <name>Avg_ann_Rev_Perf_of_Tenured_Rep__c</name>
+</CustomFieldTranslation>

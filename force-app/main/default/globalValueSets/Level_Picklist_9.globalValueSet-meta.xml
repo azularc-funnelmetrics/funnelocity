@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Level Picklist 9</fullName>
+        <default>false</default>
+        <label>Level Picklist 9</label>
+    </customValue>
+    <description>ninth company level - example area</description>
+    <masterLabel>Level Picklist 9</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

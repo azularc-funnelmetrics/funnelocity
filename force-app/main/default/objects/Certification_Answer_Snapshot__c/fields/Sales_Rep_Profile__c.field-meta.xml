@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sales_Rep_Profile__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <deprecated>false</deprecated>
+    <description>Added as lookup to enable reporting based on sales rep profile / company levels.</description>
+    <externalId>false</externalId>
+    <label>Sales Rep Profile</label>
+    <referenceTo>Sales_Rep_Profile__c</referenceTo>
+    <relationshipLabel>Certification Answer Snapshots</relationshipLabel>
+    <relationshipName>Certification_Answer_Snapshots</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

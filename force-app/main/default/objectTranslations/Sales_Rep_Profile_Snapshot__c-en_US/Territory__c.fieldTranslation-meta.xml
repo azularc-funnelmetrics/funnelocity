@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Territory --></label>
+    <name>Territory__c</name>
+    <picklistValues>
+        <masterLabel>American Samoa</masterLabel>
+        <translation><!-- American Samoa --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Guam</masterLabel>
+        <translation><!-- Guam --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Northern Mariana Islands</masterLabel>
+        <translation><!-- Northern Mariana Islands --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Puerto Rico</masterLabel>
+        <translation><!-- Puerto Rico --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

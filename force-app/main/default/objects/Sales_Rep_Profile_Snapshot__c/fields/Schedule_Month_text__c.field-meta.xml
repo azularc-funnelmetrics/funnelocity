@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Schedule_Month_text__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <formula>Schedule_Date_Year__c &amp; &quot;-&quot; &amp; CASE(month ( Snapshot_Scheduled_Date__c ), 
+1, &quot;JAN&quot;, 
+2, &quot;FEB&quot;, 
+3, &quot;MAR&quot;, 
+4, &quot;APR&quot;, 
+5, &quot;MAY&quot;, 
+6, &quot;JUN&quot;, 
+7, &quot;JUL&quot;, 
+8, &quot;AUG&quot;, 
+9, &quot;SEP&quot;, 
+10,&quot;OCT&quot;, 
+11, &quot;NOV&quot;, 
+12, &quot;DEC&quot;, 
+&quot;OTHER&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Schedule Month text</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

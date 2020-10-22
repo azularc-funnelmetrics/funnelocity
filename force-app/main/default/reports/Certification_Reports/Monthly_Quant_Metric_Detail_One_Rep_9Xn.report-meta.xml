@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Sales_Rep_Profile__c.Certifcations__r.Certification_Answers__r$Due_Date__c</field>
+    </columns>
+    <columns>
+        <field>Sales_Rep_Profile__c.Certifcations__r.Certification_Answers__r$Certifcation_Rating__c.Timing__c</field>
+    </columns>
+    <columns>
+        <field>Sales_Rep_Profile__c.Certifcations__r.Certification_Answers__r$Certifcation_Rating__c.Calculation_type__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Average</aggregateTypes>
+        <field>Sales_Rep_Profile__c.Certifcations__r.Certification_Answers__r$Rating_Score__c</field>
+    </columns>
+    <description>Lists all Quarterly Quantitative Certification Scores for One Rep</description>
+    <filter>
+        <criteriaItems>
+            <column>Sales_Rep_Profile__c.Certifcations__r.Certification_Answers__r$Rating_name_picklist__c</column>
+            <isUnlocked>true</isUnlocked>
+            <operator>notContain</operator>
+            <value>MGT</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Sales_Rep_Profile__c$Name</column>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Joe Smith</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Sales_Rep_Profile__c.Certifcations__r.Certification_Answers__r$Certifcation_Rating__c.Assessment_type__c</column>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Quantitative</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Sales_Rep_Profile__c.Certifcations__r.Certification_Answers__r$Rating_name_picklist__c</column>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Monthly $ Close Rate,Monthly Average $ Win size,Monthly Opportunities Closed,Monthly Opportunity Close Rate,Monthly Quota Performance,Monthly Number of Meetings,Monthly Close Rate Based on $$$,Monthly Close Rate based on Opportunities,Monthly Number of Wins,Monthly Opportunities added to Qualified Funnel</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Sales_Rep_Profile__c.Certifcations__r.Certification_Answers__r$Due_Date_Year__c</column>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>2018</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Sales_Rep_Profile__c$Name</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Sales_Rep_Profile__c.Certifcations__r.Certification_Answers__r$Certifcation_Rating__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Monthly Quant Metric Detail One Rep</name>
+    <params>
+        <name>co</name>
+        <value>0</value>
+    </params>
+    <reportType>Sales_rep_profiles_with_certs__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Sales_Rep_Profile__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

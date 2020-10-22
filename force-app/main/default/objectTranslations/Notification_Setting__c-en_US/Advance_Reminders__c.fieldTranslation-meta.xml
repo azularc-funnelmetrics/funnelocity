@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Advance Notice --></label>
+    <name>Advance_Reminders__c</name>
+    <picklistValues>
+        <masterLabel>3 days prior</masterLabel>
+        <translation><!-- 3 days prior --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>7 days prior</masterLabel>
+        <translation><!-- 7 days prior --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

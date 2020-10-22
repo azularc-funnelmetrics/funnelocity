@@ -1,0 +1,450 @@
+<apex:page docType="html-5.0" sidebar="false" controller="FunnelManagerUpdate_Controller">
+    <apex:form >
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">    
+        <apex:includeScript value="{!URLFOR($Resource.FunnelScriptFolder,'Design/jquery-1.12.4.js')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.FunnelScriptFolder,'Design/jquery-ui.js')}"/>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+        <apex:stylesheet value="{!URLFOR($Resource.SldsCss,'SldsResources/styles/salesforce-lightning-design-system.css')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.SldsCss,'SldsResources/styles/salesforce-lightning-design-system.min')}"/>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        
+        <style>
+            body { font-size: 75%; }
+            html{font-size: 100% !important;}
+            .noSidebarCell, .sidebarCell .fixed { padding: 10px; font-family: sldsFont; }
+            @font-face {font-family: sldsFont; src: url({!URLFOR($Resource.SldsCss,'SldsResources/fonts/SalesforceSans-Light.ttf')});}
+            .confirm-goals-wrapper{border: 1px solid #dddbda; margin: 10px;}
+            .top-strip {background: #7e8793; padding: 10px;}
+            .top-strip h1 {font-size: 24px; color: #fff; font-weight: 700;}
+            .desc-block{padding: 75px;}
+            .desc-block p{font-size: 18px; color: #5f666f; font-weight: 700; text-align: center;}
+            .confirm-goals-table{padding: 20px; padding-bottom: 75px;}
+            .confirm-goals-table .slds-table{border: none; border-bottom: 1px solid #dddbda;}
+            .confirm-goals-table .slds-table thead th{background: #fff; font-size: 16px; font-weight: 700; color: #5f666f; line-height: 20px; text-align: center; border: none;}
+            .confirm-goals-table .slds-table td{font-size: 16px; font-weight: 400; color: #5f666f; font-family: inherit; text-align: center;}
+            .confirm-goals-table .slds-table td.sideheading{text-align: left;}
+            .confirm-goals-table .slds-table td .name {font-size: 16px; font-weight: 700; color: #ff9900; margin-bottom: 10px;}
+            .confirm-goals-table .slds-table td .goal {font-size: 16px; font-weight: 700; color: #5f666f;}
+            .confirm-goals-table .slds-table td .year {font-size: 16px; font-weight: 400; color: #5f666f;}
+            .confirm-goals-table .slds-table td.edit{vertical-align: middle;}
+            .confirm-goals-table .slds-table td.edit i{color: #ff9900; font-size: 20px; cursor: pointer;}
+        </style>
+        <style>
+            /*Start Delete modal CSS*/
+            /*.modal-lg{width: 1100px;}*/
+            
+            .modal.in .modal-dialog {-webkit-transform: translate(0,0);-ms-transform: translate(0,0);-o-transform: translate(0,0);transform: translate(0,0);width: 90%;max-width: none;min-width: 40rem;display: flex;flex-direction: column;height: 100%;padding: 3rem 0;}
+            .modal-content { border-radius: 0;padding: 20px;overflow: hidden;overflow-y: auto;}
+            .modal-header{padding: 0;border: none;}
+            .modal-header .close{position: absolute; right: 10px; margin: 0; top: 10px; opacity: 1; border: none;background: transparent; color: #7e8793; font-size: 44px; width: 25px; height: 20px; line-height: 18px;}
+            .modal-header h4{background: #BFB178;}
+            .modal-header h4 ul{padding: 0; margin: 0; display: table; width: 100%;}
+            .modal-header h4 ul li{display: table-cell; font-size: 24px; color: #333333; width: 50%; padding: 10px; border: none; text-align: left; font-weight: bold;font-family: sldsfont;}
+            .modal-body{padding: 0;}
+            .modal-body .delete-content-block{padding: 0px;}
+            .modal-body .delete-content-block label{font-size: 21px; color: #00b2ee;font-family: sldsfont;font-weight: normal;}
+            .modal-body .delete-content-block p{margin: 0; font-size: 18px;  color: #777;}
+            .modal-footer{border: none; padding: 20px 30px;}
+            .modal-footer .btn-block{display: table; width: auto; margin: 0 auto;}
+            .modal-footer a{background-color: #7e8793;color: #fff;padding: 15px 100px;border-radius: 30px;font-size: 24px;border: none;margin-left: 18px;}
+            .modal-footer a:hover{color: #fff; text-decoration: none;}
+            .modal-footer a.save{background: #ff9900;}
+            .modal-footer a i{color: #fff;}
+            
+            /*End Delete modal CSS*/
+            
+            
+            .k-widget { padding: 0; border: none;font-family: arial; }
+        </style> 
+        <apex:outputPanel id="pg">
+            <div class="slds-grid slds-gutters slds-wrap confirm-goals-wrapper">
+                <div class="slds-size_1-of-1">
+                    <div class="top-strip">
+                        <h1 class="slds-align_absolute-center slds-flex">Confirm Goals</h1>
+                    </div>
+                </div>
+                <div class="slds-size_1-of-1">
+                    <div class="desc-block">
+                        <p>Our Goal Automation process has defined the following goals for the current fiscal year. Please confirm or adjust these as needed. After confirming, you will be able to make updates to these for 30 days if necessary.</p>
+                    </div>
+                </div>
+                <div class="slds-size_1-of-1">
+                    <div class="confirm-goals-table">
+                        <table class="slds-table slds-table_bordered slds-table_col-bordered">
+                            <thead>
+                                <tr class="">
+                                    <th class="slds-cell-wrap" scope="col" style="width:15%;">
+                                        <div class="slds-truncate"> </div>
+                                    </th>
+                                    <th class="slds-cell-wrap" scope="col" style="width:10%;">
+                                        <div title="Annual Quota">Annual Quota</div>
+                                    </th>
+                                    <th class="slds-cell-wrap" scope="col" style="width:10%;">
+                                        <div title="Average Selling Price">Average Selling Price</div>
+                                    </th>
+                                    <th class="slds-cell-wrap" scope="col" style="width:10%;">
+                                        <div title="Lead Conversion Rate">Lead Conversion Rate</div>
+                                    </th>
+                                    <th class="slds-cell-wrap" scope="col" style="width:10%;">
+                                        <div title="Close Rate">Close Rate</div>
+                                    </th>
+                                    <th class="slds-cell-wrap" scope="col" style="width:10%;">
+                                        <div title="Average Length of Sales Cycle">Average Length of Sales Cycle</div>
+                                    </th>
+                                    <th class="slds-cell-wrap" scope="col" style="width:10%;">
+                                        <div title="Number of Monthly Meetings">Number of Monthly Meetings</div>
+                                    </th>
+                                    <th class="slds-cell-wrap" scope="col" style="width:10%;">
+                                        <div title="Average Deal Size">Average Deal Size</div>
+                                    </th>
+                                    <th class="slds-cell-wrap" scope="col"  style="width:5%;display:{!IF(managerUpdate.Enable_Manger_Goal_Update__c,'','none')}">
+                                        <div title="Edit">Edit</div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <apex:repeat var="c" value="{!reps}">
+                                    <tr class="slds-hint-parent">
+                                        <td class="sideheading">
+                                            <div>
+                                                <div class="name">{!repMap[c].name}</div>
+                                                <div class="goal">Suggested Goal</div>
+                                                <div class="year">Previous Year</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <div class="name">&nbsp;</div>
+                                                <div class="goal">$<script>document.write(({!repMap[c].Annual_quota_amount__c}).toLocaleString("ja-JP", {   minimumFractionDigits: 0 ,maximumFractionDigits:0 }));</script></div>
+                                                <div class="year">$<script>document.write(({!snaps[c].Annual_quota_amount__c}).toLocaleString("ja-JP", {   minimumFractionDigits: 0 ,maximumFractionDigits:0 }));</script></div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <div class="name">&nbsp;</div>
+                                                <div class="goal">$<script>document.write(({!repMap[c].Goal_12m_Avg_Selling_Price__c}).toLocaleString("ja-JP", {   minimumFractionDigits: 0 ,maximumFractionDigits:0 }));</script> </div>
+                                                <div class="year">$<script>document.write(({!snaps[c].Goal_12m_Avg_Selling_Price__c}).toLocaleString("ja-JP", {   minimumFractionDigits: 0 ,maximumFractionDigits:0 }));</script> </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <div class="name">&nbsp;</div>
+                                                <div class="goal">{!repMap[c].Goal_12m_Lead_To_Opp_Conv_Rate__c}%</div>
+                                                <div class="year">{!snaps[c].Goal_12m_Lead_To_Opp_Conv_Rate__c}%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <div class="name">&nbsp;</div>
+                                                <div class="goal">{!repMap[c].Goal_12m_rolling_close_rate__c}%</div>
+                                                <div class="year">{!snaps[c].Goal_12m_rolling_close_rate__c}%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <div class="name">&nbsp;</div>
+                                                <div class="goal"><script>document.write(({!repMap[c].Goal_12m_length_of_sales_cycle__c}).toLocaleString("ja-JP", {   minimumFractionDigits: 0 ,maximumFractionDigits:0 }));</script></div>
+                                                <div class="year"><script>document.write(({!snaps[c].Goal_12m_length_of_sales_cycle__c}).toLocaleString("ja-JP", {   minimumFractionDigits: 0 ,maximumFractionDigits:0 }));</script></div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <div class="name">&nbsp;</div>
+                                                <div class="goal"><script>document.write(({!repMap[c].Goal_of_monthly_meetings__c}).toLocaleString("ja-JP", {   minimumFractionDigits: 0 ,maximumFractionDigits:0 }));</script> </div>
+                                                <div class="year"><script>document.write(({!snaps[c].Goal_of_monthly_meetings__c}).toLocaleString("ja-JP", {   minimumFractionDigits: 0 ,maximumFractionDigits:0 }));</script> </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <div class="name">&nbsp;</div>
+                                                <div class="goal">$<script>document.write(({!repMap[c].Goal_Average_Deal_Size__c}).toLocaleString("ja-JP", {   minimumFractionDigits: 0 ,maximumFractionDigits:0 }));</script> </div>
+                                                <div class="year">$<script>document.write(({!snaps[c].Goal_Average_Deal_Size__c}).toLocaleString("ja-JP", {   minimumFractionDigits: 0 ,maximumFractionDigits:0 }));</script> </div>
+                                            </div>
+                                        </td>
+                                        <!--<td class="edit">  
+                                            <i aria-hidden="true" class="fas fa-pencil-alt"></i>       
+                                        </td>-->
+                                        
+                                        <td class="edit" style="display:{!IF(managerUpdate.Enable_Manger_Goal_Update__c,'','none')}">  
+                                            <apex:commandLink action="{!displayModal}" rerender="pop" html-data-toggle="modal" html-data-target="#goalmodal" >
+                                              <i aria-hidden="true" class="fas fa-pencil-alt " style="color: #333333; font-size: 20px;"></i>       
+                                              <apex:param name="recordId" assignTo="{!recordId}" value="{!c}"/>
+                                            </apex:commandLink>     
+                                        </td>
+                                    </tr>
+                                </apex:repeat>
+                                <!--<tr class="slds-hint-parent">
+                                    <td class="sideheading">
+                                        <div>
+                                            <div class="name">Annie Tyler</div>
+                                            <div class="goal">Suggested Goal</div>
+                                            <div class="year">Previous Year</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <div class="name">&nbsp;</div>
+                                            <div class="goal">25%</div>
+                                            <div class="year">21%</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <div class="name">&nbsp;</div>
+                                            <div class="goal">$250,000</div>
+                                            <div class="year">$220,000</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <div class="name">&nbsp;</div>
+                                            <div class="goal">$250,000</div>
+                                            <div class="year">$220,000</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <div class="name">&nbsp;</div>
+                                            <div class="goal">30%</div>
+                                            <div class="year">25%</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <div class="name">&nbsp;</div>
+                                            <div class="goal">50 days</div>
+                                            <div class="year">48 days</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <div class="name">&nbsp;</div>
+                                            <div class="goal">20</div>
+                                            <div class="year">18</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <div class="name">&nbsp;</div>
+                                            <div class="goal">$30,000</div>
+                                            <div class="year">$28,000</div>
+                                        </div>
+                                    </td>
+                                    <td class="edit">  
+                                        <i aria-hidden="true" class="fas fa-pencil-alt"></i>       
+                                    </td>
+                                </tr>
+                                <tr class="slds-hint-parent">
+                                    <td class="sideheading">
+                                        <div>
+                                            <div class="name">Nicholas Payne</div>
+                                            <div class="goal">Suggested Goal</div>
+                                            <div class="year">Previous Year</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <div class="name">&nbsp;</div>
+                                            <div class="goal">22%</div>
+                                            <div class="year">18%</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <div class="name">&nbsp;</div>
+                                            <div class="goal">$180,000</div>
+                                            <div class="year">$150,000</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <div class="name">&nbsp;</div>
+                                            <div class="goal">$250,000</div>
+                                            <div class="year">$220,000</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <div class="name">&nbsp;</div>
+                                            <div class="goal">30%</div>
+                                            <div class="year">25%</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <div class="name">&nbsp;</div>
+                                            <div class="goal">50 days</div>
+                                            <div class="year">48 days</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <div class="name">&nbsp;</div>
+                                            <div class="goal">20</div>
+                                            <div class="year">18</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <div class="name">&nbsp;</div>
+                                            <div class="goal">$25,000</div>
+                                            <div class="year">$23,000</div>
+                                        </div>
+                                    </td>
+                                    <td class="edit">  
+                                        <i aria-hidden="true" class="fas fa-pencil-alt"></i>       
+                                    </td>
+                                </tr>-->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </apex:outputPanel>
+        
+       <apex:actionFunction id="save" name="save" action="{!saveUpdate}"  reRender="pg"  oncomplete="(function(){$('#goalmodal').modal('hide');})();"/>
+      
+    
+        <!-- Goal Modal Start  -->
+               
+        <div class="modal fade " id="goalmodal" role="dialog">
+            <div class="modal-dialog modal-lg">
+              
+                <div class="modal-content">
+                 
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" >&times;</button>
+                        <h4 class="modal-title">
+                            <ul>
+                            </ul>
+                        </h4>
+                    </div>
+                
+                    <div class="modal-body">
+                    
+                        <div class="delete-content-block">
+                                <apex:outputPanel id="pop">                                                
+                                    <div class="slds-grid slds-wrap" style="margin: 25px 0px 0px 0px;">
+                                    <!--<apex:repeat value="{!roleGoal}" var="r">-->
+                                    
+                                     <!--   <div class="slds-size_1-of-3">
+                                            <div class="slds-form-element__control slds-p-around_small">
+                                               <label class="slds-form-element__label slds-p-around_small" for="text-input-id-11" style="color: #00b2ee; font-size: 21px; padding-left: 0; font-weight: bold; margin: 0; padding-bottom: 0;">Annual quota amount</label>
+                                            </div>
+                                            <div class="slds-form-element__control slds-p-around_small">
+                                                 <apex:inputField value="{!goalRec.Annual_Quota_Amount__c}"  style="color: #333333; font-size: 18px; resize: none; border-radius:0; width: 100%; padding: 8px; border: 1px solid #dddbda;"    html-min="0" html-placeholder="Enter Goal"/>
+                                             </div>                                         
+                                        </div> -->
+                                        
+                                        <div class="slds-size_1-of-3">
+                                            <div class="slds-form-element__control slds-p-around_small">
+                                               <label class="slds-form-element__label slds-p-around_small" for="text-input-id-11" style="color: #00b2ee; font-size: 18px; padding-left: 0; font-weight: bold; margin: 0; padding-bottom: 0;">Annual_quota_amount__c</label>
+                                            </div>
+                                            <div class="slds-form-element__control slds-p-around_small">
+                                                 <apex:inputText value="{!quotaAmt}"  style="color: #333333; font-size: 18px; resize: none; border-radius:0; width: 100%; padding: 8px; border: 1px solid #dddbda;"    html-min="0" html-placeholder="Enter Goal"/>
+                                             </div>                                         
+                                        </div>
+                                        
+                                        <div class="slds-size_1-of-3">
+                                            <div class="slds-form-element__control slds-p-around_small">
+                                               <label class="slds-form-element__label slds-p-around_small" for="text-input-id-11" style="color: #00b2ee; font-size: 18px; padding-left: 0; font-weight: bold; margin: 0; padding-bottom: 0;">Goal_12m_Avg_Selling_Price__c</label>
+                                            </div>
+                                            <div class="slds-form-element__control slds-p-around_small">
+                                                 <apex:inputField type="text" value="{!goalRec.Goal_12m_Avg_Selling_Price__c}"  style="color: #333333; font-size: 18px; resize: none; border-radius:0; width: 100%; padding: 8px; border: 1px solid #dddbda;"    html-min="0" html-placeholder="Enter Goal"/>
+                                             </div>                                         
+                                        </div>
+                                        
+                                        <div class="slds-size_1-of-3">
+                                            <div class="slds-form-element__control slds-p-around_small">
+                                               <label class="slds-form-element__label slds-p-around_small" for="text-input-id-11" style="color: #00b2ee; font-size: 18px; padding-left: 0; font-weight: bold; margin: 0; padding-bottom: 0;">Goal_12m_Lead_To_Opp_Conv_Rate__c</label>
+                                            </div>
+                                            <div class="slds-form-element__control slds-p-around_small">
+                                                 <apex:inputField type="text" value="{!goalRec.Goal_12m_Lead_To_Opp_Conv_Rate__c}"  style="color: #333333; font-size: 18px; resize: none; border-radius:0; width: 100%; padding: 8px; border: 1px solid #dddbda;"    html-min="0" html-placeholder="Enter Goal"/>
+                                             </div>                                         
+                                        </div>
+                                        
+                                    <!--</apex:repeat>-->
+                                    </div>
+                                    
+                                    <div class="slds-grid slds-wrap" style="margin: 0px 0px 0px 0px;">
+                                    <!--<apex:repeat value="{!roleGoal}" var="r">-->
+                                    
+                                        
+                                        <div class="slds-size_1-of-3">
+                                            <div class="slds-form-element__control slds-p-around_small">
+                                               <label class="slds-form-element__label slds-p-around_small" for="text-input-id-11" style="color: #00b2ee; font-size: 18px; padding-left: 0; font-weight: bold; margin: 0; padding-bottom: 0;">Goal_12m_rolling_close_rate__c</label>
+                                            </div>
+                                            <div class="slds-form-element__control slds-p-around_small">
+                                                 <apex:inputField type="text" value="{!goalRec.Goal_12m_rolling_close_rate__c}"  style="color: #333333; font-size: 18px; resize: none; border-radius:0; width: 100%; padding: 8px; border: 1px solid #dddbda;"    html-min="0" html-placeholder="Enter Goal"/>
+                                             </div>                                         
+                                        </div>
+                                        
+                                        <div class="slds-size_1-of-3">
+                                            <div class="slds-form-element__control slds-p-around_small">
+                                               <label class="slds-form-element__label slds-p-around_small" for="text-input-id-11" style="color: #00b2ee; font-size: 18px; padding-left: 0; font-weight: bold; margin: 0; padding-bottom: 0;">Goal_12m_length_of_sales_cycle__c</label>
+                                            </div>
+                                            <div class="slds-form-element__control slds-p-around_small">
+                                                 <apex:inputField type="text" value="{!goalRec.Goal_12m_length_of_sales_cycle__c}"  style="color: #333333; font-size: 18px; resize: none; border-radius:0; width: 100%; padding: 8px; border: 1px solid #dddbda;"    html-min="0" html-placeholder="Enter Goal"/>
+                                             </div>                                         
+                                        </div>
+                                        <div class="slds-size_1-of-3">
+                                            <div class="slds-form-element__control slds-p-around_small">
+                                               <label class="slds-form-element__label slds-p-around_small" for="text-input-id-11" style="color: #00b2ee; font-size: 21px; padding-left: 0; font-weight: bold; margin: 0; padding-bottom: 0;">Goal_of_monthly_meetings__c</label>
+                                            </div>
+                                            <div class="slds-form-element__control slds-p-around_small">
+                                                 <apex:inputField type="text" value="{!goalRec.Goal_of_monthly_meetings__c}"  style="color: #333333; font-size: 18px; resize: none; border-radius:0; width: 100%; padding: 8px; border: 1px solid #dddbda;"    html-min="0" html-placeholder="Enter Goal"/>
+                                             </div>                                         
+                                        </div>
+                                    <!--</apex:repeat>-->
+                                    </div>
+                                    
+                                    <div class="slds-grid slds-wrap" style="margin: 0px 0px 0px 0px;">
+                                    <!--<apex:repeat value="{!roleGoal}" var="r">-->
+                                    
+                                        
+                                        <div class="slds-size_1-of-3">
+                                            <div class="slds-form-element__control slds-p-around_small">
+                                               <label class="slds-form-element__label slds-p-around_small" for="text-input-id-11" style="color: #00b2ee; font-size: 18px; padding-left: 0; font-weight: bold; margin: 0; padding-bottom: 0;">Goal_Average_Deal_Size__c</label>
+                                            </div>
+                                            <div class="slds-form-element__control slds-p-around_small">
+                                                 <apex:inputField type="text" value="{!goalRec.Goal_Average_Deal_Size__c}"  style="color: #333333; font-size: 18px; resize: none; border-radius:0; width: 100%; padding: 8px; border: 1px solid #dddbda;"    html-min="0" html-placeholder="Enter Goal"/>
+                                             </div>                                         
+                                        </div>
+                                        
+                                        
+                                    <!--</apex:repeat>-->
+                                    </div>
+                                                                        
+                            </apex:outputPanel>     
+                        </div>
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <div class="btn-block">
+                            <a data-dismiss="modal"  class="cancel"  > Close</a>
+                             
+                             
+                             <a onclick="save()"  style="background-color: #ff9900;text-decoration: none; color: #fff; padding: 15px 100px; border-radius: 30px; font-size: 24px; border: none;">
+                                            
+                                             Save
+                                       </a>
+                            
+                             
+                        </div>
+                    </div>
+                </div>
+             
+                  
+            </div>
+        </div> 
+        <!-- Goal Modal End  -->
+        
+         
+                     
+         
+    </html>
+    </apex:form>
+</apex:page>

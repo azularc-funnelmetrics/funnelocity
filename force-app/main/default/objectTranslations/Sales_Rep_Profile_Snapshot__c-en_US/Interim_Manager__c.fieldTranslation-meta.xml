@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Interim Manager --></label>
+    <name>Interim_Manager__c</name>
+    <relationshipLabel><!-- Sales Rep Profile Snapshots (Interim Manager) --></relationshipLabel>
+</CustomFieldTranslation>

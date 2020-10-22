@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Interim_Manager__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <deprecated>false</deprecated>
+    <description>Stores the name of the Intermin manager for certification update.</description>
+    <externalId>false</externalId>
+    <label>Interim Manager</label>
+    <referenceTo>Sales_Rep_Profile__c</referenceTo>
+    <relationshipLabel>Sales Rep Profiles (Interim Manager)</relationshipLabel>
+    <relationshipName>Sales_Rep_Profiles1</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Custom_Related_by__c</fullName>
+    <deprecated>false</deprecated>
+    <description>This field store the field name that will be lookup to the user object</description>
+    <externalId>false</externalId>
+    <label>Custom Related by</label>
+    <length>255</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

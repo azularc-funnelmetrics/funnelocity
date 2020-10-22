@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <chart>
+        <backgroundColor1>#FFFFFF</backgroundColor1>
+        <backgroundColor2>#FFFFFF</backgroundColor2>
+        <backgroundFadeDir>Diagonal</backgroundFadeDir>
+        <chartSummaries>
+            <aggregate>Average</aggregate>
+            <axisBinding>y</axisBinding>
+            <column>Sales_Rep_Profile__c.Certification_Snapshots__r$Sales_Rep_Profile_Snapshot__c.Monthly_Close_Rate__c</column>
+        </chartSummaries>
+        <chartType>VerticalColumnGrouped</chartType>
+        <enableHoverLabels>false</enableHoverLabels>
+        <expandOthers>true</expandOthers>
+        <groupingColumn>Sales_Rep_Profile__c.Certification_Snapshots__r$Cert_Snapshot_Sched_Qtr__c</groupingColumn>
+        <legendPosition>Right</legendPosition>
+        <location>CHART_TOP</location>
+        <secondaryGroupingColumn>Sales_Rep_Profile__c.Certification_Snapshots__r$Cert_Snapshot_Sched_Year__c</secondaryGroupingColumn>
+        <showAxisLabels>true</showAxisLabels>
+        <showPercentage>false</showPercentage>
+        <showTotal>false</showTotal>
+        <showValues>true</showValues>
+        <size>Medium</size>
+        <summaryAxisRange>Auto</summaryAxisRange>
+        <textColor>#000000</textColor>
+        <textSize>10</textSize>
+        <title>Monthly $ Close Rate by Country-Region</title>
+        <titleColor>#000000</titleColor>
+        <titleSize>14</titleSize>
+    </chart>
+    <columns>
+        <aggregateTypes>Average</aggregateTypes>
+        <field>Sales_Rep_Profile__c.Certification_Snapshots__r$Sales_Rep_Profile_Snapshot__c.Monthly_Close_Rate__c</field>
+    </columns>
+    <columns>
+        <field>Sales_Rep_Profile__c$Name</field>
+    </columns>
+    <description>Reports a Cert Snapshot for 1 rating based on Country/Region</description>
+    <format>Matrix</format>
+    <groupingsAcross>
+        <dateGranularity>Day</dateGranularity>
+        <field>Sales_Rep_Profile__c.Certification_Snapshots__r$Cert_Snapshot_Sched_Year__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsAcross>
+    <groupingsAcross>
+        <dateGranularity>Day</dateGranularity>
+        <field>Sales_Rep_Profile__c.Certification_Snapshots__r$Cert_Snapshot_Sched_Qtr__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsAcross>
+    <name>Cert Snapshot by Country-Region</name>
+    <params>
+        <name>co</name>
+        <value>0</value>
+    </params>
+    <reportType>Sales_Rep_Profile_with_Cert_SRP_Snapshots__c</reportType>
+    <scope>organization</scope>
+    <showDetails>false</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Sales_Rep_Profile__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

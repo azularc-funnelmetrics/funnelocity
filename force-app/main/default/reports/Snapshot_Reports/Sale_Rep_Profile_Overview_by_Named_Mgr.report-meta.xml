@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Sales_Rep_Profile__c.Certification_Snapshots__r$Certification__c</field>
+    </columns>
+    <columns>
+        <field>Sales_Rep_Profile__c.Certification_Snapshots__r$Snapshot_Scheduled_Date__c</field>
+    </columns>
+    <columns>
+        <field>Sales_Rep_Profile__c.Certification_Snapshots__r$Sales_Rep_Profile_Snapshot__c.YTD_Revenue__c</field>
+    </columns>
+    <columns>
+        <field>Sales_Rep_Profile__c.Certification_Snapshots__r$Sales_Rep_Profile_Snapshot__c.Goal_12m_rolling_close_rate__c</field>
+    </columns>
+    <columns>
+        <field>Sales_Rep_Profile__c.Certification_Snapshots__r$Sales_Rep_Profile_Snapshot__c.YTD_Opportunity_Close_Rate__c</field>
+    </columns>
+    <columns>
+        <field>Sales_Rep_Profile__c.Certification_Snapshots__r$Overall_Quantitative_Rating__c</field>
+    </columns>
+    <columns>
+        <field>Sales_Rep_Profile__c.Certification_Snapshots__r$Overall_Qualitative_Rating__c</field>
+    </columns>
+    <description>Lists SRP /Cert Snapsht &amp; SRP Snapshot data. Must filter by selected Managers (type in names)</description>
+    <filter>
+        <criteriaItems>
+            <column>Sales_Rep_Profile__c$Sales_Manager__c</column>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Cecile Davidson</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Sales_Rep_Profile__c$Name</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Sale Rep Profile Overview by Named Mgr</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Sales_Rep_Profile_with_Cert_SRP_Snapshots__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Sales_Rep_Profile__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

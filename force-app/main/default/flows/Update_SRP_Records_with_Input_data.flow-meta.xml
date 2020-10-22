@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <assignments>
+        <name>set_attribute</name>
+        <label>set attribute</label>
+        <locationX>336</locationX>
+        <locationY>213</locationY>
+        <assignmentItems>
+            <assignToReference>vfield</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Name,FunnelMetrics__Rep_Start_Date__c,FunnelMetrics__Role__c,FunnelMetrics__Sales_Manager__c,FunnelMetrics__Level_picklist_1__c,FunnelMetrics__Level_picklist_2__c,FunnelMetrics__Level_picklist_3__c</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>SRP_Input_Table</targetReference>
+        </connector>
+    </assignments>
+    <description>This flow allows a manual update to an SRP record for the fields input after record is created during install</description>
+    <interviewLabel>Update SRP Records with Input data {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Update SRP Records with Input data</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <recordLookups>
+        <description>This gets the SRP Records that are going to be edited</description>
+        <name>Get_SRP_Records</name>
+        <label>Get SRP Records</label>
+        <locationX>176</locationX>
+        <locationY>211</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>set_attribute</targetReference>
+        </connector>
+        <object>Sales_Rep_Profile__c</object>
+        <outputReference>SRPInput</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Rep_Start_Date__c</queriedFields>
+        <queriedFields>Role__c</queriedFields>
+        <queriedFields>Sales_Manager__c</queriedFields>
+        <queriedFields>Level_picklist_1__c</queriedFields>
+        <queriedFields>Level_picklist_2__c</queriedFields>
+        <queriedFields>Level_picklist_3__c</queriedFields>
+    </recordLookups>
+    <recordUpdates>
+        <description>Update SRP data with edited recordss</description>
+        <name>Update_SRP_Edits</name>
+        <label>Update SRP Edits</label>
+        <locationX>795</locationX>
+        <locationY>212</locationY>
+        <inputReference>SRPOutput</inputReference>
+    </recordUpdates>
+    <screens>
+        <description>Screen to edit input values for SRP Records</description>
+        <name>SRP_Input_Table</name>
+        <label>SRP Input Table</label>
+        <locationX>468</locationX>
+        <locationY>212</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Update_SRP_Edits</targetReference>
+        </connector>
+        <fields>
+            <name>SRP_Input_Screen</name>
+            <extensionName>FunnelMetrics:datatableLwcFsc</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>columnFields</name>
+                <value>
+                    <elementReference>vfield</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>columnLabels</name>
+                <value>
+                    <stringValue>1:Name,2:Start Date,3:Role,4:Start Date,5:Company,6:Continent,7:Region</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>tableData</name>
+                <value>
+                    <elementReference>SRPInput</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>columnEdits</name>
+                <value>
+                    <stringValue>1:false,2:true,3:true,4:true,5:true,6:true,7:true</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>hideCheckboxColumn</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </inputParameters>
+            <isRequired>true</isRequired>
+            <outputParameters>
+                <assignToReference>SRPInput</assignToReference>
+                <name>outputSelectedRows</name>
+            </outputParameters>
+            <outputParameters>
+                <assignToReference>SRPOutput</assignToReference>
+                <name>outputEditedRows</name>
+            </outputParameters>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <start>
+        <locationX>50</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>Get_SRP_Records</targetReference>
+        </connector>
+    </start>
+    <status>Draft</status>
+    <variables>
+        <name>SRPInput</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Sales_Rep_Profile__c</objectType>
+    </variables>
+    <variables>
+        <description>Output Records collection to update SRP</description>
+        <name>SRPOutput</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Sales_Rep_Profile__c</objectType>
+    </variables>
+    <variables>
+        <name>vfield</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

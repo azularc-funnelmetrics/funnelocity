@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Level_picklist_9__c</fullName>
+    <deprecated>false</deprecated>
+    <description>snapshot ninth company level</description>
+    <externalId>false</externalId>
+    <label>Level_picklist_9</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>Level_Picklist_9</valueSetName>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Goal # of daily leads to achieve quota --></label>
+    <name>Goal_of_daily_leads_to_achieve_quota__c</name>
+</CustomFieldTranslation>

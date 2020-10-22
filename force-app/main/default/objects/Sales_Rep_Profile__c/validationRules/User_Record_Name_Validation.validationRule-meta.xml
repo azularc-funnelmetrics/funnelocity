@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>User_Record_Name_Validation</fullName>
+    <active>true</active>
+    <description>User Record Name Cannot be empty, if it&apos;s empty it might cause batch process to fail</description>
+    <errorConditionFormula>((User_Record_Name__c = &apos;&apos;) || (User_Record_Name__c = Null )) &amp;&amp; NOT(CONTAINS(Name,&quot;Placeholder&quot;))</errorConditionFormula>
+    <errorDisplayField>User_Record_Name__c</errorDisplayField>
+    <errorMessage>User Record Name cannot be blank.</errorMessage>
+</ValidationRule>

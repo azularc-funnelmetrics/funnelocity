@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Performer_Category__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <formula>IF(Overall_Rating__c&gt;=10,&quot;Outstanding&quot;,
+IF(Overall_Rating__c&gt;=8,&quot;Strong&quot;,
+IF(Overall_Rating__c&gt;=6,&quot;Average&quot;,
+IF(Overall_Rating__c&gt;=2,&quot;Marginal&quot;,&quot;Needs Improvement&quot;))))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Performer Category</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

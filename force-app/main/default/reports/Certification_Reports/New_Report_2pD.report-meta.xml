@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Sales_Rep_Profile__c$Name</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Average</aggregateTypes>
+        <field>Sales_Rep_Profile__c.Certification_Answers__r$Rating_Score__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Sales_Rep_Profile__c$Goal_of_monthly_opptys_added_to_funnel__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Average</aggregateTypes>
+        <field>Sales_Rep_Profile__c$Monthly_Opportunities_added_to_Qualifie__c</field>
+    </columns>
+    <description>This report combines quota metrics and three key Qualitative Ratings.</description>
+    <filter>
+        <criteriaItems>
+            <column>Sales_Rep_Profile__c.Certification_Answers__r$Rating_name_picklist__c</column>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Monthly Opportunities added to Qualified Funnel</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Sales_Rep_Profile__c.Certification_Answers__r$Due_Date__c</column>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>5/31/2018</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Sales_Rep_Profile__c.Certification_Answers__r$Certifcation_Rating__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Mo Opptys Added to Funnel</name>
+    <params>
+        <name>co</name>
+        <value>0</value>
+    </params>
+    <reportType>Sales_Rep_Profiles_with_Certification_Answers__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>Sales_Rep_Profile__c$Monthly_Opportunities_added_to_Qualifie__c</sortColumn>
+    <sortOrder>Desc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>Sales_Rep_Profile__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

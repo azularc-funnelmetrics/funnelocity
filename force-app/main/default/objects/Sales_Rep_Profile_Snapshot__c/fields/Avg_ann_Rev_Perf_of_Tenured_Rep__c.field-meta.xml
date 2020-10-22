@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Avg_ann_Rev_Perf_of_Tenured_Rep__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Average Annual Revenue Performance for a Tenured Rep since inception</description>
+    <externalId>false</externalId>
+    <label>Avg ann Rev Perf of Tenured Rep incep</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

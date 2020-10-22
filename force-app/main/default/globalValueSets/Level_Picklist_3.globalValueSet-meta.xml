@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>US</fullName>
+        <default>false</default>
+        <label>US</label>
+    </customValue>
+    <customValue>
+        <fullName>Canada</fullName>
+        <default>false</default>
+        <label>Canada</label>
+    </customValue>
+    <customValue>
+        <fullName>UK</fullName>
+        <default>false</default>
+        <label>UK</label>
+    </customValue>
+    <customValue>
+        <fullName>France/Benelux</fullName>
+        <default>false</default>
+        <label>France/Benelux</label>
+    </customValue>
+    <customValue>
+        <fullName>China</fullName>
+        <default>false</default>
+        <label>China</label>
+    </customValue>
+    <customValue>
+        <fullName>APAC East</fullName>
+        <default>false</default>
+        <label>APAC East</label>
+    </customValue>
+    <description>third company level - example country</description>
+    <masterLabel>Level Picklist 3</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

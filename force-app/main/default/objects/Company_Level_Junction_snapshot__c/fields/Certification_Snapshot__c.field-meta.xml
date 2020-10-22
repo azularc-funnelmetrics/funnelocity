@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Certification_Snapshot__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <deprecated>false</deprecated>
+    <description>Lookup to the certification snapshot</description>
+    <externalId>false</externalId>
+    <label>Certification Snapshot</label>
+    <referenceTo>Certification_Snapshot__c</referenceTo>
+    <relationshipLabel>Company Level Junction snapshots</relationshipLabel>
+    <relationshipName>Company_Level_Junction_snapshots</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

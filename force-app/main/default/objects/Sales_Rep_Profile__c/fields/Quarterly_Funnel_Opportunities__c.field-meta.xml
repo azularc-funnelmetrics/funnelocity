@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Quarterly_Funnel_Opportunities__c</fullName>
+    <deprecated>false</deprecated>
+    <description>This field stores the count of qualified opp at the end of the Quarter+ the count of the qualified opp moved to next Quarter+ the count of the qualified opps that are lost in the current Quarter</description>
+    <externalId>false</externalId>
+    <formula>IF(Quarterly_Opportunity_Close_Rate__c  &gt; 0,Quarterly_opp_won__c / Quarterly_Opportunity_Close_Rate__c ,0)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Quarterly Funnel Opportunities</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

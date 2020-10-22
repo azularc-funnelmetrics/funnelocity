@@ -1,0 +1,615 @@
+<apex:page sidebar="false" controller="FunnelCertificationDetail" >
+    <!--Navigation-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/fontawesome.css" />
+    
+    <apex:stylesheet value="{!URLFOR($Resource.SldsCss,'SldsResources/styles/salesforce-lightning-design-system.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.SldsCss,'SldsResources/styles/salesforce-lightning-design-system.min')}"/>
+    <!--Navigation-->
+    <!--<apex:slds />-->
+    <!--Navigation-->
+    <style>
+          body { font-size: 75%; }
+        .noSidebarCell, .sidebarCell .fixed { padding: 10px; font-family: sldsFont; }
+        
+         @font-face {
+         font-family: sldsFont;
+             src: url({!URLFOR($Resource.SldsCss,'SldsResources/fonts/SalesforceSans-Light.ttf')});
+         }
+         
+         
+         .bPageHeader .phHeader td.left{display: block;}
+        .navigation{display: table; width: 100%; text-align: center;}
+        
+        .navigation ul{margin: 0; padding: 0;}
+        .navigation ul li{display: inline-block; padding: 0 8px; border-left: 1px solid #7e8793; line-height: 17px; margin-left: 0; font-weight: bold;}
+        .navigation ul li a{color: #7e8793; font-size: 17px;}
+        .navigation ul li a:hover{color: #66cc33; text-decoration: none;}
+        .navigation ul li {color: #7e8793; font-size: 17px; font-weight: bold;}
+        .navigation ul li:hover{color: #66cc33; text-decoration: none;}
+        .navigation ul li.selected a{color: #66cc33;}
+        .navigation ul li.home{border: none; padding-left: 0; padding-bottom: 10px;}
+        .navigation ul li.home a{color: #00b2ee;}
+        .navigation ul li:last-child{padding-right: 0;}
+         
+        
+        .navigation ul li.scorenav a{background: url({!$Resource.CertificationNavigationIcon}) no-repeat; padding: 0 0 0 25px; background-position: 0 0; height: 19px; width: 20px;}
+        .navigation ul li.scorenav a:hover {background-position: 0 -23px;}
+        
+        .navigation ul li.funnelanalyticsnav > a{background: url({!$Resource.AnalyticsNavigationIcon}) no-repeat; padding: 0 0 0 25px; background-position: 0 5px; height: 19px; width: 20px; color: #7e8793;}
+        .navigation ul li.funnelanalyticsnav > a:hover{background-position: 0 -17px; color: #66cc33;}
+
+        .myapp{min-width: 500px; font-family: sldsFont;background-color: #fff; } 
+        
+        .navigation ul li.reportnav{position: relative; display: inline-block; cursor: pointer;}
+        .navigation ul li.reportnav ul.subnav{position: absolute; z-index: 1; width: 240px; background: #fff; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); display: none;}
+        .navigation ul li.reportnav ul.subnav li{display: block; text-align: left; border: none; padding: 0;}
+        .navigation ul li.reportnav ul.subnav li a {color: #7e8793; padding: 10px; display: block; width: 100%;}
+        .navigation ul li.reportnav ul.subnav li a:hover{background: #66cc33; color: #fff;}
+        .navigation ul li.reportnav:hover ul.subnav {display: block;}
+        button a:hover{text-decoration: none;}
+        button a:focus{text-decoration: none; outline: none;}
+    </style>
+    <!--Navigation-->
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet"/>
+    <style>
+        /* Add this attribute to the element that needs a tooltip */
+        [data-tooltip] {
+          position: relative;
+          z-index: 2;
+          cursor: pointer;
+        }
+        
+        /* Hide the tooltip content by default */
+        [data-tooltip]:before,
+        [data-tooltip]:after {
+          visibility: hidden;
+          -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+          filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=0);
+          opacity: 0;
+          pointer-events: none;
+        }
+        
+        /* Position tooltip above the element */
+        [data-tooltip]:before {
+          position: absolute;
+          bottom: 100%;
+          left: 45%;
+          margin-bottom: 5px;
+          margin-left: -100px;
+          padding: 10px;
+          width: 200px; 
+          -webkit-border-radius: 0;
+          -moz-border-radius: 0;
+          border-radius: 5px;
+          background-color: #fff;
+          /*background-color: hsla(0, 0%, 20%, 0.9);*/
+          color: #333333;
+          content: attr(data-tooltip);
+          text-align: center;
+          font-size: 14px;
+          line-height: 18px;
+          border: 2px solid #ff9900;
+          white-space: normal;
+        }
+        
+        /* Triangle hack to make tooltip look like a speech bubble */
+        [data-tooltip]:after {
+          position: absolute;
+          bottom: 100%;
+          left: 50%;
+          margin-left: -5px;
+          width: 0;
+          border-top: 5px solid #ff9900;
+          /*border-top: 5px solid hsla(0, 0%, 20%, 0.9);*/
+          border-right: 5px solid transparent;
+          border-left: 5px solid transparent;
+          content: " ";
+          font-size: 0;
+          line-height: 0;
+        }
+        
+        /* Show tooltip content on hover */
+        [data-tooltip]:hover:before,
+        [data-tooltip]:hover:after {
+          visibility: visible;
+          -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+          filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=100);
+          opacity: 1;
+        }
+        
+        .scoring-table{border-top: none !important;}
+        .scoring-table th{font-size: 20px; color: #5f666f !important; font-family: sldsFont; font-weight: 700; background: none !important; border: none !important;}
+        .scoring-table td{font-size: 16px; color: #7e8793; font-family: sldsFont; font-weight: 400; padding: 10px 5px;}
+        .scoring-table td .circle{font-size: 16px; color: #fff; font-family: sldsFont; font-weight: 700; height: 28px; width: 28px; border-radius: 50%; float: right; text-align: center; padding: 2px 0; margin: 0 0 0 10px;}
+        .scoring-table td .circle.outstanding{background: #62cd21;}
+        .scoring-table td .circle.marginal{background: #ff9900;}
+        .scoring-table td .circle.strong{background: #00b0f0;}
+        .scoring-table td .circle.average{background: #ffce00;}
+        .scoring-table td .circle.needs-improvement{background: #f13f26;}
+    </style>
+    <style>
+        /* Add this attribute to the element that needs a tooltip */
+        [data-tooltip] {
+          position: relative;
+          z-index: 2;
+          cursor: pointer;
+        }
+        
+        /* Hide the tooltip content by default */
+        [data-tooltip]:before,
+        [data-tooltip]:after {
+          visibility: hidden;
+          -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+          filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=0);
+          opacity: 0;
+          pointer-events: none;
+        }
+        
+        /* Position tooltip above the element */
+        .metrictable [data-tooltip]:before {width: 120px; }
+        [data-tooltip]:before {
+          position: absolute;
+          bottom: 100%;
+          left: 45%;
+          margin-bottom: 5px;
+          margin-left: -100px;
+          padding: 10px;
+          width: 200px; 
+          -webkit-border-radius: 0;
+          -moz-border-radius: 0;
+          border-radius: 5px;
+          background-color: #66cc33;
+          /*background-color: hsla(0, 0%, 20%, 0.9);*/
+          color: #fff;
+          content: attr(data-tooltip);
+          text-align: center;
+          font-size: 14px;
+          line-height: 18px;
+          border: 2px solid #66cc33;
+        }
+        
+        /* Triangle hack to make tooltip look like a speech bubble */
+        [data-tooltip]:after {
+          position: absolute;
+          bottom: 100%;
+          left: 48%;
+          margin-left: -5px;
+          width: 0;
+          border-top: 5px solid #66cc33;
+          /*border-top: 5px solid hsla(0, 0%, 20%, 0.9);*/
+          border-right: 5px solid transparent;
+          border-left: 5px solid transparent;
+          content: " ";
+          font-size: 0;
+          line-height: 0;
+        }
+        
+        /* Show tooltip content on hover */
+        [data-tooltip]:hover:before,
+        [data-tooltip]:hover:after {
+          visibility: visible;
+          -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+          filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=100);
+          opacity: 1;
+        }
+        
+         
+    </style>
+    <apex:form >
+            <div class="slds-scope">
+                <div class="myapp">
+                    <!--Navigation-->
+                    <div class="slds-grid slds-wrap slds-form-element slds-p-around_small">
+                        <div class="slds-size_1-of-1">
+                            <div class="navigation">
+                                <ul>
+                                    <li class="home"><apex:commandLink action="{!navigateToHomePage}"><i class="fas fa-home"></i></apex:commandLink></li>
+                                    <li class="scorenav"><apex:commandLink action="{!navigateToCertification}"> FUNNELOCITY SCORING</apex:commandLink></li>    
+                                    <li><apex:commandLink action="{!navigateToDashboard}"><span><i class="fas fa-tachometer-alt"></i></span> PERFORMANCE DASHBOARD</apex:commandLink></li>
+                                    <!--<li><a><i class="fas fa-trophy"></i> FUNNELOCITY SCORE</a></li>-->
+                                                                                                       
+                                    
+                                    <!--<li><apex:commandLink action="{!navigateToReportsPage}"><i class="fas fa-chart-bar"></i> REPORTING</apex:commandlink></li> -->
+                                    <!--<li class=" reportnav"> <i class="fas fa-chart-bar"></i> REPORTING 
+                                        <ul class="subnav">
+                                            <li><apex:commandLink action="{!navigateToCertificateReports}">Certification Reports</apex:commandLink></li>
+                                            <li><apex:commandLink action="{!navigateToReportsPage}">Sales Management Reports</apex:commandLink></li>
+                                        </ul>
+                                    </li>-->
+                                    
+                                    <li class=" reportnav"> <i class="fas fa-chart-bar"></i> REPORTING 
+                                        <ul class="subnav">
+                                            <li><apex:commandLink action="{!navigateToCertificateReports}">Funnelocity Reports</apex:commandLink></li>
+                                            <!--<li><apex:outputLink value="{!managemenetReports['mXaDybYGcSDujlyIRRJQxUrUEqXiFe']}" target="_blank">Certification Dashboard</apex:outputLink></li>-->                                                                                        
+                                            <li><apex:commandLink action="{!navigateToReportsPage}">Sales Management Reports</apex:commandLink></li>
+                                            <li><apex:commandLink action="{!navigateToAnnualizationDashboard}">Tenured and New Hire Performance Dashboard</apex:commandLink></li>
+                                        </ul>
+                                    </li> 
+                                     <li class="reportnav funnelanalyticsnav " >   <a> FUNNELOCITY ANALYTICS </a>  
+                                        <ul class="subnav">
+                                            <li><apex:commandLink action="{!navigateToFunnelAnalytic}">Funnelocity Quantitative Scoring</apex:commandLink></li>
+                                            <li><apex:commandLink action="{!navigateToFunnelAnalyticQualitative}">Funnelocity Qualitative Scoring</apex:commandLink></li>
+                                        </ul>
+                                    </li>
+                                    
+                                    <li><apex:commandLink action="{!navigateToCalculator}"><i class="fas fa-calculator"></i> METRICS CALCULATOR</apex:commandLink></li>
+                                    <li style="display:none"><apex:commandLink ><i class="fas fa-star"></i> TERRITORY PLAN</apex:commandLink></li>  
+                                    <li style="display:{!appsetup};"><apex:commandLink action="{!navigateToAppSetup}"><i class="fas fa-cog"></i> APP SETUP</apex:commandLink></li>                                  
+                                </ul>
+                            </div>
+                        </div>
+                    </div> 
+                    <!--Navigation-->
+                    <div class="slds-grid slds-wrap slds-p-around_x-large" style="background: #00b2ee; color: #fff;">
+                        <div class="slds-large-size_8-of-8 slds-small-size--1-of-1 slds-p-top_medium">
+                            <div class="slds-grid slds-p-bottom_x-large">
+                                <div>
+                                    <div class="slds-text-heading_large slds-p-right_small" style="font-size: 40px;"><apex:image url="{!URLFOR($Resource.onboardIcon,'OnBoardImg/white40px.png')}" style="margin: 3px 5px 0 0;float: left;" rendered="{!IF(salesProfile[0].Rep_Staus__c== 'New',true,false)}"/>  {!salesProfile[0].name}</div>
+                                </div>
+                                <div class="slds-border_left" style="border-width: 5px; border-color: #fff;">
+                                    <div class="slds-text-heading_large slds-p-left_small slds-p-top_small slds-p-bottom_small" style="font-size: 24px;">{!salesProfile[0].Role__c}</div>
+                                </div>
+                            </div>
+                            <div class="slds-grid slds-wrap slds-p-bottom_x-large">
+                                <div class="slds-col slds-border_left slds-p-left_small slds-large-size_1-of-5 slds-small-size_6-of-12" style="border-width: 5px; border-color: #fff; margin-bottom: 20px;">
+                                    <div class="slds-text-body_regular" style="font-size: 24px;">Role</div>
+                                    <div class="slds-text-heading_medium" style="font-size: 32px;">{!salesProfile[0].Role__c}</div>                                            
+                                </div>
+                                <div class="slds-col slds-border_left slds-p-left_small slds-large-size_1-of-5 slds-small-size_6-of-12" style="border-width: 5px; border-color: #fff; margin-bottom: 20px;">
+                                    <div class="slds-text-body_regular" style="font-size: 24px;">Managed by</div>
+                                    <div class="slds-text-heading_medium" style="font-size: 32px;">{!salesProfile[0].Sales_Manager__r.name}</div>                                            
+                                </div>
+                                <div class="slds-col slds-border_left slds-p-left_small slds-large-size_1-of-5 slds-small-size_6-of-12" style="border-width: 5px; border-color: #fff; margin-bottom: 20px;">
+                                    <div class="slds-text-body_regular" style="font-size: 24px;">Territory</div>
+                                    <div class="slds-text-heading_medium" style="font-size: 32px;">{!salesProfile[0].Territory__c}</div>                                            
+                                </div>
+                                <div class="slds-col slds-border_left slds-p-left_small slds-large-size_1-of-5 slds-small-size_6-of-12" style="border-width: 5px; border-color: #fff; margin-bottom: 20px;">
+                                    <div class="slds-text-body_regular" style="font-size: 24px;">Tenure in Current Role</div>
+                                    <div class="slds-text-heading_medium" style="font-size: 32px;">{!salesProfile[0].Tenure_in_current_role__c}</div>                                            
+                                </div>
+                                <div class="slds-col slds-border_left slds-p-left_small slds-large-size_1-of-5 slds-small-size_6-of-12" style="border-width: 5px; border-color: #fff; margin-bottom: 20px;">
+                                    <div class="slds-text-body_regular" style="font-size: 24px;">Hire date</div>
+                                    <div class="slds-text-heading_medium" style="font-size: 32px;">{!spDate}</div>                                            
+                                </div>
+                            </div>
+                            <div class="slds-grid slds-wrap slds-p-bottom_x-large">
+                                <div class="slds-col slds-large-size_6-of-8 slds-small-size_8-of-8">
+                                    <div class="slds-grid">
+                                        <div class="slds-col slds-size_4-of-8 slds-p-around_large">
+                                            <div class="slds-grid slds-p-around_large" style="background: #fff; position: relative;">
+                                                <div class="slds-col slds-text-body_regular slds-size_6-of-8 slds-align_absolute-center" style="color:#333333; font-size: 21px; line-height: 20px; justify-content: left;">Funnelocity Quantitative<br/>Score YTD</div>
+                                                <div class="slds-col slds-text-heading_large slds-text-align_right slds-size_2-of-8" style="color:#00b2ee; font-size: 36px; text-align: right; padding-right: 25px;">{!ytdScore} </div>
+                                                <span class="slds-icon_container slds-icon-utility-info" style="position: absolute; top: 6px; right: 6px;" data-tooltip="Funnelocity Quantitative Score YTD">
+                                                    <i aria-hidden="true" class="fa fa-info-circle" style="color:#ff9900; font-size: 26px;"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="slds-col slds-size_4-of-8 slds-p-around_large">
+                                            <div class="slds-grid slds-p-around_large" style="background: #fff; position: relative;">
+                                                <div class="slds-col slds-text-body_regular slds-size_6-of-8 slds-align_absolute-center" style="color:#333333; font-size: 21px; line-height: 20px; justify-content: left;">Last Month</div>
+                                                <div class="slds-col slds-text-heading_large slds-text-align_right slds-size_2-of-8" style="color:#00b2ee; font-size: 36px; text-align: right; padding-right: 25px;">{!lastMonthScore}</div>
+                                                <span class="slds-icon_container slds-icon-utility-info" style="position: absolute; top: 6px; right: 6px;" data-tooltip="Last Month">
+                                                    <i aria-hidden="true" class="fa fa-info-circle" style="color:#ff9900; font-size: 26px;"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="slds-grid">
+                                        <div class="slds-col slds-size_4-of-8 slds-p-around_large">
+                                            <div class="slds-grid slds-p-around_large" style="background: #fff; position: relative;">
+                                                <div class="slds-col slds-text-body_regular slds-size_6-of-8 slds-align_absolute-center" style="color:#333333; font-size: 21px; line-height: 20px; justify-content: left;">Last Quarter</div>
+                                                <div class="slds-col slds-text-heading_large slds-text-align_right slds-size_2-of-8" style="color:#00b2ee; font-size: 36px; text-align: right; padding-right: 25px;">{!lastQuarterScore}</div>
+                                                <span class="slds-icon_container slds-icon-utility-info" style="position: absolute; top: 6px; right: 6px;" data-tooltip="Last Quarter">
+                                                    <i aria-hidden="true" class="fa fa-info-circle" style="color:#ff9900; font-size: 26px;"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="slds-col slds-size_4-of-8 slds-p-around_large">
+                                            <div class="slds-grid slds-p-around_large" style="background: #fff; position: relative;">
+                                                <div class="slds-col slds-text-body_regular slds-size_6-of-8 slds-align_absolute-center" style="color:#333333; font-size: 21px; line-height: 20px; justify-content: left;">Prior Year Funnelocity<br/> Quantitative Score</div>
+                                                <div class="slds-col slds-text-heading_large slds-text-align_right slds-size_2-of-8" style="color:#00b2ee; font-size: 36px; text-align: right; padding-right: 25px;">{!priorYearScore}</div>
+                                                <span class="slds-icon_container slds-icon-utility-info" style="position: absolute; top: 6px; right: 6px;" data-tooltip="Prior Year Funnelocity Quantitative Score">
+                                                    <i aria-hidden="true" class="fa fa-info-circle" style="color:#ff9900; font-size: 26px;"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slds-col slds-large-size_2-of-8 slds-small-size_8-of-8 slds-text-align_center slds-p-top_x-large">
+                                    <div style="background: #fff; width: 240px; padding: 0; border-radius: 140px; height: 240px; display: table; margin: 0 auto;">
+                                        <div class="slds-text-heading_large" style="font-size: 66px; color: #ff9900; padding: 60px 0 0 0;">{!Fcscore} </div>
+                                        <div class="slds-text-heading_medium" style="color: #333333; font-size: 23px; font-weight: 300;">Funnelocity Quantitative Score</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-p-center_xx-large" style="display: table; padding: 0 10px;margin: 0 auto;">
+                                <apex:commandLink action="{!navigateToIndividualDashboard}" style="background-color: #ff9900; color: #fff; padding: 12px 50px; border-radius: 30px; font-size: 21px; font-weight: bold;text-decoration:none; display: inline-block;">
+                                    PERFORMANCE SNAPSHOT
+                                </apex:commandLink>
+                            </div>     
+                        </div>
+                    </div>
+                                                             
+                    <div class="slds-grid slds-wrap slds-p-around_xx-large" style="background: #f5f5f9; padding-top:0;">
+                        <div class="slds-grid slds-wrap slds-p-around_x-large slds-size_1-of-1" style="background: #fff; padding-bottom: 0;">
+                            <div style="display: block; width: auto; margin: 0 auto;">
+                            <!--<apex:outputPanel >-->
+                            <div class="slds-p-center_xx-large" style="display: inline-block; padding: 0 10px;">
+                                <apex:commandLink rendered="{!updateNoti}" action="{!navigateToUpdateRatings}" style="background-color: #ff9900; color: #fff; padding: 12px 50px; border-radius: 30px; font-size: 21px; font-weight: bold;text-decoration:none; display: inline-block;">
+                                    UPDATE                                 
+                                </apex:commandLink>
+                            </div>
+                            
+                            <!--
+                            <apex:outputPanel rendered="{!isPendingStatusUpdate}">-->
+                            <div class="slds-p-center_xx-large" style="display: inline-block; padding: 0 10px;">
+                                <apex:commandLink rendered="{!isPendingStatusUpdate}" action="{!navigateToStatusUpdatePage}" style="background-color: #ff9900; color: #fff; padding: 12px 50px; border-radius: 30px; font-size: 21px; font-weight: bold;text-decoration:none; display: inline-block;">
+                                    COMPLETE ONBOARDING PHASE
+                                </apex:commandLink>  
+                            </div>
+                            <!--</apex:outputPanel>-->
+                            </div>
+                            <apex:outputText rendered="{!renderInfoMessage}" style="margin: 0 auto;    margin-top: 10px; display: table; width: 100%; text-align: center; color: red; font-size: 21px;" value="This rep has no ratings completed yet."/>
+                        </div>
+                        
+                       <apex:repeat var="key" value="{!cerificationListQuantitative}"> 
+                            <div class="slds-grid slds-wrap slds-p-around_xx-large slds-size_1-of-1" style="background: #fff;font-family: Arial,Helvetica,sans-serif;">
+                            
+                                <div class="slds-grid slds-size_8-of-8 slds-wrap">
+                                    <div class="slds-col slds-p-around_medium slds-size_8-of-8">
+                                       <div class="slds-text-heading_large" style="color:#5f666f; font-size: 24px; font-weight: 700; font-family: sldsFont;">Individual {!key} Metric Scores</div>
+                                    </div>
+                                    <div class="slds-col slds-p-around_medium slds-size_8-of-8">
+                                        <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered scoring-table">
+                                            <thead>
+                                                <tr>
+                                                    <th class="" scope="col" style="width: 55%;">
+                                                        <div class="slds-truncate" title="Opportunity Name"> </div>
+                                                    </th>
+                                                    <th class="slds-text-align_center" scope="col" style="width: 10%;">
+                                                        <div class="slds-truncate" title="Account Name">Goal</div>
+                                                    </th>
+                                                    <th class="slds-text-align_center" scope="col" style="width: 10%;">
+                                                        <div class="slds-truncate" title="Close Date">Actual</div>
+                                                    </th>
+                                                    <th class="slds-text-align_right" scope="col" style="width: 25%;">
+                                                        <div class="slds-truncate" title="Stage">Rating</div>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <apex:repeat var="value" value="{!cerificationListQuantitative[key]}">
+                                                    <tr>
+                                                        <td>
+                                                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                                               <div class="slds-col slds-text-heading_medium slds-size_6-of-8" style="color:#333333; font-size: 16px; font-weight: 400;">
+                                                               {!value.Certifcation_Rating__r.Name}
+                                                               </div>
+                                                                <span class="slds-icon_container slds-icon-utility-info" style="height: 16px;" data-tooltip="{!value.Certifcation_Rating__r.Description__c}"> 
+                                                                    <i aria-hidden="true" class="fa fa-info-circle" style="color:#66cc33; font-size: 16px; " ></i>
+                                                                </span>
+                                                            </div>
+                                                        </td>
+                                                        <td class="slds-text-align_center">
+                                                            <div class="slds-truncate">
+                                                             <script type="text/javascript">   
+                                                             if('{!value.Certifcation_Rating__r.Rating_type__c}' == '%'){
+                                                                document.write(({!goalValueMap[value.Certifcation_Rating__r.Goal_field_name__c]}).toFixed(2) + '%');
+                                                             }else if('{!value.Certifcation_Rating__r.Rating_type__c}' == '$'){
+                                                                document.write(({!goalValueMap[value.Certifcation_Rating__r.Goal_field_name__c]}).toLocaleString("ja-JP", { style: "currency", currency: "USD", minimumFractionDigits: 0 ,maximumFractionDigits:0 }));
+                                                             }else{
+                                                                document.write(({!goalValueMap[value.Certifcation_Rating__r.Goal_field_name__c]}).toLocaleString("ja-JP", {   minimumFractionDigits: 0 ,maximumFractionDigits:0 }));
+                                                             }
+                                                            
+                                                            </script>
+                                                            </div>
+                                                        </td>
+                                                        <td class="slds-text-align_center">
+                                                            <div class="slds-truncate">
+                                                             
+                                                            <script type="text/javascript">   
+                                                             if('{!value.Certifcation_Rating__r.Rating_type__c}' == '%'){
+                                                                document.write(({!actualValueMap[value.Certifcation_Rating__r.Metric_Field_Name__c]}).toFixed(2) + '%');
+                                                             }else if('{!value.Certifcation_Rating__r.Rating_type__c}' == '$'){
+                                                                document.write(({!actualValueMap[value.Certifcation_Rating__r.Metric_Field_Name__c]}).toLocaleString("ja-JP", { style: "currency", currency: "USD", minimumFractionDigits: 0 ,maximumFractionDigits:0 }));
+                                                             }else{
+                                                                document.write(({!actualValueMap[value.Certifcation_Rating__r.Metric_Field_Name__c]}).toLocaleString("ja-JP", {   minimumFractionDigits: 0 ,maximumFractionDigits:0 }));
+                                                             }
+                                                            
+                                                            </script>
+                                                            </div>
+                                                        </td>
+                                                        <td class="slds-text-align_right">
+                                                            <apex:outputPanel rendered="{!value.Rating_Score__c = 10}">
+                                                                <div class="slds-truncate">Outstanding<span class="circle outstanding">10</span></div>
+                                                            </apex:outputPanel>
+                                                            <apex:outputPanel rendered="{!value.Rating_Score__c = 8}">
+                                                                <div class="slds-truncate">Strong <span class="circle strong">8</span></div>
+                                                            </apex:outputPanel>
+                                                            <apex:outputPanel rendered="{!value.Rating_Score__c = 5}">
+                                                                <div class="slds-truncate">Average <span class="circle average">5</span></div>
+                                                            </apex:outputPanel>
+                                                            <apex:outputPanel rendered="{!value.Rating_Score__c = 2}">
+                                                                <div class="slds-truncate">Marginal <span class="circle marginal">2</span></div>
+                                                            </apex:outputPanel>
+                                                            <apex:outputPanel rendered="{!value.Rating_Score__c = 0}">
+                                                                <div class="slds-truncate">Needs Improvement <span class="circle needs-improvement">0</span></div>
+                                                            </apex:outputPanel>
+                                                        </td>
+                                                    </tr>
+                                                </apex:repeat>    
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            
+                                <!--<div class="slds-grid slds-size_8-of-8">
+                                    <div class="slds-col slds-p-around_medium slds-size_7-of-8">
+                                        <span class="slds-text-heading_large slds-p-around_large" style="color:#333333; font-size: 24px; font-weight: 500;">Individual {!key} Metric Scores</span>
+                                        <span class="slds-icon_container slds-p-top_large" data-tooltip="Individual {!key} Metric Scores">
+                                            <i aria-hidden="true" class="fa fa-info-circle" style="color:#ff9900; font-size: 26px;"></i>
+                                        </span>
+                                        <span class="slds-p-left_xx-large">
+                                          
+                                        </span>
+                                    </div>
+                                    <div class="slds-col slds-p-around_medium slds-size_1-of-8">
+                                    </div>
+                                </div>
+                                <div class="slds-size_8-of-8 slds-p-top_large slds-m-top_large slds-border_top slds-m-bottom_x-large" style="border-width: 2px; border-color: #7e8793;">
+                                    <apex:repeat var="value" value="{!cerificationListQuantitative[key]}">
+                                    
+                                        <div class="slds-grid slds-p-around_medium" style="border-bottom: 1px solid #c1c1c1;">
+                                            <div class="slds-col slds-text-heading_medium slds-size_6-of-8" style="color:#333333; font-size: 16px; font-weight: 400; border-right: 1px solid #c1c1c1;">{!value.Certifcation_Rating__r.Name}</div>
+                                            <div class="slds-col slds-text-heading_medium slds-size_2-of-8" style="color:#333333; font-size: 16px; text-align: right; font-weight: 400;">{!IF(value.Rating_Score__c == 10,'Outstanding (10)',If(value.Rating_Score__c == 8,'Strong (8)',IF(value.Rating_Score__c == 5,'Average (5)',IF(value.Rating_Score__c == 2,'Marginal (2)','Needs Improvement (0)'))))} </div>
+                                        </div>
+                                                                                                                
+                                    </apex:repeat>
+                                </div>-->
+                            </div>
+                        </apex:repeat> 
+                        
+                        <apex:repeat var="key" value="{!cerificationList}"> 
+                            <div class="slds-grid slds-wrap slds-p-around_xx-large slds-size_1-of-1" style="background: #fff;font-family: Arial,Helvetica,sans-serif;">
+                            
+                                <div class="slds-grid slds-size_8-of-8 slds-wrap">
+                                    <div class="slds-col slds-p-around_medium slds-size_8-of-8">
+                                       <div class="slds-text-heading_large" style="color:#5f666f; font-size: 24px; font-weight: 700; font-family: sldsFont;">Individual {!key} Metric Scores</div>
+                                    </div>
+                                    <div class="slds-col slds-p-around_medium slds-size_8-of-8">
+                                        <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered scoring-table">
+                                            <thead>
+                                                <tr>
+                                                    <th class="" scope="col" style="width: 75%;">
+                                                        <div class="slds-truncate" title="Opportunity Name"> </div>
+                                                    </th>
+                                                    <th class="slds-text-align_right" scope="col" style="width: 25%;">
+                                                        <div class="slds-truncate" title="Stage">Rating</div>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <apex:repeat var="value" value="{!cerificationList[key]}">
+                                                    <tr>
+                                                        <td>
+                                                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                                                {!value.Certifcation_Rating__r.Name}
+                                                                <span class="slds-icon_container slds-icon-utility-info" style="height: 16px;" data-tooltip="{!value.Certifcation_Rating__r.Description__c}"> 
+                                                                    <i aria-hidden="true" class="fa fa-info-circle" style="color:#66cc33; font-size: 16px; " ></i>
+                                                                </span>
+                                                            </div>                                             
+                                                        </td>
+                                                        
+                                                        
+                                                        <td class="slds-text-align_right">
+                                                            <apex:outputPanel rendered="{!value.Rating_Score__c = 10}">
+                                                                <div class="slds-truncate">Outstanding<span class="circle outstanding">10</span></div>
+                                                            </apex:outputPanel>
+                                                            <apex:outputPanel rendered="{!value.Rating_Score__c = 8}">
+                                                                <div class="slds-truncate">Strong <span class="circle strong">8</span></div>
+                                                            </apex:outputPanel>
+                                                            <apex:outputPanel rendered="{!value.Rating_Score__c = 5}">
+                                                                <div class="slds-truncate">Average <span class="circle average">5</span></div>
+                                                            </apex:outputPanel>
+                                                            <apex:outputPanel rendered="{!value.Rating_Score__c = 2}">
+                                                                <div class="slds-truncate">Marginal <span class="circle marginal">2</span></div>
+                                                            </apex:outputPanel>
+                                                            <apex:outputPanel rendered="{!value.Rating_Score__c = 0}">
+                                                                <div class="slds-truncate">Needs Improvement <span class="circle needs-improvement">0</span></div>
+                                                            </apex:outputPanel>
+                                                        </td>
+                                                    </tr>
+                                                </apex:repeat>    
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            
+                                <!--<div class="slds-grid slds-size_8-of-8">
+                                    <div class="slds-col slds-p-around_medium slds-size_7-of-8">
+                                        <span class="slds-text-heading_large slds-p-around_large" style="color:#333333; font-size: 24px; font-weight: 500;">Individual {!key} Metric Scores</span>
+                                        <span class="slds-icon_container slds-p-top_large" data-tooltip="Individual {!key} Metric Scores">
+                                            <i aria-hidden="true" class="fa fa-info-circle" style="color:#ff9900; font-size: 26px;"></i>
+                                        </span>
+                                        <span class="slds-p-left_xx-large">
+                                          
+                                        </span>
+                                    </div>
+                                    <div class="slds-col slds-p-around_medium slds-size_1-of-8">
+                                    </div>
+                                </div>
+                                <div class="slds-size_8-of-8 slds-p-top_large slds-m-top_large slds-border_top slds-m-bottom_x-large" style="border-width: 2px; border-color: #7e8793;">
+                                <apex:repeat var="value" value="{!cerificationListQuantitative[key]}">
+                                
+                                    <div class="slds-grid slds-p-around_medium" style="border-bottom: 1px solid #c1c1c1;">
+                                        <div class="slds-col slds-text-heading_medium slds-size_6-of-8" style="color:#333333; font-size: 16px; font-weight: 400; border-right: 1px solid #c1c1c1;">{!value.Certifcation_Rating__r.Name}</div>
+                                        <div class="slds-col slds-text-heading_medium slds-size_2-of-8" style="color:#333333; font-size: 16px; text-align: right; font-weight: 400;">{!IF(value.Rating_Score__c == 10,'Outstanding (10)',If(value.Rating_Score__c == 8,'Strong (8)',IF(value.Rating_Score__c == 5,'Average (5)',IF(value.Rating_Score__c == 2,'Marginal (2)','Needs Improvement (0)'))))} </div>
+                                    </div>
+                                                                                                    
+                                </apex:repeat>
+                                </div>-->
+                                
+                            </div>
+                        </apex:repeat>  
+                        
+                        
+                    </div>   
+                    <div class="slds-grid slds-wrap slds-p-around_xx-large" style="background: #f5f5f9; padding-top:0;">
+                        
+                     <!--   <div class="slds-grid slds-wrap slds-p-around_xx-large slds-size_1-of-1" style="background: #fff; padding-bottom:0;">
+                            <div class="slds-p-center_xx-large" style="margin: 0 auto;">
+                                
+                                   
+                                    
+                                        <span class="color:#fff;">KPI Score</span>
+                                   
+                                  
+                            </div>
+                        </div> -->
+                       
+                       
+                       <!--<apex:repeat var="key" value="{!cerificationList}"> 
+                            <div class="slds-grid slds-wrap slds-p-around_x-large slds-size_1-of-1" style="background: #fff; padding-top: 0;font-family: Arial,Helvetica,sans-serif;">
+                                <div class="slds-grid slds-size_8-of-8">
+                                    <div class="slds-col slds-p-around_medium slds-size_7-of-8">
+                                       
+                                        <span class="slds-text-heading_large slds-p-around_large" style="color:#333333; font-size: 24px; font-weight: 500;">Individual {!key} Skill  Scores</span>
+                                        <span class="slds-icon_container slds-p-top_large" data-tooltip="Individual {!key} Skill  Scores">
+                                            <i aria-hidden="true" class="fa fa-info-circle" style="color:#ff9900; font-size: 26px;"></i>
+                                        </span>
+                                        <span class="slds-p-left_xx-large">
+                                          
+                                        </span>
+                                    </div>
+                                    <div class="slds-col slds-p-around_medium slds-size_1-of-8">
+                                    </div>
+                                </div>
+                                <div class="slds-size_8-of-8 slds-p-top_large slds-border_top" style="border-width: 2px; border-color: #7e8793;">
+                                    <apex:repeat var="value" value="{!cerificationList[key]}">
+                                    
+                                        <div class="slds-grid slds-p-around_medium" style="border-bottom: 1px solid #c1c1c1;">
+                                            <div class="slds-col slds-text-heading_medium slds-size_6-of-8" style="color:#333333; font-size: 16px; font-weight: 400;">{!value.Certifcation_Rating__r.Description__c}</div>
+                                             <div class="slds-col slds-text-heading_medium slds-size_2-of-8" style="color:#333333; font-size: 16px; text-align: right; font-weight: 400;">   
+                                                <apex:outputPanel rendered="{!IF(value.Certifcation_Rating__r.Calculation_type__c == 'Evaluation','true','false')}">
+                                                    {!IF(value.Rating_Score__c == 10,'Outstanding (10)',If(value.Rating_Score__c == 8,'Strong (8)',IF(value.Rating_Score__c == 5,'Average (5)',IF(value.Rating_Score__c == 2,'Marginal (2)','Needs Improvement (0)'))))}
+                                                </apex:outputPanel>
+                                                <apex:outputPanel rendered="{!IF(value.Certifcation_Rating__r.Calculation_type__c == 'Y/N','true','false')}">
+                                                {!IF(value.Rating_Score__c == 10,'Yes(10)',If(value.Rating_Score__c == 0,'No(0)',''))}
+                                            </apex:outputPanel>
+                                            </div>
+                                            
+                                        </div>
+                                        
+                                    
+                                    
+                                    </apex:repeat>
+                                </div>
+                            </div>
+                        </apex:repeat>-->   
+                        
+                    </div>                                                                                 
+                </div>
+            </div>      
+    </apex:form>
+</apex:page>

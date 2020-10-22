@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Funnel Metrics</fullName>
+        <default>false</default>
+        <label>Funnel Metrics</label>
+    </customValue>
+    <customValue>
+        <fullName>Halsted Corporation</fullName>
+        <default>false</default>
+        <label>Halsted Corporation</label>
+    </customValue>
+    <description>first company Level Picklist 1 - example company</description>
+    <masterLabel>Level Picklist 1</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

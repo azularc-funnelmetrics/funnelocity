@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Monthly_Average_Win_size__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Monthly Average $ Win size (Currency) =
+Monthly_Quota_Revenue__c  /   Monthly_opp_won__c</description>
+    <externalId>false</externalId>
+    <formula>IF(Monthly_opp_won__c &gt; 0, Monthly_Quota_Revenue__c  /   Monthly_opp_won__c, 0)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Monthly Average $ Win size</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <brand>
+        <headerColor>#2199D5</headerColor>
+        <logo>Funnel_MetricsI_logo_4C_small3</logo>
+        <logoVersion>1</logoVersion>
+        <shouldOverrideOrgTheme>true</shouldOverrideOrgTheme>
+    </brand>
+    <description>App to apply Funnel Metrics Logo to User Interface</description>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <label>Funnelocity</label>
+    <navType>Standard</navType>
+    <tabs>standard-home</tabs>
+    <tabs>FM_Home</tabs>
+    <tabs>Certification_Answer_Snapshot__c</tabs>
+    <tabs>Certification_Snapshot__c</tabs>
+    <tabs>Company_Level_Junction_snapshot__c</tabs>
+    <tabs>Company_Levels_snapshot__c</tabs>
+    <tabs>Application_Setting__c</tabs>
+    <tabs>Important_Rating__c</tabs>
+    <tabs>Certification__c</tabs>
+    <tabs>YTD_Quota_Revenue__c</tabs>
+    <tabs>Certification_Answer__c</tabs>
+    <tabs>Sales_Rep_Quota__c</tabs>
+    <tabs>Yearly_goals_by_Role__c</tabs>
+    <uiType>Lightning</uiType>
+    <utilityBar>FunnelMetrics_UtilityBar</utilityBar>
+</CustomApplication>

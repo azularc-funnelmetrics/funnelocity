@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Quarterly_Close_Rate_percentage__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Stores the quarterly close rate in percentage form against the goal</description>
+    <externalId>false</externalId>
+    <formula>IF(Goal_12m_rolling_amt_close_rate__c &gt; 0, Quarterly_Close_Rate__c / Goal_12m_rolling_amt_close_rate__c , 0)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Quarterly $ Close Rate percentage</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Percent</type>
+</CustomField>

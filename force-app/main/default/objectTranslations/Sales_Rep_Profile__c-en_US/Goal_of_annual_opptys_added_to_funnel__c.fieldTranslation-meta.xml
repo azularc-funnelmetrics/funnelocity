@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Goal # of annual opptys added to funnel --></label>
+    <name>Goal_of_annual_opptys_added_to_funnel__c</name>
+</CustomFieldTranslation>

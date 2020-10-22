@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>X12_month_rolling_avg_sales_cycle__c</fullName>
+    <deprecated>false</deprecated>
+    <description>12 month rolling average sales cycle goal</description>
+    <externalId>false</externalId>
+    <label>12 month rolling avg sales cycle</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>This custom metadata type is used to store the email of admins who should be notified of missed certification updates</description>
+    <label>FM Admins - Missed Cert updates</label>
+    <pluralLabel>FM Admins</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

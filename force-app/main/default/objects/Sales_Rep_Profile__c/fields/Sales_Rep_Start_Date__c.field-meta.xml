@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sales_Rep_Start_Date__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Rep&apos;s Start date (to determine tenure) This field is no longer used as we cannot access the User record created date in a formula field. We have created a new field populated via a trigger.</description>
+    <externalId>false</externalId>
+    <formula>User_Record_Name__r.Contact.CreatedDate</formula>
+    <label>BAD Sales Rep Start Date</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

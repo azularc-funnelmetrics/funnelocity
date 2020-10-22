@@ -1,7 +1,0 @@
-Dear {!Lead.FirstName},  
-
-Thank you for your interest in {!Organization.Name}.  We will be contacting you shortly.  If you'd like to provide a convenient date/time for your call, please respond to this email and we'll do our best to accommodate.  
-
-Sincerely,  
-
-The Team at {!Organization.Name}
